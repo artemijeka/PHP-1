@@ -53,6 +53,7 @@ $nowDate = date(' o');
 		</div>
 		
 		<div id="footer">
+			<!-- Добавляю вывод текущего номера года echo $nowDate; -->
 			<p>Copyright &copy; <em>minimalistica</em> &middot; Design: Luka Cvrk, <a href="http://www.solucija.com/" title="Free CSS Templates">Solucija</a><span><?php echo $nowDate; ?></span></p>
 		</div>	
 	</div>
