@@ -1,2 +1,2 @@
-# php-1
+# PHP-1
 Course of programming on php level 1.
