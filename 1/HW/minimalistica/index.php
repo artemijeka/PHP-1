@@ -12,11 +12,11 @@ $nowDate = date(' o');
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="author" content="Luka Cvrk (www.solucija.com)" />
 	<link rel="stylesheet" href="css/main.css" type="text/css" />
-	<title><?=$title; ?></title>
+	<title><?php echo $title; ?></title>
 </head>
 <body>
 	<div id="content">
-		<h1><?=$h1; ?></h1>
+		<h1><?php echo $h1; ?></h1>
 		
 		<ul id="menu">
 			<li><a href="#">home</a></li>
@@ -54,7 +54,7 @@ $nowDate = date(' o');
 		
 		<div id="footer">
 			<!-- Добавляю вывод текущего номера года echo $nowDate; -->
-			<p>Copyright &copy; <em>minimalistica</em> &middot; Design: Luka Cvrk, <a href="http://www.solucija.com/" title="Free CSS Templates">Solucija</a><span><?=$nowDate; ?></span></p>
+			<p>Copyright &copy; <em>minimalistica</em> &middot; Design: Luka Cvrk, <a href="http://www.solucija.com/" title="Free CSS Templates">Solucija</a><span><?php echo $nowDate; ?></span></p>
 		</div>	
 	</div>
 </body>
