@@ -1,0 +1,9 @@
+blockquote {
+	background: #c4c4c4;
+	padding: 10px;
+	border-radius: 8px;
+}
+
+input {
+	margin: 10px;
+}
