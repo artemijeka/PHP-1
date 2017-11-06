@@ -17,7 +17,8 @@
 	</div>
 	<form enctype="multipart/form-data" action="../engine/get_image.php" method="POST">
 		<p class='gallery__title'>Вы можете загрузить изображение размером не больше 5Мб.</p>
-		<input type="hidden" name="MAX_FILE_SIZE" value="8388608" />
+		<!-- Для ограничения размера файла можно использовать. -->
+		<!-- <input type="hidden" name="MAX_FILE_SIZE" value="5242880" /> -->
 		<label class="buttonForUploads" for="userImage">Выбрать изображение.</label><br>
 		<input hidden="" type="file" id="userImage" name="userImage" autofocus multiple accept="image/*,image/jpeg" />
 		<br>
