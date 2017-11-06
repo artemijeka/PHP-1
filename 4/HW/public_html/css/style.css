@@ -44,3 +44,9 @@ form {
 	box-shadow: none;
 	transition-duration: 400ms;
 }
+
+.gallery__title {
+	background-color: #c3ea79;
+	box-shadow: 0 0 3px #000;
+
+}
