@@ -20,9 +20,9 @@ else {
   echo "Возникла ошибка при загрузке!";
 }
 
-echo "<pre>";
+// echo "<pre>";
 
-echo 'Отладочная информация:';
-print_r($_FILES);
+// echo 'Отладочная информация:';
+// print_r($_FILES);
 
-echo "</pre>";
+// echo "</pre>";
