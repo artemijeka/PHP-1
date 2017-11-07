@@ -19,10 +19,3 @@ if (!in_array($_FILES['userImage']['type'], $types)) {
 else {
   echo "Возникла ошибка при загрузке!";
 }
-
-echo "<pre>";
-
-echo 'Отладочная информация:';
-print_r($_FILES);
-
-echo "</pre>";
