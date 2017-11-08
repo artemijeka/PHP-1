@@ -14,12 +14,12 @@ $userImage = $uploadDir.$_FILES['userImage']['name'];
 
 // Проверка на тип загружаемого файла.
 if (!in_array($_FILES['userImage']['type'], $types)) {
-  echo 'Недопустимый тип файла. Допустимо загружать только изображения: gif, png, jpg';
+  echo 'Недопустимый тип файла. Допустимо загружать только изображения: gif, png, jpg<br>';
 // Проверка на размер файла.
 } else if ($_FILES['userImage']['size'] > $size) {
 	echo "Вы пытаетесь загрузить изображение больше 5Мб!<br>";
 } else if (copy($_FILES['userImage']['tmp_name'], $userImage)) {
-  echo "Файл загружен!";
+  echo "Файл загружен!<br>";
   // Функция обновления страницы.
   refresh();
 }
