@@ -1,0 +1,52 @@
+p {
+  background: #c4c4c4;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+input {
+  margin: 10px;
+}
+
+.gallery {
+  /*display: block;*/
+  /*width: 100%;*/
+}
+
+.gallery__image {
+  display: inline-block;
+  width: 250px;
+  height: 250px;
+  margin: 5px;
+}
+
+form {
+  background: #d8edad;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.buttonForUploads,
+.buttonForSubmit {
+	display: inline-block;
+	position: relative;
+	background-color: #7ca524;
+	padding: 5px;
+	border-radius: 5px;
+	border-width: 3px;
+	border-color: #000;
+	box-shadow: 0 3px 3px #000;
+}
+
+.buttonForUploads:active,
+.buttonForSubmit:active {
+	top: 3px;
+	box-shadow: none;
+	transition-duration: 400ms;
+}
+
+.gallery__title {
+	background-color: #c3ea79;
+	box-shadow: 0 0 3px #000;
+
+}
