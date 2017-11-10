@@ -42,10 +42,9 @@ else {
   echo "Возникла ошибка при загрузке!";
 }
 
-
-	echo "<pre>";
-	echo 'Массив $_FILES:';
-	print_r($_FILES);
-	echo "</pre>";
+	// echo "<pre>";
+	// echo 'Массив $_FILES:';
+	// print_r($_FILES);
+	// echo "</pre>";
 	
 
