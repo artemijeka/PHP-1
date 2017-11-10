@@ -19,26 +19,27 @@
 		<p class='gallery__title'>Вы можете загрузить изображение размером не больше 5Мб.</p>
 		<!-- Для ограничения размера файла можно использовать. -->
 		<!-- <input type="hidden" name="MAX_FILE_SIZE" value="5242880" /> -->
-		<label class="buttonForUploads" for="userImage">Выбрать изображение.</label><br>
-		<input hidden="" type="file" id="userImage" name="userImage" autofocus multiple />
+		
+		<div class="gallery">
+			<!-- Вставка файла обрабатывающего вывод галереи на экран. -->
+			<? require_once("../templates/gallery.php"); ?>
+		</div>
+
+		<label class="buttonForUploads" for="file">Выбрать изображение.</label><br>
+		<!-- Скрыл input. Добавил id для связи с label.-->
+		<input hidden="" type="file" id="file" name="userImage" autofocus multiple />
 		<br>
 		<label class="buttonForSubmit" for="submit">Загрузить.</label><br>
+		<!-- Скрыл input. Добавил id для связи с label.-->
 		<input type="submit" hidden="" id='submit' value="Загрузить" />
 		<!-- Вставка файла обрабатывающего загрузку изображения. -->
-		<p class='gallery__title'>Информация: <? require_once('../engine/get_image.php');	?></p>
+		<p class='gallery__title'>Информация: 
+
+			<!-- Подключение файла обрабатывающего загрузку изображения на сервер. -->
+			<? require_once('../engine/get_image.php'); ?>
+		</p>
 	</form>
 
-	<div class="gallery">
-		<!-- Вставка файла обрабатывающего вывод галереи на экран. -->
-		<? require("../templates/gallery.php"); ?>
-	</div>
-<!-- 	<?
-		// echo "<pre>";
-
-		// echo 'Отладочная информация:';
-
-		// echo "</pre>";
-	?> -->
 	<h2>Задание #2.</h2>
 	<p>
 		ТЗ:
