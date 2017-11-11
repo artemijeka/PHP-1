@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>ДЗ php-1 урок 5</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
 	<div class="gallery">
@@ -20,6 +20,7 @@
 			// Подключение файла счетчика просмотров и занос в базу данных.
 			include('../engine/count_views.php');
 		?>
+		<br>
 		<p class='gallery__title'>
 			Кол-во просмотров изображения: <?=$countOfHits; ?>.
 		</p>
