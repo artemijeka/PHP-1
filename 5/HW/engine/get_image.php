@@ -1,7 +1,7 @@
 <?
 // Функция перезагрузки страницы. Пока не работает как следовало бы.-----------------------------------------------\/
 function refresh() {
-	header('Location: ./index.php');
+	header('Location: index.php');
 	exit;
 }
 
@@ -28,7 +28,7 @@ if (!in_array($nameImage, $arrayNamesImages)) {
 		  // refresh();
 		  
 			// Сразу после загрузки изображений, данные о изображении следует положить в базу данных.
-			require_once('query_to_db.php');
+			require('query_to_db.php');
 		}
 }
 else {
