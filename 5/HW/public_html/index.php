@@ -17,17 +17,18 @@
 
 	<form enctype="multipart/form-data" action="" method="POST">
 		<p class='gallery__title'>Вы можете загрузить изображение размером не больше 5Мб.</p>
-		<!-- Для ограничения размера файла можно использовать. -->
-		<!-- <input type="hidden" name="MAX_FILE_SIZE" value="5242880" /> -->
 		
 		<div class="gallery">
 			<!-- Вставка файла обрабатывающего вывод галереи на экран. -->
 			<? require_once("../templates/gallery.php"); ?>
 		</div>
+		
+		<!-- Для ограничения размера файла можно использовать. -->
+		<input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
 
 		<label class="buttonForUploads" for="file">Выбрать изображение.</label><br>
 		<!-- Скрыл input. Добавил id для связи с label.-->
-		<input hidden="" type="file" id="file" name="userImage" autofocus multiple />
+		<input hidden="" type="file" id="file" name="userImage" autofocus multiple accept="image/png, image/gif, image/jpeg"/>
 		<br>
 		<label class="buttonForSubmit" for="submit">Загрузить.</label><br>
 		<!-- Скрыл input. Добавил id для связи с label.-->
