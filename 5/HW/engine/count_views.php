@@ -1,10 +1,5 @@
 <?	
-// Затребовать файл с конфигурацией.
-require_once('conf.php');
-
-// Произвести подключение к базе данных.
-$connect = mysqli_connect(HOST, USER, PASSWORD, DATABASE) or die("Ошибка " . mysqli_error($connect));
-
+require_once('connect_to_db.php');
 
 // Шаблон добавления информации о кол-ве просмотров изображения в базу данных.
 // $currentNameImage - это переменная из /engine/big_image.php
@@ -18,7 +13,6 @@ $queryCountHits = "SELECT hits FROM lesson_5 WHERE name='$currentNameImage';";
 $resultQueryHitsUp = mysqli_query($connect, $queryHitsUp);
 
 $resultQueryCountHits = mysqli_query($connect, $queryCountHits) or die("Ошибка " . mysqli_error($connect));
-
 
 while($row = mysqli_fetch_array($resultQueryCountHits)) {
 // Записать значение столбца "hits" (который является теперь массивом $row)
