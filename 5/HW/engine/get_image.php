@@ -22,7 +22,7 @@ $userImageDirectoryFile = $uploadDir.$nameImage;
 
 // Если текущее имя загружаемого файла не равно одному из существующих.
 // Массив $arrayNamesImages определяется в файле gallery.php 
-if (!in_array($nameImage, $arrayNamesImages)) {
+if (!in_array($nameImage, $arrayNamesImagesSortByHits)) {
 		// То если копирование файла из папки temp в папку ../data/uploads/с текущим именем файла произошло успешно.
 		if (copy($_FILES['userImage']['tmp_name'], $userImageDirectoryFile)) {
 			// То сообщить об успехе.
