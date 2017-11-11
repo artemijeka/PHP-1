@@ -7,6 +7,7 @@
 <body>
 	<div class="gallery">
 		<?
+
 			$currentNameImage = $_GET["currentNameImage"];
 
 			echo "<pre>";
@@ -15,7 +16,13 @@
 			echo "</pre>";
 
 			print("<img src=../../data/uploads/$currentNameImage alt=placeholder+image>"); 
+
+			// Подключение файла счетчика просмотров и занос в базу данных.
+			include('../engine/count_views.php');
 		?>
+		<p class='gallery__title'>
+			Кол-во просмотров изображения: <?=$countOfHits; ?>.
+		</p>
 		
 	</div>
 </body>
