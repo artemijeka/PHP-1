@@ -1,11 +1,14 @@
 <?
-	// Подключение функции create_thumbnail($path, $save, $width, $height);
-	require_once('../engine/image_reduction.php');
+// Подключение файла обрабатывающего загрузку изображения на сервер. -->
+require_once('../engine/get_image.php');
 
-	// Сканирую папку с изображениями и создаю массив имен изображений.
-	$arrayNamesImages = scandir('../data/uploads/');
+// Подключение функции create_thumbnail($path, $save, $width, $height);
+require_once('../engine/image_reduction.php');
 
-	// $i=2 потому что в массиве имена файлов начинаются с 2 индекса (первые два индекса имеют значения: . и ..)
+// Сканирую папку с изображениями и создаю массив имен изображений.
+$arrayNamesImages = scandir('../data/uploads/');
+	
+// $i=2 потому что в массиве имена файлов начинаются с 2 индекса (первые два индекса имеют значения: . и ..)
 	for ($i=2; $i<count($arrayNamesImages); $i++) {
 
 		// Переменные для функции уменьшения изображений.
