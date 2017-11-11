@@ -1,5 +1,7 @@
 <?
-// Функция перезагрузки страницы. Пока не работает как следовало бы.-----------------------------------------------\/
+echo "<p class='gallery__title'><strong>Информация из /engine/get_image.php:</strong>";
+
+// Функция перезагрузки страницы
 function refresh() {
 	header('Location: index.php');
 	exit;
@@ -24,11 +26,12 @@ if (!in_array($nameImage, $arrayNamesImages)) {
 		if (copy($_FILES['userImage']['tmp_name'], $userImageDirectoryFile)) {
 			// То сообщить об успехе.
 		  echo "Файл загружен!<br>";
-		  // Функция обновления страницы ломает работающую программу.--------------------------------------------------/\
-		  // refresh();
 		  
 			// Сразу после загрузки изображений, данные о изображении следует положить в базу данных.
 			require('query_to_db.php');
+
+		  // Функция обновления страницы ломала работающую программу из-за того что я ее вызвал до вызова require('query_to_db.php');
+		  refresh();
 		}
 }
 else {
@@ -40,4 +43,4 @@ else {
 	// print_r($_FILES);
 	// echo "</pre>";
 	
-
+echo "</p><br>";
