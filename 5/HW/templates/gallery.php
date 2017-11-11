@@ -16,9 +16,10 @@
 
 		// Вызов функции уменьшения изображений.
 		$thumbnail = create_thumbnail($path, $save, $width, $height);
-			
+
 		// Вывод на экран ссылок и галереи изображений.
-		echo "<a href='../data/uploads/$arrayNamesImages[$i]' target='_blank'>";
+		// echo "<a href='../data/uploads/$arrayNamesImages[$i]' target='_blank'>";
+		echo "<a href='./big_image.php/?currentNameImage=$arrayNamesImages[$i]' target='_blank'>";
 		echo "<div style='background-image: url(../data/thumbnails/$arrayNamesImages[$i]); background-size: cover; background-position: center;'; class='gallery__image'></div>";
 		echo "</a>";
 	}
