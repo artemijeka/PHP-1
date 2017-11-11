@@ -34,11 +34,6 @@
 		<label class="buttonForSubmit" for="submit">Загрузить.</label><br>
 		<!-- Скрыл input. Добавил id для связи с label.-->
 		<input type="submit" hidden="" id='submit' value="Загрузить" />
-		<!-- Вставка файла обрабатывающего загрузку изображения. -->
-		<p class='gallery__title'>Информация: 
-			<!-- Подключение файла обрабатывающего загрузку изображения на сервер. -->
-			<? require_once('../engine/get_image.php'); ?>
-		</p>
 	</form>
 
 	<h2>Задание #2.</h2>
