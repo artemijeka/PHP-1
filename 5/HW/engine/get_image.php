@@ -5,11 +5,15 @@ function refresh() {
 	exit;
 }
 
-// Дирректория загрузки файлов.
-$uploadDir = '../data/uploads/';
 
 // Переменная хранит имя текущего загружаемого файла.
 $nameImage = $_FILES['userImage']['name'];
+
+// Дирректория загрузки файлов.
+$uploadDir = '../data/uploads/';
+
+// Размер файла.
+$sizeImage = $_FILES['userImage']['size'];
 
 // Дирректория загрузки и название файла.
 $userImageDirectoryFile = $uploadDir.$nameImage;
