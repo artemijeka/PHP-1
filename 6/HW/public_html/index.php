@@ -23,7 +23,7 @@
 			<!-- <input type="text" autofocus name="number2" size="8"> -->
 			<input type="submit" name="operation" value="+">
 			<input type="submit" name="operation" value="-">
-			<input type="submit" name="operation" value="*">
+			<input type="submit" name="operation" value="x">
 			<input type="submit" name="operation" value="/">
 			<input type="submit" name="operation" value="%">
 			
@@ -54,6 +54,7 @@
 
 	// Куда $connect и какой запрос $templateForAddData.
 	$queryForAddData = mysqli_query($connect, $templateForAddData);
+	
 	if ($operation==="C") {
 		$queryToDeleteDataFromTable = mysqli_query($connect, $templateToDeleteDataFromTable);
 	} else if ($operation==="=") {
@@ -75,7 +76,9 @@
 		echo $result;
 		
 		$result = str_replace('=', '', $result);
-		
+		$result = str_replace('x', '*', $result);
+		// СДЕЛАТЬ ПРОВЕРКУ ДЕЛЕНИЯ НА 0 ПРИМЕРНО:
+		// if ($result есть /0) то вывести ошибку.
 		$result = eval("return $result;");
 		echo "<strong>$result</strong>";
 		
