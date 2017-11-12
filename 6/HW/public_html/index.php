@@ -72,19 +72,13 @@
 		}
 
 		$result = implode('', $arrayResult);
-		echo "<pre>";
 		echo $result;
-		echo "</pre>";
-		// $result = substr($result, 0, -1);
+		
 		$result = str_replace('=', '', $result);
-		// $result = str_replace('%0', '%', $result);
 		
 		$result = eval("return $result;");
-		// $result = eval("return 4%2;");
+		echo "<strong>$result</strong>";
 		
-		echo "<pre>";
-		echo $result;
-		echo "</pre>";
 
 		$queryToDeleteDataFromTable = mysqli_query($connect, $templateToDeleteDataFromTable);
 		mysqli_close($connect);
