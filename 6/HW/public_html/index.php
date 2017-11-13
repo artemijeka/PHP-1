@@ -19,14 +19,15 @@
 	</p>
 		<form class="gallery" action="" method="POST">
 			
-			<input type="text" autofocus name="userNumber" size="12">
+			<input type="text" autofocus name="userNumber" size="13">
+			<br>
 			<!-- <input type="text" autofocus name="number2" size="8"> -->
 			<input type="submit" name="operation" value="+">
 			<input type="submit" name="operation" value="-">
 			<input type="submit" name="operation" value="x">
+			<br>
 			<input type="submit" name="operation" value="/">
-			<input type="submit" name="operation" value="%">
-			
+			<!-- <input type="submit" name="operation" value="%"> -->
 			<input type="submit" name="operation" value="C">
 			<input type="submit" name="operation" value="=">
 			
