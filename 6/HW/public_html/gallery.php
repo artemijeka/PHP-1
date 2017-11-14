@@ -27,7 +27,7 @@
 		<br>
 		<label class="buttonForUploads" for="file">Выбрать изображение.</label><br>
 		<!-- Скрыл input. Добавил id для связи с label.-->
-		<input hidden="" type="file" id="file" name="userImage[]" autofocus multiple accept="image/png, image/gif, image/jpeg"/>
+		<input hidden="" type="file" id="file" name="userImage" autofocus multiple accept="image/png, image/gif, image/jpeg"/>
 		<br>
 		<label class="buttonForSubmit" for="submit">Загрузить.</label><br>
 		<!-- Скрыл input. Добавил id для связи с label.-->
@@ -35,6 +35,7 @@
 	</form>
 	
 	<form action="" method="POST">
+		<? require_once('../engine/reviews.php'); ?>
 		<p class='gallery__title'>Вы можете оставить отзыв.</p>
 		<br>
 		<label for="userName">Имя</label>
@@ -45,8 +46,6 @@
 		<br>
 		<label class="buttonForSubmit" for="submit">Отправить</label>
 		<input hidden type="submit" id="submit" value="Оставить отзыв.">
-		
-		<? require('../engine/reviews.php'); ?>
 	</form>
 
 </body>
