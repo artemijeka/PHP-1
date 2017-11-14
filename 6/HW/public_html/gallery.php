@@ -34,18 +34,36 @@
 		<input type="submit" hidden="" id='submit' value="Загрузить" />
 	</form>
 	
-	<form action="" method="POST">
-		<? require_once('../engine/reviews.php'); ?>
+	<form enctype="multipart/form-data" action="" method="POST">
+		<? include('../engine/reviews.php'); ?>
 		<p class='gallery__title'>Вы можете оставить отзыв.</p>
 		<br>
-		<label for="userName">Имя</label>
-		<input type="text" id="userName" name="userName">
+		<label for="name">Имя</label>
+		<input type="text" id="name" name="userName" size="21">
 		<br>
 		<label for="email">Email</label>
 		<input type="email" id="email" name="userEmail">
 		<br>
+		<textarea rows="12" cols="26" name="userReview"></textarea>
+		<br>
 		<label class="buttonForSubmit" for="submit">Отправить</label>
-		<input hidden type="submit" id="submit" value="Оставить отзыв.">
+		<input type="submit" id="submit" value="Отправить">
+		<br>
+		<?
+			// Получаем имя пользователя.
+			$userName = $_POST["userName"]; 
+			// Получаем email пользователя.
+			$email = $_POST["userEmail"];
+			// Получаем отзыв пользователя.
+			$userReview = $_POST["userReview"];
+			// Получаем дату отзыва пользователя.
+			$currentDate = date('j F o G:i');
+			// Заносим в базу данных данные о отзыве.
+			var_dump($currentDate);
+			var_dump($userName);
+			var_dump($userEmail);
+			var_dump($userReview);
+		?>
 	</form>
 
 </body>
