@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html">
+<html">
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>ДЗ php-1 урок 6</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -35,7 +36,8 @@
 	</form>
 	
 	<form enctype="multipart/form-data" action="" method="POST">
-		<? include('../engine/reviews.php'); ?>
+		<? require("../engine/processingReviews.php");	?>
+
 		<p class='gallery__title'>Вы можете оставить отзыв.</p>
 		<br>
 		<label for="name">Имя</label>
@@ -46,24 +48,9 @@
 		<br>
 		<textarea rows="12" cols="26" name="userReview"></textarea>
 		<br>
-		<label class="buttonForSubmit" for="submit">Отправить</label>
-		<input type="submit" id="submit" value="Отправить">
+		<label class="buttonForSubmit" for="buttonForSubmit">Отправить</label>
+		<input type="submit" name="submit" id="buttonForSubmit" value="Отправить" hidden>
 		<br>
-		<?
-			// Получаем имя пользователя.
-			$userName = $_POST["userName"]; 
-			// Получаем email пользователя.
-			$email = $_POST["userEmail"];
-			// Получаем отзыв пользователя.
-			$userReview = $_POST["userReview"];
-			// Получаем дату отзыва пользователя.
-			$currentDate = date('j F o G:i');
-			// Заносим в базу данных данные о отзыве.
-			var_dump($currentDate);
-			var_dump($userName);
-			var_dump($userEmail);
-			var_dump($userReview);
-		?>
 	</form>
 
 </body>
