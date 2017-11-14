@@ -32,6 +32,20 @@
 		<!-- Скрыл input. Добавил id для связи с label.-->
 		<input type="submit" hidden="" id='submit' value="Загрузить" />
 	</form>
+	
+	<form action="" method="POST">
+		<? require_once('../engine/reviews.php'); ?>
+		<p class='gallery__title'>Вы можете оставить отзыв.</p>
+		<br>
+		<label for="userName">Имя</label>
+		<input type="text" id="userName" name="userName">
+		<br>
+		<label for="email">Email</label>
+		<input type="email" id="email" name="userEmail">
+		<br>
+		<label class="buttonForSubmit" for="submit">Отправить</label>
+		<input hidden type="submit" id="submit" value="Оставить отзыв.">
+	</form>
 
 </body>
 </html>
