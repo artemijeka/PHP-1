@@ -32,7 +32,7 @@ if (!in_array($nameImage, $arrayNamesImagesSortByHits)) {
 			require('query_to_db.php');
 
 		  // Функция обновления страницы ломала работающую программу из-за того что я ее вызвал до вызова require('query_to_db.php');
-		  refresh();
+		  // refresh();
 		}
 }
 else {
