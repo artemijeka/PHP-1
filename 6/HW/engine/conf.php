@@ -1,5 +1,5 @@
 <?
 	define("HOST", "localhost");
-    define("USER", "artem");
-    define("PASSWORD", "admin");
-    define("DATABASE", "php-1");
+  define("USER", "artem");
+  define("PASSWORD", "admin");
+  define("DATABASE", "php-1");
