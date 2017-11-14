@@ -14,19 +14,27 @@ input {
 	display: inline-block;
 	padding: 8px;
 	border-radius: 8px;
+	margin: 8px;
+}
+
+.gallery__h3 {
+	margin: 3px auto;
+    text-align: center;
+    font-size: x-large;
 }
 
 .gallery__image {
   display: inline-block;
   width: 250px;
   height: 250px;
-  margin: 5px;
+  margin: 10px;
 }
 
 form {
   background: #d8edad;
   padding: 20px;
   border-radius: 8px;
+  margin: 8px;
 }
 
 .buttonForUploads,
