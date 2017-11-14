@@ -69,3 +69,7 @@ strong:before {
 	content: " ";
 	font-size: 20px;
 }
+
+textarea {
+	overflow: hidden; 
+}
