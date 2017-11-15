@@ -1,5 +1,4 @@
 <?
-
 // Функция уменьшения изображения с урока.
 function create_thumbnail($path, $save, $width, $height) {
 	$info = getimagesize($path); //получаем размеры картинки и ее тип
