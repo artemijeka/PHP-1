@@ -29,6 +29,6 @@ if ($userName=='') {
 	// Если submit отправлен, то
 	if ($_POST['submit']) {
 		// Перезагрузить страницу, чтобы форма очистилась.
-		header('Location: gallery.php');
+		header('Location: output_gallery.php');
 	}
 }
