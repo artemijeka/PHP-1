@@ -30,7 +30,7 @@
 		<!-- Скрыл input. Добавил id для связи с label.-->
 		<input hidden="" type="file" id="file" name="userImage" autofocus multiple accept="image/png, image/gif, image/jpeg"/>
 		<br>
-		<textarea rows="12" cols="26" name="descriptionForImage"></textarea>
+		<textarea rows="12" cols="26" name="descriptionForImage" placeholder="Сделайте описание выкладываемого изображения..."></textarea>
 		<br>
 		<label class="buttonForSubmit" for="submit">Загрузить.</label><br>
 		<!-- Скрыл input. Добавил id для связи с label.-->
@@ -43,12 +43,12 @@
 		<p class='gallery__title'>Вы можете оставить отзыв.</p>
 		<br>
 		<label for="name">Имя</label>
-		<input type="text" id="name" name="userName" size="21">
+		<input type="text" id="name" name="userName" size="21" placeholder="Аркадий Акакиевич">
 		<br>
 		<label for="email">Email</label>
-		<input type="email" id="email" name="userEmail">
+		<input type="email" id="email" name="userEmail" placeholder="who@mail.com">
 		<br>
-		<textarea rows="12" cols="26" name="userReview"></textarea>
+		<textarea rows="12" cols="26" name="userReview" placeholder="Напишите свой отзыв здесь..."></textarea>
 		<br>
 		<label class="buttonForSubmit" for="buttonForSubmit">Отправить</label>
 		<input type="submit" name="submit" id="buttonForSubmit" value="Отправить" hidden>
