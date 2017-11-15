@@ -7,7 +7,7 @@
 </head>
 <body>
 	<!-- Для скрытия ошибок: -->
-	<? error_reporting(E_ERROR); ?>
+	<? #error_reporting(E_ERROR); ?>
 	<h1>ДЗ по PHP-1 урок 6</h1>
 	<h2>Задание #3.</h2>
 	<p>
@@ -17,9 +17,9 @@
 		<span class="gallery__title">(Готово.)</span>
 	</p>
 		<div class="gallery">
-		<h3 class="gallery__h3">Галлерея</h3>	
+		<h3 class="gallery__h3">Галлерея - магазин)</h3>	
 			<!-- Вставка файла обрабатывающего вывод галереи на экран. -->
-			<? require_once("../templates/gallery.php"); ?>
+			<? require_once("../engine/output_gallery.php"); ?>
 		</div>
 	<form enctype="multipart/form-data" action="" method="POST">
 		<p class='gallery__title'>Вы можете загрузить изображение размером не больше 5Мб.</p>
@@ -29,6 +29,8 @@
 		<label class="buttonForUploads" for="file">Выбрать изображение.</label><br>
 		<!-- Скрыл input. Добавил id для связи с label.-->
 		<input hidden="" type="file" id="file" name="userImage" autofocus multiple accept="image/png, image/gif, image/jpeg"/>
+		<br>
+		<textarea rows="12" cols="26" name="descriptionForImage"></textarea>
 		<br>
 		<label class="buttonForSubmit" for="submit">Загрузить.</label><br>
 		<!-- Скрыл input. Добавил id для связи с label.-->
