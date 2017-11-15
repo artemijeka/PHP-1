@@ -7,14 +7,14 @@
 </head>
 <body>
 	<!-- Для скрытия ошибок: -->
-	<? #error_reporting(E_ERROR); ?>
+	<? error_reporting(E_ERROR); ?>
 	<h1>ДЗ по PHP-1 урок 6</h1>
 	<h2>Задание #3.</h2>
 	<p>
 		ТЗ:
 		<br>
 		Добавить функционал отзывов в имеющийся у вас проект.
-		<!-- <span class="gallery__title">(Готово.)</span> -->
+		<span class="gallery__title">(Готово.)</span>
 	</p>
 		<div class="gallery">
 		<h3 class="gallery__h3">Галлерея</h3>	
@@ -52,6 +52,10 @@
 		<input type="submit" name="submit" id="buttonForSubmit" value="Отправить" hidden>
 		<br>
 	</form>
+	<div class="gallery">
+		<h3 class='gallery__h3'>Отзывы</h3>
+		<? require("../engine/bring_review.php");	?>
+	</div>
 
 </body>
 </html>
