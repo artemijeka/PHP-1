@@ -87,6 +87,9 @@ form {
 
 }
 
+blockquote {
+	display: inline-block;
+}
 
 .date {
   font-size: 64%;
