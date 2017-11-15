@@ -8,19 +8,11 @@ input {
   margin: 10px;
 }
 
-.gallery {
-  background-color: #c3ea79;
-	box-shadow: 0 0 3px #000;
-	display: inline-block;
-	padding: 8px;
-	border-radius: 8px;
-	margin: 8px;
-}
 
 .gallery__h3 {
-	margin: 3px auto;
-    text-align: center;
-    font-size: x-large;
+	margin-bottom: 24px;
+  text-align: center;
+  font-size: x-large;
 }
 
 .gallery__image {
@@ -28,13 +20,6 @@ input {
   width: 250px;
   height: 250px;
   margin: 10px;
-}
-
-form {
-  background: #d8edad;
-  padding: 20px;
-  border-radius: 8px;
-  margin: 8px;
 }
 
 .buttonForUploads,
@@ -64,6 +49,16 @@ form {
 	border-radius: 8px;
 }
 
+.gallery__review {
+	background-color: #c3ea79;
+	box-shadow: 0 0 3px #000;
+	display: inline-block;
+	padding: 8px;
+	border-radius: 8px;
+	margin: 0 10px;
+
+}
+
 strong,
 strong:before {
 	content: " ";
@@ -72,4 +67,18 @@ strong:before {
 
 textarea {
 	overflow: hidden; 
+}
+
+.gallery,
+form {
+  background-color: #d8edad;
+	box-shadow: 0 0 3px #000;
+	display: block;
+	border-radius: 8px;
+	margin: 10px;
+  padding: 20px;
+}
+
+.date {
+	font-size: 64%;
 }
