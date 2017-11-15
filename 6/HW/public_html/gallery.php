@@ -7,7 +7,7 @@
 </head>
 <body>
 	<!-- Для скрытия ошибок: -->
-	<? error_reporting(E_ERROR); ?>
+	<? #error_reporting(E_ERROR); ?>
 	<h1>ДЗ по PHP-1 урок 6</h1>
 	<h2>Задание #3.</h2>
 	<p>
