@@ -16,7 +16,7 @@
 		Создать калькулятор, который будет определять тип выбранной пользователем операции, ориентируясь на нажатую кнопку.
 		<span class="gallery__title">(Готово.)</span>
 	</p>
-		<form class="gallery" action="" method="POST">
+		<form class="gallery__calculator" action="" method="POST">
 			
 			<input type="text" autofocus name="userNumber" size="13">
 			<br>
