@@ -9,7 +9,7 @@ require_once('../engine/get_image.php');
 // Подключение функции create_thumbnail($path, $save, $width, $height);
 require_once('../engine/image_reduction.php');
 	
-// $i=2 потому что в массиве имена файлов начинаются с 2 индекса (первые два индекса имеют значения: . и ..)
+// Циклом прохожу по массиву имен изображений отсортированных по просмотрам.
 	for ($i=0; $i<count($arrayNamesImagesSortByHits); $i++) {
 		// var_dump($arrayNamesImagesSortByHits);
 		// Переменные для функции уменьшения изображений.
