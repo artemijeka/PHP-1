@@ -8,21 +8,24 @@ function refresh() {
 }
 
 
-// Переменная хранит имя текущего загружаемого файла.
-$nameImage = $_FILES['userImage']['name'];
+// Переменная хранит описание изображения.
+$descriptionForImage = $_POST['descriptionForImage'];
 
 // Дирректория загрузки файлов.
 $uploadDir = '../data/uploads/';
+
+// Переменная хранит имя текущего загружаемого файла.
+$nameImage = $_FILES['userImage']['name'];
 
 // Размер файла.
 $sizeImage = $_FILES['userImage']['size'];
 
 // Дирректория загрузки и название файла.
 $userImageDirectoryFile = $uploadDir.$nameImage;
+var_dump($nameImage);
 
 // Если текущее имя загружаемого файла не равно одному из существующих.
-// Массив $arrayNamesImages определяется в файле gallery.php 
-if (!in_array($nameImage, $arrayNamesImagesSortByHits)) {
+if (!in_array($nameImage, $arrayNamesImagesSortByHits)) {// Массив $arrayNamesImages определяется в файле query_sort_by_views.php 
 		// То если копирование файла из папки temp в папку ../data/uploads/с текущим именем файла произошло успешно.
 		if (copy($_FILES['userImage']['tmp_name'], $userImageDirectoryFile)) {
 			// То сообщить об успехе.
@@ -32,7 +35,7 @@ if (!in_array($nameImage, $arrayNamesImagesSortByHits)) {
 			require('query_to_db.php');
 
 		  // Функция обновления страницы ломала работающую программу из-за того что я ее вызвал до вызова require('query_to_db.php');
-		  refresh();
+		  // refresh();
 		}
 }
 else {
