@@ -7,6 +7,8 @@ $queryForSortByViews = "SELECT * FROM `lesson_5` ORDER BY `hits` DESC";
 
 $resultQueryForSortByViews = mysqli_query($connect, $queryForSortByViews);
 
+// Прохожу циклом по строкам таблицы пока не кончатся строки в таблице.
+// $row присваивается ассоциативный массив текущей строки, ключи массива - это имена столбцов из таблицы.
 while($row = mysqli_fetch_array($resultQueryForSortByViews)) {
 	// Записать значение столбца "hits" (который является теперь массивом $row) в переменную.
 	$currentNameImage = $row['name'];
