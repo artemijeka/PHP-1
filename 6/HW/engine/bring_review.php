@@ -2,7 +2,8 @@
 require('connect_to_db.php');
 // Шаблон взятия информации об пользователе из таблицы lesson_6_reviews
 $queryToRequireUserData = mysqli_query($connect, "SELECT userName, userReview, currentDate FROM lesson_6_reviews WHERE id>0");
-// Прохожу таблицу циклом и и вывожу html код на страницу с данными всех пользователей.
+// Прохожу циклом по строкам таблицы пока не кончатся строки в таблице.
+// $row присваивается ассоциативный массив текущей строки, ключи массива - это имена столбцов из таблицы.
 while($row=mysqli_fetch_array($queryToRequireUserData)) {
 	// Переменной who присваиваем имя пользователя текущей итерации.
 	$who = $row['userName'];
