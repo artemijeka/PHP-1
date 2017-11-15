@@ -22,10 +22,10 @@ $sizeImage = $_FILES['userImage']['size'];
 
 // Дирректория загрузки и название файла.
 $userImageDirectoryFile = $uploadDir.$nameImage;
-var_dump($nameImage);
+// var_dump($nameImage);
 
 // Если текущее имя загружаемого файла не равно одному из существующих.
-if (!in_array($nameImage, $arrayNamesImagesSortByHits)) {// Массив $arrayNamesImages определяется в файле query_sort_by_views.php 
+if (!in_array($nameImage, $arrayNamesImagesSortByHits)) {// Массив $arrayNamesImagesSortByHits определяется в файле query_sort_by_views.php 
 		// То если копирование файла из папки temp в папку ../data/uploads/с текущим именем файла произошло успешно.
 		if (copy($_FILES['userImage']['tmp_name'], $userImageDirectoryFile)) {
 			// То сообщить об успехе.
