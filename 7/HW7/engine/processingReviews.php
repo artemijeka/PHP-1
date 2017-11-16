@@ -5,9 +5,8 @@ $userName = $_POST["userName"];
 // Получаем email пользователя.
 $userEmail = $_POST["userEmail"];
 // Проверка на корректность почты.
-// if (!preg_match("/[0-9a-z_]+@[0-9a-z_^\.]+\.[a-z]{2,3}/i", $userEmail)) 
-// {echo $err = 'Неверно введен е-mail!';}
-
+if (!preg_match("/[0-9a-z_]+@[0-9a-z_^\.]+\.[a-z]{2,3}/i", $userEmail)) 
+{echo $err = 'Неверно введен е-mail!';}
 // Получаем отзыв пользователя.
 $userReview = $_POST["userReview"];
 // Получаем дату отзыва пользователя.
@@ -30,6 +29,6 @@ if ($userName=='') {
 	// Если submit отправлен, то
 	if ($_POST['submit']) {
 		// Перезагрузить страницу, чтобы форма очистилась.
-		header('Location: gallery.php');
+		header('Location: output_gallery.php');
 	}
 }

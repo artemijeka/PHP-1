@@ -7,22 +7,24 @@ function refresh() {
 	exit;
 }
 
-
-// Переменная хранит имя текущего загружаемого файла.
-$nameImage = $_FILES['userImage']['name'];
+// Переменная хранит описание изображения.
+$descriptionForImage = $_POST['descriptionForImage'];
 
 // Дирректория загрузки файлов.
 $uploadDir = '../data/uploads/';
 
-// Размер файла.
+// Переменная хранит имя текущего загружаемого файла.
+$nameImage = $_FILES['userImage']['name'];
+
+// Переменная размер файла.
 $sizeImage = $_FILES['userImage']['size'];
 
 // Дирректория загрузки и название файла.
 $userImageDirectoryFile = $uploadDir.$nameImage;
+// var_dump($nameImage);
 
 // Если текущее имя загружаемого файла не равно одному из существующих.
-// Массив $arrayNamesImages определяется в файле gallery.php 
-if (!in_array($nameImage, $arrayNamesImagesSortByHits)) {
+if (!in_array($nameImage, $arrayNamesImagesSortByHits)) {// Массив $arrayNamesImagesSortByHits определяется в файле query_sort_by_views.php 
 		// То если копирование файла из папки temp в папку ../data/uploads/с текущим именем файла произошло успешно.
 		if (copy($_FILES['userImage']['tmp_name'], $userImageDirectoryFile)) {
 			// То сообщить об успехе.
