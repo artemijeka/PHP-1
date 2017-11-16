@@ -7,7 +7,6 @@ function refresh() {
 	exit;
 }
 
-
 // Переменная хранит описание изображения.
 $descriptionForImage = $_POST['descriptionForImage'];
 
@@ -17,7 +16,7 @@ $uploadDir = '../data/uploads/';
 // Переменная хранит имя текущего загружаемого файла.
 $nameImage = $_FILES['userImage']['name'];
 
-// Размер файла.
+// Переменная размер файла.
 $sizeImage = $_FILES['userImage']['size'];
 
 // Дирректория загрузки и название файла.
@@ -35,7 +34,7 @@ if (!in_array($nameImage, $arrayNamesImagesSortByHits)) {// Массив $arrayN
 			require('query_to_db.php');
 
 		  // Функция обновления страницы ломала работающую программу из-за того что я ее вызвал до вызова require('query_to_db.php');
-		  // refresh();
+		  refresh();
 		}
 }
 else {
