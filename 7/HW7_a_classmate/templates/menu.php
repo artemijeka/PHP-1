@@ -6,6 +6,7 @@
             <li><a href="guestbook.php">Отзывы</a></li>
             <li><a href="gallery.php">Фото</a></li>
             <li><a href="contact.php">Контакты</a></li>
+            <li><a href="cart.php">Корзина</a></li>
         </ul>
     </div>
 </nav>
