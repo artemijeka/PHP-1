@@ -142,15 +142,15 @@ header .logotip img{
     margin: 10px;
 }
 .add-to-basket{
-    border: 1px solid #ccc; 
-    width: 150px; 
-    height: 50px; 
+    /*border: 1px solid #ccc; */
+    /*width: 150px; */
+    /*height: 50px; */
     margin: 0 auto;
-    background-color: #17689b; 
+    /*background-color: #17689b; */
 }
 .add-to-basket:hover{
-    background-color: blue; 
-    cursor: pointer;
+    /*background-color: blue; */
+    /*cursor: pointer;*/
 }
 .add-to-basket a{
     font-size: 20px; 

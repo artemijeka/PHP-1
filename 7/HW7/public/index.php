@@ -1,5 +1,6 @@
 <?php
 include_once "../models/db_goods.php";
+include_once "../modules/cart.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,12 +23,15 @@ include_once "../models/db_goods.php";
         $goods = goods_all($link);
         if($goods){
             foreach ($goods as $good){?>
-                <div class="item">
+                <form class="item" method="POST" action="">
                     <a href="item.php?id=<?=$good['id']?>"><img src="<?=$good['small_src']?>" alt="<?=$good['name']?>" title="<?=$good['name']?>"></a>
                     <h3 class="item-name"><a href="item.php?id=<?=$good['id']?>"><?=$good['name']?></a></h3>
                     <p class="price"><?=$good['price']?>р.</p>
-                    <p class="add-to-basket"><a href="#" title="Добавить в корзину">Купить</a></p>
-                </div>
+                    <p class="add-to-basket">
+                      <input type="submit" name="<?=$good['id']?>" value="Отложить">
+                      <!-- <a href="#" title="Добавить в корзину">Купить</a> -->
+                    </p>
+                </form>
             <?}
         }
         ?>
