@@ -21,12 +21,20 @@ require_once('../engine/image_reduction.php');
     $height = 200;
     // Вызов функции уменьшения изображений.
 	  $thumbnail = create_thumbnail($path, $save, $width, $height);
-	  // Вывод на экран ссылок и названий изображений в порядке популярности, а так-же описание к ним...
+	  // Вывод на экран ссылок и названий изображений в порядке 
+	  // популярности, а так-же описание к ним...
+	  echo "<form>";
+	  echo "<figure>";
 	  echo "<a href='./big_image.php/?currentNameImage=$name' target='_blank'>";
 	  echo "<div style='background-image:url(../data/thumbnails/$name); background-size:cover; background-position:center;' class='gallery__image'></div>";
 		echo "</a>";
-		echo "<blockquote>$descriptionForImage</blockquote>";
-		// var_dump($descriptionForImage);
+		echo "<br>";
+	  echo "<figcaption>";
+		echo "$descriptionForImage";
+	  echo "</figcaption>";
+	  echo "</figure>";
+	  include('../module/add_to_cart.php');
+	  echo "<form>";
 	}
 
 	// echo "<pre>";

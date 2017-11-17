@@ -3,7 +3,7 @@
 
 // Функция перезагрузки страницы
 function refresh() {
-	header('Location: gallery.php');
+	header('Location: index.php');
 	exit;
 }
 
