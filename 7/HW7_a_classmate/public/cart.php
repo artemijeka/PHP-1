@@ -18,7 +18,8 @@ include_once "../modules/cart.php";
     <div class="content">
       <h1>Ваша корзина</h1>
       <hr>
-
+      В вашей корзине есть товар:
+      Кол-во товаров в корзине: <?=$quantity; ?>.
       </div>
       <footer>
         <? include "../templates/footer.php"; ?>
