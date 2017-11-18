@@ -25,6 +25,9 @@ include_once "../modules/cart.php";
       <img src="<?=$src; ?>" alt="" title="" width='200'></a>
       <br>
       В кол-ве: <?=$quantity; ?>.
+      <form method="POST" action="">
+        <input type="submit" name="deleteGoodsInCart" value="Очистить корзину.">
+      </form>
       </div>
       <footer>
         <? include "../templates/footer.php"; ?>
