@@ -8,8 +8,21 @@ if ($_POST) {
 	$id = $_COOKIE['id'];
 	$quantity = $_COOKIE['quantity'];
 
-var_dump($id);
-var_dump($quantity);
+// var_dump($id);
+// var_dump($quantity);
+
+$res = goods_get($link, $id);
+$src = $res['src']; 
+$name = $res['name'];
+// var_dump($src);
+
+
+
+
+
+
+
+
 
 
 // //Создать ассоциативный массив.

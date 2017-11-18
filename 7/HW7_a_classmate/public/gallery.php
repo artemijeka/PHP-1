@@ -23,10 +23,10 @@ include_once "../models/core_img.php";
     echo "<table><tr>";
     foreach ($images as $img){
        echo "<td align='center'>
-                <a href='gallery-show.php?id={$img[id]}' target='_blank'><img src='{$img[small_src]}' width='250' height='150'></a>
-                <br>{$img[name]}
-                <br><i>Размер: {$img[size]} байт</i>
-                <br>Количество просмотров: <b>{$img[count]}</b> 
+                <a href='gallery-show.php?id={$img["id"]}' target='_blank'><img src='{$img["small_src"]}' width='250' height='150'></a>
+                <br>{$img["name"]}
+                <br><i>Размер: {$img["size"]} байт</i>
+                <br>Количество просмотров: <b>{$img["count"]}</b> 
             </td>";
         if($k%$cols==0){
             echo "</tr><tr>";

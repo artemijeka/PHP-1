@@ -20,7 +20,7 @@ include_once "../models/core_guestbook.php";
         $comments = comments_all($link);
             if($comments){
                 foreach ($comments as $comment){
-                    echo "<div style='border: 1px solid #ccc; margin: 10px; padding: 5px;;'>ФИО: {$comment[fio]}<br>Email: {$comment[email]}<br>Текст: {$comment[text]}<br><i>Дата: {$comment[date]}</i></div>";
+                    echo "<div style='border: 1px solid #ccc; margin: 10px; padding: 5px;;'>ФИО: {$comment['fio']}<br>Email: {$comment['email']}<br>Текст: {$comment['text']}<br><i>Дата: {$comment['date']}</i></div>";
                 }
             }
         ?>

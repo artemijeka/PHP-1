@@ -19,7 +19,12 @@ include_once "../modules/cart.php";
       <h1>Ваша корзина</h1>
       <hr>
       В вашей корзине есть товар:
-      Кол-во товаров в корзине: <?=$quantity; ?>.
+      <br>
+      <h3 class="item-name"><?=$name; ?></h3>
+      <br>
+      <img src="<?=$src; ?>" alt="" title="" width='200'></a>
+      <br>
+      В кол-ве: <?=$quantity; ?>.
       </div>
       <footer>
         <? include "../templates/footer.php"; ?>
