@@ -36,7 +36,7 @@ include_once "../modules/cart.php";
             <p>
               <!-- <label class="add-to-basket" for='submit'>Отложить</label> -->
               <!-- Скрытое поле которое заполняется id товара -->
-              <input type="number" hidden name="buyID" value='<?=$good['id']?>'>
+              <input type="number" name="id" value='<?=$good['id']?>'>
               <!--  -->
               <input type="submit" id='submit' value='Отложить'>
               <select name="quantity">
