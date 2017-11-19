@@ -21,7 +21,7 @@ include_once "../models/db_img.php";
     if(isset($_GET['id'])){
         countImages($link, $_GET['id']);
         $img = images_get($link, $_GET['id']);
-        echo "<img src='$img[src]' width='90%'><br>Количество просмотров: $img[count]";
+        echo "<img src='$img['src']' width='90%'><br>Количество просмотров: $img['count']";
     }else{
         echo '<h2>No Images</h2>';
     }
