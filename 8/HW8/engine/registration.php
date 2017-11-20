@@ -7,19 +7,13 @@
 	$submitted = $_POST['submitted'];
 	$date = gmdate('j.n.o G:i:s');
 
-	// var_dump($submitted);
-
 	$label_pass_content = 'Пароль';
 	$label_pass2_content = 'Повторите пароль';
 	$label_login_content = 'Логин';
 	$legend_content = 'Регистрация:';
 	$class_legend = 'registration_legend';
 
-	// var_dump($login);
-	// var_dump($pass);
-	// var_dump($pass2);
-
-
+// ДОБАВИТЬ ПРОВЕРКУ НА ОТПРАВКУ ФОРМЫ И НЕ ОБРАБАТЫВАТЬ СЛЕДУЮЩИЙ КОД ЕСЛИ НЕБЫЛА НАЖАТА КНОПКА $submitted !!!
 	if ( $login===$login_null ) {
 		$class_login = 'registration__login_error';
 		$label_login_content = 'Укажите логин!';
