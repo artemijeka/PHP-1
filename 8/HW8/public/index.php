@@ -1,4 +1,5 @@
 <?
+// error_reporting(E_ERROR);
 require_once('../config/conf.php');
 require_once('../engine/models.php');
 require_once('../engine/registration.php');
@@ -19,8 +20,8 @@ require_once('../engine/registration.php');
 		<h1>Добро пожаловать в питомник шнауцеров "Монинг Стар"</h1>
 		<form method="POST" action="" class='registration'>
 			<fieldset class='registration__fieldset'>
-				<legend class='registration__legend'>Регистрация:</legend>
-				<label for="login" title="Никнэйм английскими буквами" class="<?=$class_login;?>">Логин</label>
+				<legend class="<?=$class_legend;?>"><?=$legend_content;?></legend>
+				<label for="login" title="Никнэйм английскими буквами" class="<?=$class_login;?>"><?=$label_login_content;?></label>
 				<br>
 				<input type="text" name="login" id='login' placeholder="Nickname">
 				<br>
@@ -37,6 +38,7 @@ require_once('../engine/registration.php');
 				<br>
 				<input type="submit" name='submitted' value="Подтверждаю">
 			</fieldset>
+
 		</form>
 	</header>
 
