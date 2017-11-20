@@ -1,0 +1,9 @@
+.registration__fieldset {
+	width: 160px;
+}
+
+.registration__pass2_error,
+.registration__pass_error,
+.registration__login_error {
+	color: red;
+}
