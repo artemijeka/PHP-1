@@ -4,6 +4,7 @@
 
 .registration__pass2_error,
 .registration__pass_error,
-.registration__login_error {
+.registration__login_error,
+.registration__legend_red {
 	color: red;
 }
