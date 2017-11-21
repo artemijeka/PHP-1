@@ -23,10 +23,10 @@ function db_close($connect) {
 
 }
 
-function db_user_registration($login, $pass, $date) {
+function db_user_registration($login, $pass, $date, $name) {
 	
 	$connect = db_connect();
-	$query = "INSERT INTO `users`(`login`, `password`, `date`) VALUES ('$login', '$pass', '$date')";
+	$query = "INSERT INTO `users`(`login`, `password`, `date`, `name`) VALUES ('$login', '$pass', '$date', '$name')";
 	
 	if ($res = mysqli_query($connect, $query)) {
 		echo "Данные отправлены.\n\n";
@@ -57,4 +57,9 @@ function login_is_busy_or_not($login) {
 	  return false;
 	}
 	
+}
+
+function refresh() {
+	header("Location: ".$_SERVER["REQUEST_URI"]."");
+	exit;
 }
