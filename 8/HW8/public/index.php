@@ -1,8 +1,7 @@
 <?
 // error_reporting(E_ERROR);
 require_once('../config/conf.php');
-require_once('../engine/models.php');
-require_once('../engine/registration.php');
+require_once('../models/models.php');
 // session_start();
 ?>
 <!DOCTYPE html>
@@ -18,28 +17,7 @@ require_once('../engine/registration.php');
 <body>
 	<header>
 		<h1>Добро пожаловать в питомник шнауцеров "Монинг Стар"</h1>
-		<form method="POST" action="" class='registration'>
-			<fieldset class='registration__fieldset'>
-				<legend class="<?=$class_legend;?>"><?=$legend_content;?></legend>
-				<label for="login" title="Никнэйм английскими буквами" class="<?=$class_login;?>"><?=$label_login_content;?></label>
-				<br>
-				<input type="text" name="login" id='login' placeholder="Nickname">
-				<br>
-				<br>
-				<label for="pass" class="<?=$class_pass;?>"><?=$label_pass_content;?></label>
-				<br>
-				<input type="password" name="pass" id='pass' placeholder="Пароль">
-				<br>
-				<br>
-				<label for="pass2" class="<?=$class_pass2;?>"><?=$label_pass2_content;?></label>
-				<br>
-				<input type="password" name="pass2" id='pass2' placeholder="Пароль">
-				<br>
-				<br>
-				<input type="submit" name='submitted' value="Подтверждаю">
-			</fieldset>
-
-		</form>
+		<? require_once('../engine/user_is_logged_or_not.php'); ?>
 	</header>
 
 	<main>
