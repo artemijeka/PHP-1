@@ -43,12 +43,12 @@
 		// Если в базе данных есть такой логин. 
 		if (login_is_busy_or_not($login)) {
 			// То говорим: "Введенный логин занят!"
-			echo "В базе данных есть логин: ".$login."!!!\n\n";
+			// echo "В базе данных есть логин: ".$login."!!!\n\n";
 			$label_login_content = 'Логин занят!';
 			$class_login = 'registration__login_error';
 		} else {
 			// Иначе отправляем данные юзера в бд в таблицу user.
-			echo "В базе данных нет вашего логина.".$login."!!!\n\n";
+			// echo "В базе данных нет вашего логина.".$login."!!!\n\n";
 			// $class_login = '';
 			$legend_content = 'Вы зарегистрировались!';
 			$class_legend = 'registration__legend_red';
@@ -56,9 +56,9 @@
 			
 			// ????????????????????????????????????
 			// Установка cookies.
-			setcookie('login', $login, 2592000);
-			setcookie('pass', $pass, 2592000);
+			setcookie('login', $login, time()+2592000);
+			setcookie('pass', $pass, time()+2592000);
 			// refresh();
-			var_dump($_COOKIE);
+			print_r($_COOKIE);
 		}
 	}

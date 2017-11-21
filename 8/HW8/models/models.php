@@ -6,7 +6,7 @@ function db_connect() {
 	if (!$connect) {
 		return "Ошибка соединения с базой данных!\n\n";
 	} else if ($connect) {
-		echo "Соединение с базой данных установлено.\n\n";
+		// echo "Соединение с базой данных установлено.\n\n";
 		return $connect;
 	}
 
@@ -15,10 +15,10 @@ function db_connect() {
 function db_close($connect) {
 
 	if (mysqli_close($connect)) {
-		echo "Соединение с базой данных успешно закрыто.\n\n";
+		// echo "Соединение с базой данных успешно закрыто.\n\n";
 	}
 	else {
-		echo "Не удалось разоравать соединение с базой данных.\n\n";
+		// echo "Не удалось разоравать соединение с базой данных.\n\n";
 	}
 
 }
@@ -29,10 +29,10 @@ function db_user_registration($login, $pass, $date, $name) {
 	$query = "INSERT INTO `users`(`login`, `password`, `date`, `name`) VALUES ('$login', '$pass', '$date', '$name')";
 	
 	if ($res = mysqli_query($connect, $query)) {
-		echo "Данные отправлены.\n\n";
+		// echo "Данные отправлены.\n\n";
 	} 
 	else {
-		echo "Данные не отправлены!\n\n";
+		// echo "Данные не отправлены!\n\n";
 	}
 	db_close($connect);
 
