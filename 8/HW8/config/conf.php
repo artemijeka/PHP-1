@@ -1,9 +1,9 @@
 <?
-define('HOST', 'localhost');
-define('MYSQL_LOGIN', 'artem');
-define('MYSQL_PASS', 'admin');
+define('HOST', '127.0.0.1');
+define('MYSQL_LOGIN', 'root');
+define('MYSQL_PASS', '');
 define('MYSQL_DB', 'MORNING_STAR');
-define('MYSQL_TABLE', 'users');
+define('MYSQL_TABLE', 'user');
 
 // Соль с перцем:
 define('SALT', ':Hs|6`c&^$&*)5]#%f:');
