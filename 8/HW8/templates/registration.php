@@ -22,6 +22,6 @@
 				<input type="password" name="pass2" id='pass2' placeholder="Пароль">
 				<br>
 				<br>
-				<input type="submit" name='submitted' value="Подтверждаю">
+				<input type="submit" name='confirm' value="Подтверждаю">
 			</fieldset>
 </form>
