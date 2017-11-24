@@ -1,14 +1,14 @@
 <?
 // Контроллер.
-	$login = (string)htmlspecialchars(strip_tags(md5(SALT.$_POST['login'].PAPPER)));
+	$login = (string)htmlspecialchars(strip_tags($_POST['login']));
 	$name = $_POST['userName'];
 	$pass = (string)htmlspecialchars(strip_tags(md5(PAPPER.$_POST['pass'].SALT)));
 	$pass2 = (string)htmlspecialchars(strip_tags(md5(PAPPER.$_POST['pass2'].SALT)));
 	$pass_null = (string)htmlspecialchars(strip_tags(md5(PAPPER.''.SALT)));
-	$login_null = (string)htmlspecialchars(strip_tags(md5(SALT.''.PAPPER)));
+	$login_null = '';
 	$name_null = '';
 	$submitted = $_POST['submitted'];
-	$date = gmdate('j.n.o G:i:s');
+	$date = gmdate('j.n.o G:i:s').' GMT';
 
 	$label_pass_content = 'Пароль';
 	$label_pass2_content = 'Повторите пароль';
@@ -18,7 +18,7 @@
 	$class_legend = 'registration_legend';
 
 // ДОБАВИТЬ ПРОВЕРКУ НА ОТПРАВКУ ФОРМЫ И НЕ ОБРАБАТЫВАТЬ СЛЕДУЮЩИЙ КОД ЕСЛИ НЕБЫЛА НАЖАТА КНОПКА $submitted !!!
-
+if ($submitted==="Подтверждаю") {
 	if ( $login===$login_null ) {
 		$class_login = 'registration__login_error';
 		$label_login_content = 'Укажите логин!';
@@ -43,22 +43,22 @@
 		// Если в базе данных есть такой логин. 
 		if (login_is_busy_or_not($login)) {
 			// То говорим: "Введенный логин занят!"
-			// echo "В базе данных есть логин: ".$login."!!!\n\n";
+			echo "В базе данных есть логин: ".$login."!!!\n\n";
 			$label_login_content = 'Логин занят!';
 			$class_login = 'registration__login_error';
 		} else {
 			// Иначе отправляем данные юзера в бд в таблицу user.
-			// echo "В базе данных нет вашего логина.".$login."!!!\n\n";
+			echo "В базе данных нет вашего логина.".$login."!!!\n\n";
 			// $class_login = '';
-			$legend_content = 'Вы зарегистрировались!';
-			$class_legend = 'registration__legend_red';
+			// $legend_content = 'Вы зарегистрировались!';
+			// $class_legend = 'registration__legend_red';
 			db_user_registration($login, $pass2, $date, $name);
 			
-			// ????????????????????????????????????
-			// Установка cookies.
-			setcookie('login', $login, time()+2592000);
-			setcookie('pass', $pass, time()+2592000);
-			// refresh();
-			print_r($_COOKIE);
+			refresh();
+			// var_dump($_COOKIE);
 		}
 	}
+	// refresh();
+}
+// Представление.
+require_once('../templates/registration.php');
