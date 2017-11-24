@@ -1,5 +1,16 @@
-.registration__fieldset {
-	width: 160px;
+.registration__fieldset,
+.login__fieldset {
+	width: 171px;
+	float: left;
+}
+
+.login,
+.registration {
+	display: inline-block;
+}
+
+.login {
+	margin-left: 10px;
 }
 
 .registration__pass2_error,
