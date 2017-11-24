@@ -1,4 +1,8 @@
-<?
-// $_COOKIE('login') = array();
-// $_COOKIE('pass') = array();
-echo "Поздравляю, вы залогинились!";
+<p>
+	<?=$name; ?>, вы зашли в свой аккаунт!
+</p>
+<p>
+	<form action="" method="post">
+		<input type="submit" name="logOut" value="Выйти">
+	</form>
+</p>
