@@ -1,11 +1,15 @@
 <?
-// Контроллер.
-var_dump($_COOKIE);
+// КОНТРОЛЛЕР.
+// var_dump($_COOKIE['login']);
+// Если куки не установлено:
 if (!isset($_COOKIE['login'])) {
-	// Контроллер.
+	// То:
+	// КОНТРОЛЛЕР.
 	require_once('../engine/registration.php');
-	// Представление.
-	require_once('../templates/registration_user.php');
+	require_once('../engine/login.php');
+// Иначе:
 } else {
-	require_once('../templates/user_is_login.php');
+	// КОНТРОЛЛЕР.
+	require_once('../engine/user_is_login.php');
 }
+// На форму регистр и форму логина поставить проверку сабмита и в конце проверки рефреш чтоб сабмит небыл установлен.
