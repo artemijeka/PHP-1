@@ -1,15 +1,13 @@
 <?
 // Контроллер.
+	$date = gmdate('j.n.o G:i:s').' GMT';
+
 	$login = (string)htmlspecialchars(strip_tags($_POST['login']));
 	$name = $_POST['userName'];
 	$pass = (string)htmlspecialchars(strip_tags(md5(PAPPER.$_POST['pass'].SALT)));
 	$pass2 = (string)htmlspecialchars(strip_tags(md5(PAPPER.$_POST['pass2'].SALT)));
-	$pass_null = (string)htmlspecialchars(strip_tags(md5(PAPPER.''.SALT)));
-	$login_null = '';
-	$name_null = '';
-	$submitted = $_POST['submitted'];
-	$date = gmdate('j.n.o G:i:s').' GMT';
 
+	$submitted = $_POST['confirm'];
 	$label_pass_content = 'Пароль';
 	$label_pass2_content = 'Повторите пароль';
 	$label_login_content = 'Логин';
@@ -17,8 +15,12 @@
 	$legend_content = 'Регистрация:';
 	$class_legend = 'registration_legend';
 
-// ДОБАВИТЬ ПРОВЕРКУ НА ОТПРАВКУ ФОРМЫ И НЕ ОБРАБАТЫВАТЬ СЛЕДУЮЩИЙ КОД ЕСЛИ НЕБЫЛА НАЖАТА КНОПКА $submitted !!!
-if ($submitted==="Подтверждаю") {
+if ($submitted) {
+
+	$login_null = '';
+	$name_null = '';
+	$pass_null = (string)htmlspecialchars(strip_tags(md5(PAPPER.''.SALT)));
+
 	if ( $login===$login_null ) {
 		$class_login = 'registration__login_error';
 		$label_login_content = 'Укажите логин!';
@@ -37,7 +39,7 @@ if ($submitted==="Подтверждаю") {
 	if ( $pass!==$pass2 ) {
 		$class_pass2 = 'registration__pass2_error';
 		$label_pass2_content = 'Пароли не совпадают!';
-	} 
+	}
 
 	if ($login!==$login_null && $name!==$name_null && $pass!==$pass_null && $pass2!==$pass_null) {
 		// Если в базе данных есть такой логин. 
@@ -58,7 +60,7 @@ if ($submitted==="Подтверждаю") {
 			// var_dump($_COOKIE);
 		}
 	}
-	// refresh();
+
 }
 // Представление.
 require_once('../templates/registration.php');
