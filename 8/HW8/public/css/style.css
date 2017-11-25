@@ -9,14 +9,10 @@
 	display: inline-block;
 }
 
-.login {
-	margin-left: 10px;
-}
-
 .registration__pass2_error,
 .registration__pass_error,
 .registration__login_error,
-.registration__legend_red,
-.registration__name_error {
+.registration__name_error, 
+.class_legend__red {
 	color: red;
 }

@@ -1,7 +1,7 @@
 <!-- Представление. -->
-<form method="POST" action="" class='login'>
+<form method="post" action="" class='login'>
 			<fieldset class='login__fieldset'>
-				<legend class="<?=$class_legend;?>"><?=$legend_content;?></legend>
+				<legend class="<?=$class_legend;?>"><?=$login_legend_content;?></legend>
 				<label for="login" title="Никнэйм английскими буквами" class="<?=$class_login;?>"><?=$label_login_content;?></label>
 				<br>
 				<input type="text" title="Никнэйм английскими буквами" name="login" id='login' placeholder="Nickname">

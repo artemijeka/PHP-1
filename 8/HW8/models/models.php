@@ -65,7 +65,7 @@ function login_is_busy_or_not($login) {
 	$row = mysqli_fetch_assoc($res); 
 	$loginInDbIsTheSame = $row['login'];
 	if ($loginInDbIsTheSame===$login) {
-		echo "В базе данных есть логин: ".$login."!!!\n\n";
+		// echo "В базе данных есть логин: ".$login."!!!\n\n";
 		db_close($connect);
 		return true;
 	}
