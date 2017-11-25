@@ -70,7 +70,7 @@ function login_is_busy_or_not($login) {
 		return true;
 	}
 	else {
-	  echo "В базе данных нет вашего логина.".$login."!!!\n\n";
+	  // echo "В базе данных нет вашего логина.".$login."!!!\n\n";
 	  db_close($connect);
 	  return false;
 	}
