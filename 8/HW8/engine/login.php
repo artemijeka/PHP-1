@@ -1,4 +1,4 @@
-<?
+<?php
 // Контроллер.
 require_once('../engine/get_data_from_form.php');
 
@@ -33,3 +33,5 @@ if ($_POST['enter']) {
 
 // Представление.
 require_once('../templates/login.php');
+
+?>

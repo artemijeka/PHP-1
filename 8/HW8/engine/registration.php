@@ -3,10 +3,9 @@
 	
 	# Контроллер.
 	require_once('../engine/get_data_from_form.php');
-	// Представление.
-	require_once('../templates/registration.php');
-
+	
 	if ( isset($_POST['confirm']) ) {
+		
 		if ( $login===$login_null ) {
 			$class_login = 'registration__login_error';
 			$label_login_content = 'Укажите логин!';
@@ -42,5 +41,7 @@
 			// var_dump($_COOKIE);
 		}
 	}
+	// Представление.
+	require_once('../templates/registration.php');
 
 ?>
