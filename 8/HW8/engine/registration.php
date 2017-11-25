@@ -1,13 +1,22 @@
 <?php # Контроллер.
+  // var_dump($_POST['registration.php']);
 	
 	# Контроллер.
 	require_once('../engine/get_data_from_form.php');
-  // var_dump($_POST['confirm']);
+	// Представление.
+	require_once('../templates/registration.php');
 
 	if ( isset($_POST['confirm']) ) {
 		if ( $login===$login_null ) {
 			$class_login = 'registration__login_error';
 			$label_login_content = 'Укажите логин!';
+		}
+		// Если в базе данных есть такой логин.
+		if (login_is_busy_or_not($login)) {
+			// То говорим: "Введенный логин занят!"
+			// echo "В базе данных есть логин: ".$login."!!!\n\n";
+			$label_login_content = 'Логин занят!';
+			$class_login = 'registration__login_error';
 		}
 		if ( $name===$name_null ) {
 			$class_name = 'registration__name_error';
@@ -21,28 +30,17 @@
 			$class_pass2 = 'registration__pass2_error';
 			$label_pass2_content = 'Пароли не совпадают!';
 		}
-		if ($login!==$login_null && $name!==$name_null && $pass!==$pass_null && $pass2!==$pass_null) {
-echo "string";
-			// Если в базе данных есть такой логин. 
-			if (login_is_busy_or_not($login)) {
-				// То говорим: "Введенный логин занят!"
-				echo "В базе данных есть логин: ".$login."!!!\n\n";
-				$label_login_content = 'Логин занят!';
-				$class_login = 'registration__login_error';
-			} else {
-				// Иначе отправляем данные юзера в бд в таблицу user.
-				echo "В базе данных нет вашего логина.".$login."!!!\n\n";
-				// $class_login = '';
-				// $legend_content = 'Вы зарегистрировались!';
+		if ( $login!==$login_null && $name!==$name_null && $pass!==$pass_null && $pass2!==$pass_null ) { 
+			
+				// Отправляем данные юзера в бд в таблицу user.
+				// echo "В базе данных нет вашего логина.".$login."!!!\n\n";
+				// $registration_legend_content = 'Вы зарегистрировались!';
 				// $class_legend = 'class_legend__red';
-				db_user_registration($login, $pass2, $date, $name);
-				// refresh();
+			db_user_registration($login, $pass2, $date, $name);
+			// refresh();
 				
-				// var_dump($_COOKIE);
-			}
+			// var_dump($_COOKIE);
 		}
-
 	}
-	// Представление.
-	require_once('../templates/registration.php');
+
 ?>
