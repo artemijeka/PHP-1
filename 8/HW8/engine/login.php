@@ -1,13 +1,11 @@
 <?
 // Контроллер.
-$legend_content = 'Вход';
-$login = (string)htmlspecialchars(strip_tags($_POST['login']));
-$pass = (string)htmlspecialchars(strip_tags(md5(PAPPER.$_POST['pass'].SALT)));
+require_once('../engine/get_data_from_form.php');
 
 $result = db_get_all_login_pass_name($login, $pass);
 
 if ($_POST['enter']) {
-	echo "Была нажата кнопка Войти";
+	// echo "Была нажата кнопка Войти";
 	if ($result) {
     /* извлечение ассоциативного массива */
     while ($row = mysqli_fetch_assoc($result)) {
