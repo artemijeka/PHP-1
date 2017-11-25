@@ -3,6 +3,10 @@
 	
 	# Контроллер.
 	require_once('../engine/get_data_from_form.php');
+	// Представление.
+	require_once('../templates/registration.php');
+
+	$query = "SELECT `login` FROM ".MYSQL_TABLE." WHERE `login`='$login'";
 	
 	if ( isset($_POST['confirm']) ) {
 		
@@ -29,19 +33,18 @@
 			$class_pass2 = 'registration__pass2_error';
 			$label_pass2_content = 'Пароли не совпадают!';
 		}
-		if ( $login!==$login_null && $name!==$name_null && $pass!==$pass_null && $pass2!==$pass_null ) { 
+		if ( $login!==$login_null && $name!==$name_null && $pass!==$pass_null && $pass2!==$pass_null && $pass===$pass2 ) { 
 			
 				// Отправляем данные юзера в бд в таблицу user.
 				// echo "В базе данных нет вашего логина.".$login."!!!\n\n";
 				// $registration_legend_content = 'Вы зарегистрировались!';
 				// $class_legend = 'class_legend__red';
-			db_user_registration($login, $pass2, $date, $name);
-			// refresh();
+			$res = db_user_registration($login, $pass, $date, $name);
+			refresh();
 				
 			// var_dump($_COOKIE);
 		}
 	}
-	// Представление.
-	require_once('../templates/registration.php');
-
+	
+var_dump($res);
 ?>

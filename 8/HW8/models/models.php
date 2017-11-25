@@ -15,14 +15,7 @@ function db_connect() {
 
 // Закрытие соединения с базой данных.
 function db_close($connect) {
-
-	if (mysqli_close($connect)) {
-		// echo "Соединение с базой данных успешно закрыто.\n\n";
-	}
-	else {
-		// echo "Не удалось разоравать соединение с базой данных.\n\n";
-	}
-
+	mysqli_close($connect);
 }
 
 // Регистрация пользователя.
@@ -32,14 +25,14 @@ function db_user_registration($login, $pass, $date, $name) {
 	$query = "INSERT INTO ".MYSQL_TABLE."(`login`, `password`, `date`, `name`) VALUES ('$login', '$pass', '$date', '$name')";
 	
 	if ($res = mysqli_query($connect, $query)) {
-		echo "Данные отправлены.\n\n";
-		// Установка cookies.
+		// echo "Данные отправлены.\n\n";
+		// Установка cookies на месяц.
 	  setcookie('login', $login, time()+2592000);
 		setcookie('pass', $pass, time()+2592000);
 		setcookie('name', $name, time()+2592000);
 	} 
 	else {
-		echo "Данные не отправлены!\n\n";
+		// echo "Данные не отправлены!\n\n";
 	}
 	db_close($connect);
 
