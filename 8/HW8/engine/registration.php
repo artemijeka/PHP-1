@@ -6,8 +6,6 @@
 	// Представление.
 	require_once('../templates/registration.php');
 
-	$query = "SELECT `login` FROM ".MYSQL_TABLE." WHERE `login`='$login'";
-	
 	if ( isset($_POST['confirm']) ) {
 		
 		if ( $login===$login_null ) {
@@ -39,12 +37,11 @@
 				// echo "В базе данных нет вашего логина.".$login."!!!\n\n";
 				// $registration_legend_content = 'Вы зарегистрировались!';
 				// $class_legend = 'class_legend__red';
-			$res = db_user_registration($login, $pass, $date, $name);
+			db_user_registration($login, $pass, $date, $name);
 			refresh();
 				
 			// var_dump($_COOKIE);
 		}
 	}
 	
-var_dump($res);
 ?>

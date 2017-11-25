@@ -5,6 +5,7 @@
 	var_dump(isset($_POST['registration']));
 	var_dump(isset($_POST['login']));
 
+	
 	if ( isset($_POST['registration']) ) {
 		// КОНТРОЛЛЕР.
 		// unset($_POST['registration']);
