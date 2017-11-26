@@ -11,10 +11,11 @@ if ( !isset($_COOKIE['login']) ) {
 else if ( isset($_COOKIE['login']) ) {
 
 	// var_dump($_SESSION["admin"]);
-
-	if ($_SESSION["admin"]) {
+	// То если это админ.
+	if ($_SESSION["admin"]==='true') {
+		// Вставить панель админа.
 		// КОНТРОЛЛЕР.
-  	require_once('../admin/admin.php');
+  	require_once('../admin/admin_is_login.php');
 	} 
 	else {
 		// КОНТРОЛЛЕР.

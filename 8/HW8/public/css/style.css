@@ -16,3 +16,12 @@
 .class_legend__red {
 	color: red;
 }
+
+.panel-admin,
+.welcome-admin {
+	display: inline-block;
+	padding: 16px;
+	border: 1px solid black;
+	border-radius: 16px;
+	margin: 8px;
+}

@@ -1,6 +1,5 @@
-<?php // Контроллер.
+<?php // КОНТРОЛЛЕР.
 
-$name = $_COOKIE['name'];
 // var_dump($name);
 
 if ($_POST['logOut']==="Выйти") {
@@ -8,12 +7,13 @@ if ($_POST['logOut']==="Выйти") {
 	setcookie('login', $login, time()-1);
   setcookie('pass', $pass, time()-1);
   setcookie('name', $name, time()-1);
-  require_once('../engine/user_is_logged_or_not.php');
-  // $page_path = '../public/index.php';
-  refresh_page('../public/index.php');
+
+  refresh_index();
 }
 
-// Представление.
+// Переменная для вывода в шаблон.
+$name = $_COOKIE['name'];
+// ПРЕДСТАВЛЕНИЕ.
 require_once('../templates/user_is_login.php');
 
 ?>

@@ -87,3 +87,8 @@ function refresh_page($page_path) {
 	exit;
 }
 // ----------------------------------
+
+// Загрузка изображения на сервер.
+function upload_image_to_server($image) {
+	
+}
