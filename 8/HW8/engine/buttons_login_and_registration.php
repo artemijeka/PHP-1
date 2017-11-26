@@ -2,8 +2,8 @@
 	// Представление:
 	require_once('../templates/buttons_login_and_registration.php');
 	
-	var_dump(isset($_POST['registration']));
-	var_dump(isset($_POST['enter']));
+	// var_dump(isset($_POST['registration']));
+	// var_dump(isset($_POST['enter']));
 
 	
 	if ( isset($_POST['registration']) ) {
