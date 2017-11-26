@@ -1,5 +1,6 @@
-<?
-// КОНТРОЛЛЕР.
+<?php // КОНТРОЛЛЕР.
+
+// session_start();
 // Если куки не установлено:
 if ( !isset($_COOKIE['login']) ) {
 	// То:
@@ -8,6 +9,17 @@ if ( !isset($_COOKIE['login']) ) {
 } 
 // Иначе если установлено:
 else if ( isset($_COOKIE['login']) ) {
-	// КОНТРОЛЛЕР.
-	require_once('../engine/user_is_login.php');
+
+	// var_dump($_SESSION["admin"]);
+
+	if ($_SESSION["admin"]) {
+		// КОНТРОЛЛЕР.
+  	require_once('../admin/admin.php');
+	} 
+	else {
+		// КОНТРОЛЛЕР.
+		require_once('../engine/user_is_login.php');
+	}
 }
+
+?>
