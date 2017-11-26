@@ -1,4 +1,4 @@
-<form action="" method="post">
+<form action="" method="post" class="buttons-reg-and-log">
 	<br>
 	<label for="registration">Вы можете</label>
 	<input type="submit" id='registration' name="registration" value="Зарегистрироваться"> 
