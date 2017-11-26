@@ -7,9 +7,9 @@
 				<input type="text" name="login" id='login' placeholder="Nickname">
 				<br>
 				<br>
-				<label for="userName" title="Ваше полное имя" class="<?=$class_name;?>"><?=$label_name_content;?></label>
+				<label for="name" title="Ваше полное имя" class="<?=$class_name;?>"><?=$label_name_content;?></label>
 				<br>
-				<input type="text" name="userName" id='userName' placeholder="Ваше имя">
+				<input type="text" name="name" id='name' placeholder="Ваше имя">
 				<br>
 				<br>
 				<label for="pass" class="<?=$class_pass;?>"><?=$label_pass_content;?></label>
@@ -22,6 +22,6 @@
 				<input type="password" name="pass2" id='pass2' placeholder="Пароль">
 				<br>
 				<br>
-				<input type="submit" name="confirm" value="Подтверждаю">
+				<input type="submit" name="registration" value="Подтверждаю">
 			</fieldset>
 </form>
