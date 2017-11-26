@@ -4,7 +4,7 @@
 	$login = (string)htmlspecialchars(strip_tags($_POST['login']));
 	$login_null = '';
 
-	$name = $_POST['userName'];
+	$name = $_POST['name'];
 	$name_null = '';
 
 	$pass = (string)htmlspecialchars(strip_tags(md5(PAPPER.$_POST['pass'].SALT)));
@@ -17,6 +17,8 @@
 	$label_name_content = 'Ваше полное имя';
 	
 	$class_legend = 'class_legend';
+
 	$registration_legend_content = 'Регистрация:';
 	$login_legend_content = 'Вход';
+
 ?>
