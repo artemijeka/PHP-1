@@ -1,12 +1,10 @@
-<?php # Контроллер.
+<?php // Контроллер.
   // var_dump($_POST['registration.php']);
 	
-	# Контроллер.
+	// Контроллер.
 	require_once('../engine/get_data_from_form.php');
-	// Представление.
-	require_once('../templates/registration.php');
 
-	if ( isset($_POST['confirm']) ) {
+	if ( isset($_POST['registration']) ) {
 		
 		if ( $login===$login_null ) {
 			$class_login = 'registration__login_error';
@@ -38,10 +36,15 @@
 				// $registration_legend_content = 'Вы зарегистрировались!';
 				// $class_legend = 'class_legend__red';
 			db_user_registration($login, $pass, $date, $name);
+
 			refresh();
 				
 			// var_dump($_COOKIE);
 		}
+		// Очистка массива $_POST.
+  	// $_POST = array();
 	}
 	
+	// Представление.
+	require_once('../templates/registration.php');
 ?>
