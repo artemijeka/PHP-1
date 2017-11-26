@@ -28,7 +28,8 @@ if ($_POST['enter']) {
     /* удаление выборки */
     mysqli_free_result($result);
 	}
-
+  // Очистка массива $_POST.
+  // $_POST = array();
 }
 
 // Представление.
