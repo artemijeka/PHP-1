@@ -41,7 +41,7 @@ function db_user_registration($login, $pass, $date, $name) {
 // Достать из базы все логины, пароли и имена.
 function db_get_all_login_pass_name() {
 	$connect = db_connect();
-	$query = "SELECT `login`, `password`, `name` FROM ".MYSQL_TABLE." WHERE id>0";
+	$query = "SELECT `login`, `password`, `name`, `admin` FROM ".MYSQL_TABLE." WHERE id>0";
 	$res = mysqli_query($connect, $query);
 	db_close($connect);
 	// var_dump($res);
