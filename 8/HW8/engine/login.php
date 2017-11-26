@@ -16,17 +16,23 @@ if ($_POST['enter']) {
 			// echo "</pre>";
 	    $name = $row["name"];
       if ($row["login"]===$login && $row["password"]===$pass) {
-      	echo "ВЫ ВВЕЛИ ВЕРНЫЕ ДАННЫЕ ";
+      	// echo "ВЫ ВВЕЛИ ВЕРНЫЕ ДАННЫЕ ";
       	setcookie('login', $login, time()+2592000);
 				setcookie('pass', $pass, time()+2592000);
 				setcookie('name', $name, time()+2592000);
+        if ($row["admin"]==='true') {
+          session_start();
+          $_SESSION['admin'] = $row["admin"];
+          // var_dump( $isAdmin );
+          // refresh_page('../admin/admin.php');
+        }
 				refresh();
       } else {
       	// echo "Вы ввели неверный логин и пароль.";
       }
     }
     /* удаление выборки */
-    mysqli_free_result($result);
+    // mysqli_free_result($result);
 	}
   // Очистка массива $_POST.
   // $_POST = array();
