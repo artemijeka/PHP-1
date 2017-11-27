@@ -1,7 +1,9 @@
 <form action="" method="post" enctype="multipart/form-data" class="panel-admin">
-	<h3>Добавить собаку.</h3>
+	<h3><?=$h3;?></h3>
 	<label for="imageDog">Добавить изображение</label>
-	<input type="file" name="imageDog" multiple="multiple" id="imageDog" accept="image/jpeg,image/png,image/gif">
+	<!-- Чуть меньше 5Мб допуск. -->
+	<input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+	<input type="file" name="imageDog" multiple="multiple" id="imageDog" accept="image/jpeg, image/png, image/gif">
 	<br>
 	<br>
 	<!-- <label for="titleDog">Добавить заголовок</label>
@@ -11,8 +13,9 @@
 	<br>
 	<!-- <label for="descriptDog">Добавить описание</label>
 	<br> -->
-	<textarea style="overflow: hidden;" type="file" name="descriptDog" id="descriptDog" cols="73" rows="8" placeholder="Добавить описание..."></textarea>
+	<textarea style="overflow: hidden;" name="descriptDog" id="descriptDog" cols="56" rows="8" placeholder="Добавить описание..."></textarea>
 	<br>
 	<br>
 	<input type="submit" name="uploadDogImage" value="Загрузить">
 </form>
+

@@ -22,8 +22,6 @@
 	$name = $_COOKIE['name'];
 	// ПРЕДСТАВЛЕНИЕ.
 	require_once('../admin/admin_is_login.tpl');
-	// ПРЕДСТАВЛЕНИЕ.
-	require_once('../admin/panel_admin.tpl');
 	// КОНТРОЛЛЕР.
 	require_once('../admin/panel_admin.php');
 ?>

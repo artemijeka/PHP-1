@@ -27,7 +27,7 @@ function db_user_registration($login, $pass, $date, $name) {
 	if ($res = mysqli_query($connect, $query)) {
 		// echo "Данные отправлены.\n\n";
 		// Установка cookies на месяц.
-	  setcookie('login', $login, time()+2592000);
+		setcookie('login', $login, time()+2592000);
 		setcookie('pass', $pass, time()+2592000);
 		setcookie('name', $name, time()+2592000);
 	} 
@@ -48,6 +48,23 @@ function db_get_all_login_pass_name() {
 	return $res;
 }
 
+function db_add_dogs_info($pathToFile, $title, $description) {
+	
+	$connect = db_connect();
+
+	$query = "INSERT INTO ".MYSQL_DOGS."(`path`, `title`, `description`) VALUES ('$pathToFile', '$title', '$description')";
+	if ( mysqli_query($connect, $query) ) {
+		// echo "Данные переданы в базу данных.";
+		return true;
+	} else {
+		// echo "Данные не были переданы!";
+		return false;
+	}
+
+	db_close($connect);
+
+}
+
 // Логин занят или нет.
 function login_is_busy_or_not($login) {
 
@@ -64,8 +81,8 @@ function login_is_busy_or_not($login) {
 	}
 	else {
 	  // echo "В базе данных нет вашего логина.".$login."!!!\n\n";
-	  db_close($connect);
-	  return false;
+		db_close($connect);
+		return false;
 	}
 	
 }
@@ -89,6 +106,27 @@ function refresh_page($page_path) {
 // ----------------------------------
 
 // Загрузка изображения на сервер.
-function upload_image_to_server($image) {
-	
+function upload_image_to_server($uploadedImage, $pathToDir) {
+
+	if ($uploadedImage['size']<5000000) {
+
+		if (move_uploaded_file($uploadedImage['tmp_name'], $pathToDir)) {
+			// echo "Файл корректен и был успешно загружен.\n";
+			return true;
+		} else if ($uploadedImage['size']>5000000) {
+			// echo "Файл небыл загружен, потому что больше 5Мб!\n";
+			return false;
+		} else {
+			// echo "Ошибка при загрузке файла!";
+			return false;
+		}
+	} 
+	 
+}
+
+// Транслит.
+function translit($str) {
+	$rus = array('А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я');
+	$lat = array('A', 'B', 'V', 'G', 'D', 'E', 'E', 'Gh', 'Z', 'I', 'Y', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F', 'H', 'C', 'Ch', 'Sh', 'Sch', 'Y', 'Y', 'Y', 'E', 'Yu', 'Ya', 'a', 'b', 'v', 'g', 'd', 'e', 'e', 'gh', 'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'c', 'ch', 'sh', 'sch', 'y', 'y', 'y', 'e', 'yu', 'ya');
+	return str_replace($rus, $lat, $str);
 }
