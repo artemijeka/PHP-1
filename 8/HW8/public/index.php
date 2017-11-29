@@ -9,13 +9,15 @@
 	// date_default_timezone_get('Europe/Samara');
 	// echo ini_get('date.timezone');
 	// print_r(DateTimeZone::listIdentifiers());
-	echo "ADMIN? ";
-	echo $_SESSION['admin'];
+	// echo "ADMIN? ";
+	// echo $_SESSION['admin'];
 ?>
 
 <!DOCTYPE html>
 <html lang="ru">
-	<?php require_once('../templates/head.php'); ?>
+<head>
+	<?php require_once('../templates/head.tpl'); ?>
+</head>
 <body>
 	<h1>Добро пожаловать в питомник шнауцеров "Монинг Стар"</h1>
 	
