@@ -8,12 +8,12 @@
 	<br>
 	<!-- <label for="titleDog">Добавить заголовок</label>
 	<br> -->
-	<input type="text" name="titleDog" id="titleDog" placeholder="Добавить заголовок...">
+	<input type="text" name="titleDog" id="titleDog" placeholder="Полное имя собаки.">
 	<br>
 	<br>
-	<!-- <label for="descriptDog">Добавить описание</label>
+	<!-- <label for="descriptionDog">Добавить описание</label>
 	<br> -->
-	<textarea style="overflow: hidden;" name="descriptDog" id="descriptDog" cols="56" rows="8" placeholder="Добавить описание..."></textarea>
+	<textarea style="overflow: hidden;" name="descriptionDog" id="descriptionDog" cols="56" rows="8" placeholder="Добавить титулы и общее описание..."></textarea>
 	<br>
 	<br>
 	<input type="submit" name="uploadDogImage" value="Загрузить">
