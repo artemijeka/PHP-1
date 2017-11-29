@@ -18,6 +18,28 @@ function db_close($connect) {
 	mysqli_close($connect);
 }
 
+// Логин занят или нет.
+function login_is_busy_or_not($login) {
+
+	$connect = db_connect();
+	$query = "SELECT `login` FROM ".MYSQL_TABLE." WHERE `login`='$login'";
+	$res = mysqli_query($connect, $query);
+	$arrayOfLogins = array();
+	$row = mysqli_fetch_assoc($res); 
+	$loginInDbIsTheSame = $row['login'];
+	if ($loginInDbIsTheSame===$login) {
+		// echo "В базе данных есть логин: ".$login."!!!\n\n";
+		db_close($connect);
+		return true;
+	}
+	else {
+	  // echo "В базе данных нет вашего логина.".$login."!!!\n\n";
+		db_close($connect);
+		return false;
+	}
+	
+}
+
 // Регистрация пользователя.
 function db_user_registration($login, $pass, $date, $name) {
 	
@@ -48,6 +70,16 @@ function db_get_all_login_pass_name() {
 	return $res;
 }
 
+// Достать из базы все пути, заголовки и описания.
+function db_get_all_paths_titles_descriptions() {
+	$connect = db_connect();
+	$query = "SELECT `path`, `path_mini`, `title`, `description`, `dog_page_dir` FROM ".MYSQL_DOGS." WHERE id>0";
+	$res = mysqli_query($connect, $query);
+	db_close($connect);
+	// var_dump($res);
+	return $res;
+}
+
 // Загрузка изображения на сервер.
 function upload_image_to_server($uploadedImage, $pathToDir) {
 
@@ -60,17 +92,17 @@ function upload_image_to_server($uploadedImage, $pathToDir) {
 			// echo "Файл небыл загружен, потому что больше 5Мб!\n";
 			return false;
 		} 
-		
+
 	} 
 	 
 }
 
 // Функция добавления информации о собаке в базу данных.
-function db_add_dogs_info($pathToFile, $title, $description) {
+function db_add_dogs_info($pathToFile, $pathToMiniFile, $title, $description, $dogPageDir) {
 	
 	$connect = db_connect();
 	$queryForPath = "SELECT `path` FROM ".MYSQL_DOGS." WHERE id>0";
-	$query = "INSERT INTO ".MYSQL_DOGS."(`path`, `title`, `description`) VALUES ('$pathToFile', '$title', '$description')";
+	$query = "INSERT INTO ".MYSQL_DOGS."(`path`, `path_mini`, `title`, `description`, `dog_page_dir`) VALUES ('$pathToFile', '$pathToMiniFile', '$title', '$description', '$dogPageDir')";
 	
 	if ( $resQuery = mysqli_query($connect, $queryForPath) ) {
 
@@ -85,40 +117,31 @@ function db_add_dogs_info($pathToFile, $title, $description) {
 		if ( !$res = in_array($pathToFile, $arrayOfPathsToImages) ) {
 			// var_dump($res);
 			mysqli_query($connect, $query);
+			db_close($connect);
+			// echo "БАЗА ЗАКРЫТА!";
 			return true;
 		} 
 		else {
 			// echo "Данные не были переданы!";
+			db_close($connect);
+			// echo "БАЗА ЗАКРЫТА!";
 			return false;
 		}
-
 	}  
 		
-	db_close($connect);
-	echo "БАЗА ЗАКРЫТА!";
-
 }
 
-// Логин занят или нет.
-function login_is_busy_or_not($login) {
+// Создание страницы собаки по заданному имени собаки при загрузке изображения.
+function create_dog_page($dogNameTranslit, $pageDogStructure) {
 
-	$connect = db_connect();
-	$query = "SELECT `login` FROM ".MYSQL_TABLE." WHERE `login`='$login'";
-	$res = mysqli_query($connect, $query);
-	$arrayOfLogins = array();
-	$row = mysqli_fetch_assoc($res); 
-	$loginInDbIsTheSame = $row['login'];
-	if ($loginInDbIsTheSame===$login) {
-		// echo "В базе данных есть логин: ".$login."!!!\n\n";
-		db_close($connect);
-		return true;
-	}
-	else {
-	  // echo "В базе данных нет вашего логина.".$login."!!!\n\n";
-		db_close($connect);
-		return false;
-	}
-	
+	// chmod('../public/dogs/', 0755);
+	$dogPageDir = '../public/dogs/'. $dogNameTranslit . '.tpl';
+	$openPageDog = fopen($dogPageDir, "w");
+	fwrite($openPageDog, $pageDogStructure);
+	// var_dump($pageDogStructure);
+	fclose($openPageDog);
+	// return $dogPageDir;
+
 }
 
 // ----------------------------------
