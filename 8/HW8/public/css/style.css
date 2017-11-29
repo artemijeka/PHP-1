@@ -18,12 +18,18 @@
 }
 
 .panel-admin,
-.welcome-admin,
+/*.welcome-admin,*/
 .welcome-user,
-.buttons-reg-and-log {
+.buttons-reg-and-log,
+.card-dog {
 	display: inline-block;
 	padding: 16px;
 	border: 1px solid black;
 	border-radius: 16px;
 	margin: 8px;
+	vertical-align: top;
+}
+
+.card-dog {
+	width: 300px;
 }
