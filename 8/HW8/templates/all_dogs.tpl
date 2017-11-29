@@ -1,7 +1,9 @@
-<h2>Собаки нашего питомника</h2>
-<div>
-	<figure>
-		<p><img src="../public/img/" alt=""></p>
-		<figcaption></figcaption>
-	</figure>
-</div>
+<figure class="card-dog">
+		<p>
+			<h4><?=$currentTitle; ?></h4>
+			<a href="<?=$dirPageDog; ?>">
+				<img src="<?=$currentPathMiniImage; ?>" alt="<?=$currentDescription; ?>" title="<?=$currentTitle; ?>">
+			</a>
+		</p>
+		<figcaption><?=$currentDescription; ?></figcaption>
+</figure>
