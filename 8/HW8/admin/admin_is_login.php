@@ -23,5 +23,5 @@
 	// ПРЕДСТАВЛЕНИЕ.
 	require_once('../admin/admin_is_login.tpl');
 	// КОНТРОЛЛЕР.
-	require_once('../admin/panel_admin.php');
+	require_once('../admin/add_dog_panel.php');
 ?>
