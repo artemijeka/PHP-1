@@ -8,6 +8,9 @@
 		setcookie('login', $login, time()-1);
 	  setcookie('pass', $pass, time()-1);
 	  setcookie('name', $name, time()-1);
+								  // Уничтожение кнопки удаления карточки.
+								  // require('../templates/all_dogs.tpl');
+								  // $deleteThisCard = "";
 	  // Удаляю сессию админа.
 	  unset($_SESSION['admin']);
 	  // Завершаю сессию.

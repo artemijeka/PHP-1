@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<?php require_once('./structure_page.php'); ?>
+	<?php require_once(''); ?>
 	<title>Питомник шнауцеров Монинг Стар</title>
 	<meta name="description" content="Питомник шнауцеров Монинг Стар">
 	<meta charset="UTF-8">

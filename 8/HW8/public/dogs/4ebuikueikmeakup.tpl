@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<?php require_once('./structure_page.php'); ?>
+	<?php #require_once('./structure_page.php'); ?>
 	<title>Питомник шнауцеров Монинг Стар</title>
 	<meta name="description" content="Питомник шнауцеров Монинг Стар">
 	<meta charset="UTF-8">
@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-	<h1>Добро пожаловать на страницу собаки <?=$nameDog;?></h1>
+	<h1>Добро пожаловать на страницу собаки <?=$_GET['titleDog']; ?></h1>
 
 </body>
 </html>

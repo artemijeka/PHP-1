@@ -1,5 +1,5 @@
 <form action="" method="post" enctype="multipart/form-data" class="panel-admin">
-	<h3><?=$h3;?></h3>
+	<h3 class="<?=$h3Error; ?>"><?=$h3;?></h3>
 	<label for="imageDog">Добавить изображение</label>
 	<!-- Чуть меньше 5Мб допуск. -->
 	<input type="hidden" name="MAX_FILE_SIZE" value="5000000" />

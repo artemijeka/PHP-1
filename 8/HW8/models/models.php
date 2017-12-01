@@ -73,11 +73,23 @@ function db_get_all_login_pass_name() {
 // Достать из базы все пути, заголовки и описания.
 function db_get_all_paths_titles_descriptions() {
 	$connect = db_connect();
-	$query = "SELECT `path`, `path_mini`, `title`, `description`, `dog_page_dir` FROM ".MYSQL_DOGS." WHERE id>0";
+	$query = "SELECT `id`, `path`, `path_mini`, `title`, `description`, `dog_page_dir` FROM ".MYSQL_DOGS." WHERE id>0";
 	$res = mysqli_query($connect, $query);
 	db_close($connect);
 	// var_dump($res);
 	return $res;
+}
+
+// Функция удаления карточки товара.
+function db_delete_card_of_dog($id_dog) {
+
+	$connect = db_connect();
+	$query = "DELETE FROM `uploads_dogs` WHERE id='$id_dog'";
+	$res = mysqli_query($connect, $query);
+	db_close($connect);
+	// var_dump($res);
+	return $res;
+
 }
 
 // Загрузка изображения на сервер.
@@ -132,13 +144,15 @@ function db_add_dogs_info($pathToFile, $pathToMiniFile, $title, $description, $d
 }
 
 // Создание страницы собаки по заданному имени собаки при загрузке изображения.
-function create_dog_page($dogNameTranslit, $pageDogStructure) {
+function create_dog_page($dogName, $dogNameTranslit, $dogPageStructure) {
 
 	// chmod('../public/dogs/', 0755);
+	// $dogName = $_POST['titleDog'];
+	// var_dump($dogName);
 	$dogPageDir = '../public/dogs/'. $dogNameTranslit . '.tpl';
 	$openPageDog = fopen($dogPageDir, "w");
-	fwrite($openPageDog, $pageDogStructure);
-	// var_dump($pageDogStructure);
+	fwrite($openPageDog, $dogPageStructure);
+	// var_dump($dogPageStructure);
 	fclose($openPageDog);
 	// return $dogPageDir;
 

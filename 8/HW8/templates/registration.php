@@ -1,4 +1,6 @@
 <!-- Представление. -->
+<br>
+<br>
 <form method="post" action="" class='registration'>
 			<fieldset class='registration__fieldset'>
 				<legend class="<?=$class_legend;?>"><?=$registration_legend_content;?></legend>

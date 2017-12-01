@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-	<h1>Добро пожаловать на страницу собаки <?=$nameDog;?></h1>
+	<h1>Добро пожаловать на страницу собаки <?=$dogName;?></h1>
 
 </body>
 </html>

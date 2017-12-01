@@ -1,7 +1,7 @@
+<? require('../../engine/all_dogs.php'); ?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<?php require_once('./structure_page.php'); ?>
 	<title>Питомник шнауцеров Монинг Стар</title>
 	<meta name="description" content="Питомник шнауцеров Монинг Стар">
 	<meta charset="UTF-8">
@@ -11,6 +11,5 @@
 </head>
 <body>
 	<h1>Добро пожаловать на страницу собаки <?=$nameDog;?></h1>
-
 </body>
 </html>

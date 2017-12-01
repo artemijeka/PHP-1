@@ -1,6 +1,6 @@
 <?php
 	// Представление:
-	require_once('../templates/buttons_login_and_registration.php');
+	require_once('../templates/buttons_login_and_registration.tpl');
 	
 	// var_dump(isset($_POST['registration']));
 	// var_dump(isset($_POST['enter']));

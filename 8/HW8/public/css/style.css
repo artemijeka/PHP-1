@@ -12,7 +12,8 @@
 .registration__pass2_error,
 .registration__pass_error,
 .registration__login_error,
-.registration__name_error, 
+.registration__name_error,
+.h3-error, 
 .class_legend__red {
 	color: red;
 }

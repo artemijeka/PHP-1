@@ -1,4 +1,6 @@
 <!-- Представление. -->
+<br>
+<br>
 <form method="post" action="" class='login'>
 			<fieldset class='login__fieldset'>
 				<legend class="<?=$class_legend;?>"><?=$login_legend_content;?></legend>
