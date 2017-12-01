@@ -1,7 +1,7 @@
 <figure class="card-dog">
 		<p>
 			<h4><?=$currentTitle; ?></h4>
-			<?=$deleteThisCard; ?>
+			<?=$addButtonDeleteThisCard; ?>
 			<a href="<?=$dirPageDog; ?>">
 				<img src="<?=$currentPathMiniImage; ?>" alt="<?=$currentDescription; ?>" title="<?=$currentTitle; ?>">
 			</a>

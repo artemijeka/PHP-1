@@ -17,19 +17,13 @@
 		// Возьму дирректорию страницы собаки.
 		$dirPageDog = $row['dog_page_dir'];
 		$currentIdDog = $row['id'];
-		var_dump($currentIdDog);
+		// var_dump($currentIdDog);
 		// var_dump($dirPageDog);
 		
 		// Не работает!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		if ( isset($_SESSION['admin']) ) {
 			// require('../templates/delete_this_card.tpl');
-			$deleteThisCard = '<form action="" method="post"><input type="submit" name="deleteThisCard" value="Удалить карточку"></form><br><br>';
-			// print_r($_POST['deleteThisCard']);
-			if ( isset($_POST['deleteThisCard']) ) {
-				db_delete_card_of_dog($currentIdDog);
-				var_dump($currentIdDog);
-				refresh();
-			}
+			$addButtonDeleteThisCard = '<form action="" method="post"><input type="submit" name="deleteThisCard" value="Удалить карточку"></form><br><br>';
 		}
 
 		// Представление карточки собаки в цикле.
@@ -37,6 +31,13 @@
 
 	}
 
+	var_dump($currentIdDog);
+	print_r($_POST['deleteThisCard']);
+	if ( isset($_POST['deleteThisCard']) ) {
+		db_delete_card_of_dog($currentIdDog);
+		var_dump($currentIdDog);
+		refresh();
+	}
 
 	
 	// echo "<pre>";
