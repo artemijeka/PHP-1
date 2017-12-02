@@ -1,4 +1,4 @@
-<?php # Контроллер.
+<?php // Контроллер.
 
 	$res = db_get_all_paths_titles_descriptions();
 	// var_dump($res);

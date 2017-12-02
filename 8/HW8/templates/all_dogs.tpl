@@ -32,8 +32,8 @@
 				// var_dump($dirPageDog);
 				// echo "</pre>";
 			?>
-
-			<a href="<?=$dirPageDog; ?>">
+			<!-- При создании ссылки на страницу собаки передается ID собаки в адресную строку. -->
+			<a href='<?php echo "$dirPageDog"."?dogId=$currentIdDog"; ?>'>
 				<img src="<?=$currentPathMiniImage; ?>" alt="<?=$currentDescription; ?>" title="<?=$currentTitle; ?>">
 			</a>
 		</p>
