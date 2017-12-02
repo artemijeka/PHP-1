@@ -14,7 +14,5 @@
   		<figcaption><?=$dogDescription; ?></figcaption>
   	</figure>
   </p>
-  <h2>Новости собаки:</h2>
-  
 </body>
 </html>

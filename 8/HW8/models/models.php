@@ -80,6 +80,16 @@ function db_get_all_paths_titles_descriptions() {
 	return $res;
 }
 
+// Достать из базы всю информацию о собаке по id. 
+function db_get_info_about_dog_by_id($dogId) {
+	$connect = db_connect();
+	$query = "SELECT `id`, `path`, `path_mini`, `title`, `description`, `dog_page_dir` FROM ".MYSQL_DOGS." WHERE id='$dogId'";
+	$res = mysqli_query($connect, $query);
+	db_close($connect);
+	// var_dump($res);
+	return $res;
+}
+
 // Функция удаления карточки товара.
 function db_delete_card_of_dog($id_dog, $dirPageDog) {
 
