@@ -6,9 +6,9 @@
 	<input type="file" name="imageDog" multiple="multiple" id="imageDog" accept="image/jpeg, image/png, image/gif">
 	<br>
 	<br>
-	<!-- <label for="titleDog">Добавить заголовок</label>
+	<!-- <label for="dogName">Добавить заголовок</label>
 	<br> -->
-	<input type="text" name="titleDog" id="titleDog" placeholder="Полное имя собаки.">
+	<input type="text" name="dogName" id="dogName" placeholder="Полное имя собаки.">
 	<br>
 	<br>
 	<!-- <label for="descriptionDog">Добавить описание</label>

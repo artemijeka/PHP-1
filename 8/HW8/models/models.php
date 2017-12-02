@@ -81,14 +81,15 @@ function db_get_all_paths_titles_descriptions() {
 }
 
 // Функция удаления карточки товара.
-function db_delete_card_of_dog($id_dog) {
+function db_delete_card_of_dog($id_dog, $dirPageDog) {
 
 	$connect = db_connect();
 	$query = "DELETE FROM `uploads_dogs` WHERE id='$id_dog'";
 	$res = mysqli_query($connect, $query);
 	db_close($connect);
+	unlink($dirPageDog);
 	// var_dump($res);
-	return $res;
+	// return $res;
 
 }
 
@@ -144,12 +145,13 @@ function db_add_dogs_info($pathToFile, $pathToMiniFile, $title, $description, $d
 }
 
 // Создание страницы собаки по заданному имени собаки при загрузке изображения.
-function create_dog_page($dogName, $dogNameTranslit, $dogPageStructure) {
+function create_dog_page($dogName, $dogPageDir) {
 
 	// chmod('../public/dogs/', 0755);
 	// $dogName = $_POST['titleDog'];
-	// var_dump($dogName);
-	$dogPageDir = '../public/dogs/'. $dogNameTranslit . '.tpl';
+	var_dump($dogName);
+	var_dump($dogPageDir);
+	$dogPageStructure = file_get_contents('./dogs/structure_page.tpl');
 	$openPageDog = fopen($dogPageDir, "w");
 	fwrite($openPageDog, $dogPageStructure);
 	// var_dump($dogPageStructure);

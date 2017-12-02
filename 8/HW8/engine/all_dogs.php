@@ -18,28 +18,13 @@
 		$dirPageDog = $row['dog_page_dir'];
 		$currentIdDog = $row['id'];
 		// var_dump($currentIdDog);
-		// var_dump($dirPageDog);
-		
-		// Не работает!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		if ( isset($_SESSION['admin']) ) {
-			// require('../templates/delete_this_card.tpl');
-			$addButtonDeleteThisCard = '<form action="" method="post"><input type="submit" name="deleteThisCard" value="Удалить карточку"></form><br><br>';
-		}
+		// var_dump($dirPageDog);		
 
 		// Представление карточки собаки в цикле.
 		require('../templates/all_dogs.tpl');
 
 	}
 
-	var_dump($currentIdDog);
-	print_r($_POST['deleteThisCard']);
-	if ( isset($_POST['deleteThisCard']) ) {
-		db_delete_card_of_dog($currentIdDog);
-		var_dump($currentIdDog);
-		refresh();
-	}
-
-	
 	// echo "<pre>";
 	// var_dump($arrayImagesAndTitleAndDescription);
 	// echo "</pre>";
