@@ -9,9 +9,19 @@
 				<input type="text" name="login" id='login' placeholder="Nickname">
 				<br>
 				<br>
-				<label for="name" title="Ваше полное имя" class="<?=$class_name;?>"><?=$label_name_content;?></label>
+				<label for="name" title="Как к вам обращаться" class="<?=$class_name;?>"><?=$label_name_content;?></label>
 				<br>
-				<input type="text" name="name" id='name' placeholder="Ваше имя">
+				<input type="text" name="name" id='name' placeholder="Имя Отчество">
+				<br>
+				<br>
+				<label for="email" title="Ваш email">Ваш email</label>
+				<br>
+				<input type="email" name="email" id='email' placeholder="who@where.ru">
+				<br>
+				<br>
+				<label for="phone" title="Ваш телефон">Ваш телефон</label>
+				<br>
+				<input type="phone" name="phone" id='phone' placeholder="7(846)1234567">
 				<br>
 				<br>
 				<label for="pass" class="<?=$class_pass;?>"><?=$label_pass_content;?></label>

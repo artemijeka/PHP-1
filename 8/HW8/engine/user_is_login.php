@@ -7,6 +7,8 @@ if ($_POST['logOut']==="Выйти") {
 	setcookie('login', $login, time()-1);
   setcookie('pass', $pass, time()-1);
   setcookie('name', $name, time()-1);
+  setcookie('phone', $phone, time()-1);
+  setcookie('email', $email, time()-1);
 
   refresh_index();
 }

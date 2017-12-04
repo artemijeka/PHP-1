@@ -41,10 +41,11 @@ function login_is_busy_or_not($login) {
 }
 
 // Регистрация пользователя.
-function db_user_registration($login, $pass, $date, $name) {
-	
+function db_user_registration($login, $pass, $name, $email, $phone) {
+
+	$date = date('j.n.o G:i:s');
 	$connect = db_connect();
-	$query = "INSERT INTO ".MYSQL_USER."(`login`, `password`, `date`, `name`) VALUES ('$login', '$pass', '$date', '$name')";
+	$query = "INSERT INTO ".MYSQL_USER."(`login`, `password`, `date`, `name`, `email`, `phone`) VALUES ('$login', '$pass', '$date', '$name', '$email', '$phone')";
 	
 	if ($res = mysqli_query($connect, $query)) {
 		// echo "Данные отправлены.\n\n";
@@ -52,6 +53,8 @@ function db_user_registration($login, $pass, $date, $name) {
 		setcookie('login', $login, time()+2592000);
 		setcookie('pass', $pass, time()+2592000);
 		setcookie('name', $name, time()+2592000);
+		setcookie('email', $email, time()+2592000);
+		setcookie('phone', $phone, time()+2592000);
 	} 
 	else {
 		// echo "Данные не отправлены!\n\n";
@@ -61,11 +64,11 @@ function db_user_registration($login, $pass, $date, $name) {
 }
 
 // Внесение данных о покупателе желающем зарезервировать щенка.
-function db_reserve_registration($userName, $userPhone, $userEmail, $DogMotherId) {
+function db_reserve_puppy($userName, $userPhone, $userEmail, $dogMotherId, $userMessage) {
 
 	$reserveDate = date('j.n.o G:i:s');
 	$connect = db_connect();
-	$query = "INSERT INTO ".MYSQL_RESERVE."(`user_name`, `user_phone`, `user_email`, `date`, `dog_mother_id`) VALUES ('$userName', '$userPhone', '$userEmail', '$reserveDate', '$DogMotherId')";
+	$query = "INSERT INTO ".MYSQL_RESERVE."(`user_name`, `user_phone`, `user_email`, `date`, `dog_mother_id`, `user_message`) VALUES ('$userName', '$userPhone', '$userEmail', '$reserveDate', '$dogMotherId', '$userMessage')";
 	
 	if ($res = mysqli_query($connect, $query)) {
 

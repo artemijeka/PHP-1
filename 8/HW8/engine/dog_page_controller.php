@@ -1,5 +1,7 @@
 <?php // Контроллер.
 
+	// Отключение вывод предупреждений и ошибок.
+	// error_reporting(E_ERROR);
 	session_start();
 	// Вызов файлов конфига и моделей.
 	require_once('../config/conf.php');
