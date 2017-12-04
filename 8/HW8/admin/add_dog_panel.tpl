@@ -13,7 +13,7 @@
 	<br>
 	<!-- <label for="descriptionDog">Добавить описание</label>
 	<br> -->
-	<textarea style="overflow: hidden;" name="descriptionDog" id="descriptionDog" cols="56" rows="8" placeholder="Добавить титулы и общее описание..."></textarea>
+	<textarea style="overflow: hidden;" name="descriptionDog" id="descriptionDog" cols="40" rows="8" placeholder="Добавить титулы и общее описание..."></textarea>
 	<br>
 	<br>
 	<input type="submit" name="uploadDogImage" value="Загрузить">

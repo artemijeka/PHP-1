@@ -22,7 +22,7 @@ function db_close($connect) {
 function login_is_busy_or_not($login) {
 
 	$connect = db_connect();
-	$query = "SELECT `login` FROM ".MYSQL_TABLE." WHERE `login`='$login'";
+	$query = "SELECT `login` FROM ".MYSQL_USER." WHERE `login`='$login'";
 	$res = mysqli_query($connect, $query);
 	$arrayOfLogins = array();
 	$row = mysqli_fetch_assoc($res); 
@@ -44,7 +44,7 @@ function login_is_busy_or_not($login) {
 function db_user_registration($login, $pass, $date, $name) {
 	
 	$connect = db_connect();
-	$query = "INSERT INTO ".MYSQL_TABLE."(`login`, `password`, `date`, `name`) VALUES ('$login', '$pass', '$date', '$name')";
+	$query = "INSERT INTO ".MYSQL_USER."(`login`, `password`, `date`, `name`) VALUES ('$login', '$pass', '$date', '$name')";
 	
 	if ($res = mysqli_query($connect, $query)) {
 		// echo "Данные отправлены.\n\n";
@@ -60,10 +60,27 @@ function db_user_registration($login, $pass, $date, $name) {
 
 }
 
+// Внесение данных о покупателе желающем зарезервировать щенка.
+function db_reserve_registration($userName, $userPhone, $userEmail, $DogMotherId) {
+
+	$reserveDate = date('j.n.o G:i:s');
+	$connect = db_connect();
+	$query = "INSERT INTO ".MYSQL_RESERVE."(`user_name`, `user_phone`, `user_email`, `date`, `dog_mother_id`) VALUES ('$userName', '$userPhone', '$userEmail', '$reserveDate', '$DogMotherId')";
+	
+	if ($res = mysqli_query($connect, $query)) {
+
+	} 
+	else {
+		// echo "Данные не отправлены!\n\n";
+	}
+	db_close($connect);
+
+}
+
 // Достать из базы все логины, пароли и имена.
 function db_get_all_login_pass_name() {
 	$connect = db_connect();
-	$query = "SELECT `login`, `password`, `name`, `admin` FROM ".MYSQL_TABLE." WHERE id>0";
+	$query = "SELECT `login`, `password`, `name`, `admin` FROM ".MYSQL_USER." WHERE id>0";
 	$res = mysqli_query($connect, $query);
 	db_close($connect);
 	// var_dump($res);
@@ -157,13 +174,14 @@ function db_add_dogs_info($pathToFile, $pathToMiniFile, $title, $description, $d
 // Создание страницы собаки по заданному имени собаки при загрузке изображения.
 function create_dog_page($dogName, $dogPageDir) {
 // НЕ РАБОТАЕТ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// chmod('../public/dogs/', 0755);
+	// chmod('../public/', 0755);
 	// $dogName = $_POST['titleDog'];
-	var_dump($dogName);
-	var_dump($dogPageDir);
-	$dogPageStructure = file_get_contents('./dogs/dog_page_view.php');
+	// var_dump($dogName);
+	// var_dump($dogPageDir);
+	// $dogPageStructure = file_get_contents('../engine/dog_page_controller.php');
+	$dogPageStructure = "<? require_once('../engine/dog_page_controller.php'); ?>";
 	$openPageDog = fopen($dogPageDir, "a+");
-	var_dump($openPageDog);
+	// var_dump($openPageDog);
 	fwrite($openPageDog, $dogPageStructure);
 	// var_dump($dogPageStructure);
 	fclose($openPageDog);

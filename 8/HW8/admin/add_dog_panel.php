@@ -7,7 +7,7 @@
 	$imageDog = $_FILES['imageDog'];
 	$dogName = strip_tags( $_POST['dogName'] );
 	$description = strip_tags( $_POST['descriptionDog'] );
-	$dogPageDir = '../public/dogs/'. $dogNameTranslit . '.php';
+	$dogPageDir = './'. $dogNameTranslit . '.php';
 	
   
 	// var_dump($dogPageStructure);

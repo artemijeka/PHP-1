@@ -25,6 +25,10 @@
 	$name = $_COOKIE['name'];
 	// ПРЕДСТАВЛЕНИЕ.
 	require_once('../admin/admin_is_login.tpl');
-	// КОНТРОЛЛЕР.
-	require_once('../admin/add_dog_panel.php');
+	if (basename($_SERVER['REQUEST_URI'])==="index.php") {
+		// КОНТРОЛЛЕР.
+		require_once('../admin/add_dog_panel.php');
+		
+	}
+	// var_dump( basename($_SERVER['REQUEST_URI']) );
 ?>

@@ -1,4 +1,5 @@
-<?php
+<?php // Контроллер.
+
 	$date = date('j.n.o G:i:s');
 
 	$login = (string)htmlspecialchars(strip_tags($_POST['login']));

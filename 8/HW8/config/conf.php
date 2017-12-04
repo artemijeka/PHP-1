@@ -3,8 +3,9 @@
 	define('MYSQL_LOGIN', 'root');
 	define('MYSQL_PASS', '');
 	define('MYSQL_DB', 'MORNING_STAR');
-	define('MYSQL_TABLE', 'user');
-	define('MYSQL_DOGS', 'uploads_dogs');
+	define('MYSQL_USER', 'user');
+	define('MYSQL_DOGS', 'dogs');
+	define('MYSQL_RESERVE', 'reserve_puppy');
 
 	// Соль с перцем:
 	define('SALT', ':Hs|6`c&^$&*)5]#%f:');

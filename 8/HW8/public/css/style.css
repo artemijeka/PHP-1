@@ -22,13 +22,22 @@
 /*.welcome-admin,*/
 .welcome-user,
 .buttons-reg-and-log,
-.card-dog {
+.card-dog,
+.dog_news,
+.card-dog__form {
 	display: inline-block;
 	padding: 16px;
 	border: 1px solid black;
 	border-radius: 16px;
 	margin: 8px;
 	vertical-align: top;
+	max-width: 400px;
+}
+
+
+.h3-reserve__red {
+	transition-duration: .5s;
+	color: red;
 }
 
 .card-dog {
