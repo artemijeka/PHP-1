@@ -14,5 +14,6 @@
 	// print_r(DateTimeZone::listIdentifiers());
 	// echo "ADMIN? ";
 	// echo $_SESSION['admin'];
+
 	require_once('./index.tpl');
 ?>

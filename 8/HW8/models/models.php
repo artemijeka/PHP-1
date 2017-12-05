@@ -81,9 +81,9 @@ function db_reserve_puppy($userName, $userPhone, $userEmail, $dogMotherId, $user
 }
 
 // Достать из базы все логины, пароли и имена.
-function db_get_all_login_pass_name() {
+function db_get_all_info_about_users() {
 	$connect = db_connect();
-	$query = "SELECT `login`, `password`, `name`, `admin` FROM ".MYSQL_USER." WHERE id>0";
+	$query = "SELECT `login`, `password`, `name`, `phone`, `email`, `admin` FROM ".MYSQL_USER." WHERE id>0";
 	$res = mysqli_query($connect, $query);
 	db_close($connect);
 	// var_dump($res);
