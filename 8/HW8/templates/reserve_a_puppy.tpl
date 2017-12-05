@@ -1,4 +1,4 @@
-<form class="card-dog__form" action="" method="post">
+<form class="card-dog__form" method="post">
 <div class="<?=$h3ReserveRed;?>">
 	<h3><?=$h3ReservePuppy;?></h3>
 </div>

@@ -106,8 +106,9 @@ function db_get_info_about_dog_by_id($dogId) {
 	$query = "SELECT `id`, `path`, `path_mini`, `title`, `description`, `dog_page_dir` FROM ".MYSQL_DOGS." WHERE id='$dogId'";
 	$res = mysqli_query($connect, $query);
 	db_close($connect);
+	$rowFromTheTable = mysqli_fetch_assoc($res);
 	// var_dump($res);
-	return $res;
+	return $rowFromTheTable;
 }
 
 // Функция удаления карточки товара.

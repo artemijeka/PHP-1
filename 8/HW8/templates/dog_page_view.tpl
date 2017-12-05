@@ -15,6 +15,8 @@
   		<a href="<?=$pathToBigImage;?>" target="_blank">
   			<img src="<?=$pathToSmallImage;?>" alt="<?=$dogName;?>" title="Окрыть в полном размере">
 			</a>
+      <br>
+      <br>
   		<figcaption><?=$dogDescription; ?></figcaption>
   	</figure>
   	<? require_once('../engine/reserve_a_puppy.php'); ?>

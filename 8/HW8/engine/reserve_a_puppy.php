@@ -18,6 +18,7 @@
 				$h3ReserveRed = "h3-reserve__red";
 			} else {
 				db_reserve_puppy($userName, $userPhone, $userEmail, $dogMotherId, $userMessage);
+				setcookie('puppy_reserved_from_dog', $dogMotherId, time()+2592000);
 				$h3ReservePuppy = "Спасибо за интерес мы вам перезвоним!";
 				$h3ReserveRed = "h3-reserve__red";
 				// refresh();
@@ -48,22 +49,13 @@
 		$userMessage = (string)htmlspecialchars(strip_tags ($_POST['userMessage'] ));
 		// var_dump($userName);
 		if (isset($_REQUEST['doReserve'])) {
-/**
- *
- * ПО ЗАДАНИЮ НУЖНО СДЕЛАТЬ ЧТО-ТО ВРОДЕ "ПОВОДКА" В КОТОРОМ ОТОБРАЖАЮТСЯ ЗАПИСИ НА ЩЕНКОВ.
- * 
- * ПО ЗАДАНИЮ НАДО СДЕЛАТЬ ВОЗМОЖНОСТЬ УДАЛЕНИЯ ЗАПСИСИ ИЗ "ПОВОДКА" НА ЩЕНКА!
- * 
- * Доделать тут, чтобы при обновлении страницы не отправлялась форма снова в базу.
- *
- * Хлебные крошки.
- * 
- */
+
 			if (!preg_match("/^((8|\+7|7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/", $userPhone)) {
 				$h3ReservePuppy = "Вы ввели неверный формат телефона!!!";
 				$h3ReserveRed = "h3-reserve__red";
 			} else {
 				db_reserve_puppy($userName, $userPhone, $userEmail, $dogMotherId, $userMessage);
+				setcookie('puppy_reserved_from_dog', $dogMotherId, time()+2592000);
 				$h3ReservePuppy = "Спасибо за интерес мы вам перезвоним!";
 				$h3ReserveRed = "h3-reserve__red";
 				// refresh();

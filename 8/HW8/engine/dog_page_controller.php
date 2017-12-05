@@ -32,15 +32,12 @@
 	}
 
 	$dogId = $_REQUEST['dogId'];
-	$res = db_get_info_about_dog_by_id($dogId);
-	while ($row = mysqli_fetch_assoc($res)) {
-		$arrayRes = $row;
-	}
-	// var_dump($arrayRes);
-	$dogName = $arrayRes['title'];
-	$pathToSmallImage = "./".$arrayRes['path_mini'];
-	$pathToBigImage = "./".$arrayRes['path'];
-	$dogDescription = $arrayRes['description'];
+	$dogInfoArrayFromTheTable = db_get_info_about_dog_by_id($dogId);
+	// var_dump($dogInfoArrayFromTheTable);
+	$dogName = $dogInfoArrayFromTheTable['title'];
+	$pathToSmallImage = "./".$dogInfoArrayFromTheTable['path_mini'];
+	$pathToBigImage = "./".$dogInfoArrayFromTheTable['path'];
+	$dogDescription = $dogInfoArrayFromTheTable['description'];
 	
 	require_once('../templates/dog_page_view.tpl');
 ?>
