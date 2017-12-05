@@ -9,7 +9,7 @@
 	  setcookie('pass', $pass, time()-1);
 	  setcookie('name', $name, time()-1);
 								  // Уничтожение кнопки удаления карточки.
-								  // require('../templates/all_dogs.tpl');
+								  // require_once('../templates/all_dogs.tpl');
 								  // $deleteThisCard = "";
 	  // Удаляю сессию админа.
 	  unset($_SESSION['admin']);
@@ -27,7 +27,7 @@
 	require_once('../admin/admin_is_login.tpl');
 	if (basename($_SERVER['REQUEST_URI'])==="index.php") {
 		// КОНТРОЛЛЕР.
-		require_once('../admin/add_dog_panel.php');
+		require_once('../admin/add_dog.php');
 		
 	}
 	// var_dump( basename($_SERVER['REQUEST_URI']) );

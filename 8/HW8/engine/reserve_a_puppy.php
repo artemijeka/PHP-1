@@ -25,7 +25,7 @@
 		}
 		
 
-		require('../templates/reserve_a_puppy.tpl');
+		require_once('../templates/reserve_a_puppy.tpl');
 	}
 	else if ( isset($_COOKIE['login']) ) {
 
@@ -49,7 +49,15 @@
 		// var_dump($userName);
 		if (isset($_REQUEST['doReserve'])) {
 /**
+ *
+ * ПО ЗАДАНИЮ НУЖНО СДЕЛАТЬ ЧТО-ТО ВРОДЕ "ПОВОДКА" В КОТОРОМ ОТОБРАЖАЮТСЯ ЗАПИСИ НА ЩЕНКОВ.
+ * 
+ * ПО ЗАДАНИЮ НАДО СДЕЛАТЬ ВОЗМОЖНОСТЬ УДАЛЕНИЯ ЗАПСИСИ ИЗ "ПОВОДКА" НА ЩЕНКА!
+ * 
  * Доделать тут, чтобы при обновлении страницы не отправлялась форма снова в базу.
+ *
+ * Хлебные крошки.
+ * 
  */
 			if (!preg_match("/^((8|\+7|7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/", $userPhone)) {
 				$h3ReservePuppy = "Вы ввели неверный формат телефона!!!";
@@ -62,7 +70,7 @@
 			}
 		}
 
-		require('../templates/reserve_a_puppy.tpl');
+		require_once('../templates/reserve_a_puppy.tpl');
 	}
 
 ?> 

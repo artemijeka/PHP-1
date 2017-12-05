@@ -21,7 +21,7 @@
   </p>
 
   <h2>Новости собаки:"<?=$dogName;?>"</h2>
-  <? require_once('../engine/dog_news_add.php'); ?>
+  <? require_once('../engine/add_dog_news.php'); ?>
 
   <footer>
     

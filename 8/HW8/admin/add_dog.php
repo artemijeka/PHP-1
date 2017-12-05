@@ -47,5 +47,5 @@
 	}
 
 	// ПРЕДСТАВЛЕНИЕ.
-	require_once('../admin/add_dog_panel.tpl');
+	require_once('../admin/add_dog.tpl');
 ?>
