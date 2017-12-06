@@ -31,6 +31,7 @@ else {
 
 if ( isset($_POST['doNotReservePuppy']) ) {
 	setcookie('puppy_reserved_from_dog', 0, time()-1);
+	refresh();
 }
 
 // var_dump($_SERVER);

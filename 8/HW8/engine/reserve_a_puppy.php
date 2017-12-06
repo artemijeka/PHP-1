@@ -56,12 +56,16 @@
 			} else {
 				db_reserve_puppy($userName, $userPhone, $userEmail, $dogMotherId, $userMessage);
 				setcookie('puppy_reserved_from_dog', $dogMotherId, time()+2592000);
-				$h3ReservePuppy = "Спасибо за интерес мы вам перезвоним!";
-				$h3ReserveRed = "h3-reserve__red";
-				// refresh();
+				refresh();
 			}
 		}
 
+		if (isset($_COOKIE['puppy_reserved_from_dog'])) {
+
+			$h3ReservePuppy = "Спасибо за интерес мы вам перезвоним!";
+			$h3ReserveRed = "h3-reserve__red";
+			
+		}
 		require_once('../templates/reserve_a_puppy.tpl');
 	}
 
