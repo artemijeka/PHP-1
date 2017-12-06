@@ -13,7 +13,7 @@
 	});
 </script> -->
 
-<form class="card-dog__form" action="#" method="post" id="form">
+<form class="card-dog__form" method="post" id="form">
 	<div class="<?=$h3ReserveRed;?>">
 		<h3><?=$h3ReservePuppy;?></h3>
 	</div>

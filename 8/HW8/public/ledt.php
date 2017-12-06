@@ -1,1 +1,0 @@
-<? require_once('../engine/dog_page_controller.php'); ?><? require_once('../engine/dog_page_controller.php'); ?><? require_once('../engine/dog_page_controller.php'); ?><? require_once('../engine/dog_page_controller.php'); ?>

@@ -31,10 +31,12 @@ if ($_POST['enter']) {
 			// echo "</pre>";
       if ($row["login"]===$login && $row["password"]===$pass) {
         // echo "ВЫ ВВЕЛИ ВЕРНЫЕ ДАННЫЕ ";
-	      $name = $row["name"];
+        $name = $row["name"];
+	      $userId = $row["id"];
         $phone = $row['phone'];
         $email = $row['email'];
         // Устанавляваю куки.
+        setcookie('userId', $userId, time()+2592000);
       	setcookie('login', $login, time()+2592000);
 				setcookie('pass', $pass, time()+2592000);
         setcookie('name', $name, time()+2592000);

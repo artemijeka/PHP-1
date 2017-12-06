@@ -45,11 +45,12 @@ function db_user_registration($login, $pass, $name, $email, $phone) {
 
 	$date = date('j.n.o G:i:s');
 	$connect = db_connect();
-	$query = "INSERT INTO ".MYSQL_USER."(`login`, `password`, `date`, `name`, `email`, `phone`) VALUES ('$login', '$pass', '$date', '$name', '$email', '$phone')";
+	$query = "INSERT INTO ".MYSQL_USER."(`ig`, `login`, `password`, `date`, `name`, `email`, `phone`) VALUES ('$login', '$pass', '$date', '$name', '$email', '$phone')";
 	
 	if ($res = mysqli_query($connect, $query)) {
 		// echo "Данные отправлены.\n\n";
 		// Установка cookies на месяц.
+		setcookie('userId', $userId, time()+2592000);
 		setcookie('login', $login, time()+2592000);
 		setcookie('pass', $pass, time()+2592000);
 		setcookie('name', $name, time()+2592000);
@@ -64,11 +65,11 @@ function db_user_registration($login, $pass, $name, $email, $phone) {
 }
 
 // Внесение данных о покупателе желающем зарезервировать щенка.
-function db_reserve_puppy($userName, $userPhone, $userEmail, $dogMotherId, $userMessage) {
+function db_reserve_puppy($userName, $userPhone, $userEmail, $dogId, $userMessage) {
 
 	$reserveDate = date('j.n.o G:i:s');
 	$connect = db_connect();
-	$query = "INSERT INTO ".MYSQL_RESERVE."(`user_name`, `user_phone`, `user_email`, `date`, `dog_mother_id`, `user_message`) VALUES ('$userName', '$userPhone', '$userEmail', '$reserveDate', '$dogMotherId', '$userMessage')";
+	$query = "INSERT INTO ".MYSQL_RESERVE."(`user_name`, `user_phone`, `user_email`, `date`, `dog_mother_id`, `user_message`) VALUES ('$userName', '$userPhone', '$userEmail', '$reserveDate', '$dogId', '$userMessage')";
 	
 	if ($res = mysqli_query($connect, $query)) {
 
@@ -83,7 +84,7 @@ function db_reserve_puppy($userName, $userPhone, $userEmail, $dogMotherId, $user
 // Достать из базы все логины, пароли и имена.
 function db_get_all_info_about_users() {
 	$connect = db_connect();
-	$query = "SELECT `login`, `password`, `name`, `phone`, `email`, `admin` FROM ".MYSQL_USER." WHERE id>0";
+	$query = "SELECT `id`, `login`, `password`, `name`, `phone`, `email`, `admin` FROM ".MYSQL_USER." WHERE id>0";
 	$res = mysqli_query($connect, $query);
 	db_close($connect);
 	// var_dump($res);
