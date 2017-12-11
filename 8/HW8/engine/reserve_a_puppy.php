@@ -3,7 +3,16 @@
 
 	$dogId = $_GET['dogId'];
 	$userId = $_COOKIE['userId'];
-
+	
+	if (isset($_COOKIE['puppy_reserved']))
+	{
+			$h3ReservePuppy = "Спасибо за интерес мы вам перезвоним!";
+			$h3ReserveRed = "h3-reserve__red";
+	} 
+	elseif (!isset($_COOKIE['puppy_reserved']))
+	{
+			$h3ReservePuppy = "Вы можете записаться на ближайший помет этой собаки и мы вам перезвоним.";
+	}
 	// var_dump($_COOKIE['login']);
 	// Если человек не аутентифицировался.
 	if ( !isset($_COOKIE['login']) ) {
@@ -59,14 +68,7 @@
 				refresh();
 			}
 		}
-				// echo($userId.$dogId);
-
-		if (isset($_COOKIE['puppy_reserved'])) {
-			$h3ReservePuppy = "Спасибо за интерес мы вам перезвоним!";
-			$h3ReserveRed = "h3-reserve__red";
-		} elseif (!isset($_COOKIE['puppy_reserved'])) {
-			$h3ReservePuppy = "Вы можете записаться на ближайший помет этой собаки и мы вам перезвоним.";
-		}
+		// echo($userId.$dogId);
 
 		require_once('../templates/reserve_a_puppy.tpl');
 	}
