@@ -65,17 +65,19 @@ function db_user_registration($login, $pass, $name, $email, $phone) {
 }
 
 // Внесение данных о покупателе желающем зарезервировать щенка.
-function db_reserve_puppy($userName, $userPhone, $userEmail, $dogId, $userMessage) {
+function db_reserve_puppy($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage) {
 
 	$reserveDate = date('j.n.o G:i:s');
 	$connect = db_connect();
-	$query = "INSERT INTO ".MYSQL_RESERVE."(`user_name`, `user_phone`, `user_email`, `date`, `dog_mother_id`, `user_message`) VALUES ('$userName', '$userPhone', '$userEmail', '$reserveDate', '$dogId', '$userMessage')";
-	
-	if ($res = mysqli_query($connect, $query)) {
-
-	} 
-	else {
-		// echo "Данные не отправлены!\n\n";
+	$query = "INSERT INTO ".MYSQL_RESERVE."(`user_name`, `user_phone`, `user_email`, `date`, `dog_mother_id`, `male_or_female`, `user_message`) VALUES ('$userName', '$userPhone', '$userEmail', '$reserveDate', '$dogId', '$maleOrFemale', '$userMessage')";
+	$queryIdOfReserve = "SELECT MAX(id) FROM ".MYSQL_RESERVE;
+	// echo "$dogId";
+	if ( mysqli_query($connect, $query) )
+	{
+		$res = mysqli_query($connect, $queryIdOfReserve);
+		$idOfReserve = mysqli_fetch_array($res);
+		$idOfReserve = (int)$idOfReserve[0];
+		return $idOfReserve;
 	}
 	db_close($connect);
 
@@ -260,5 +262,28 @@ function resize($newWidth, $targetFile, $originalFile) {
     }
     // $image_save_func($tmp, "$targetFile.$new_image_ext");
     $image_save_func($tmp, "$targetFile");
+
+}
+
+// Установка куки об резерве
+function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReserve)
+{
+
+	$unserializeCookie = unserialize($_COOKIE['puppy_is_reserved']);
+	foreach ($unserializeCookie as $key => $value) 
+	{
+		if ($key==$dogId)
+		{
+			$serializeArrayInfoAboutReserve = serialize( array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale)) );	
+
+			setcookie($nameCookie, $serializeArrayInfoAboutReserve);
+		}
+		elseif ($key!=$dogId) 
+		{
+			$arrayInfoAboutReserve = array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale));
+			array_push($unserializeCookie, $arrayInfoAboutReserve);
+			break;
+		}
+	}
 
 }

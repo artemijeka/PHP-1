@@ -24,7 +24,9 @@
 .buttons-reg-and-log,
 .card-dog,
 .dog_news,
-.card-dog__form {
+.card-dog__form,
+.your_leash
+{
 	display: inline-block;
 	padding: 16px;
 	border: 1px solid black;

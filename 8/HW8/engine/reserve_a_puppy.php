@@ -2,8 +2,10 @@
 	// var_dump($_COOKIE['puppy_reserved']);
 
 	$dogId = $_GET['dogId'];
-	$userId = $_COOKIE['userId'];
-	
+	$userId = @$_COOKIE['userId'];
+	$maleOrFemale = implode('+', $_REQUEST['maleOrFemale']);
+	// var_dump($dogId);
+
 	if (isset($_COOKIE['puppy_reserved']))
 	{
 			$h3ReservePuppy = "Спасибо за интерес мы вам перезвоним!";
@@ -27,9 +29,10 @@
 				$h3ReservePuppy = "Вы ввели неверный формат телефона!!!";
 				$h3ReserveRed = "h3-reserve__red";
 			} else {
-				db_reserve_puppy($userName, $userPhone, $userEmail, $dogMotherId, $userMessage);
-				setcookie('puppy_reserved', $dogId, time()+2592000);
-				refresh();
+				$idOfReserve = db_reserve_puppy($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage);
+				// var_dump($idOfReserve);
+				cookie_set_reserve_puppy('puppy_is_reserved', $dogId, $maleOrFemale, $idOfReserve);
+				// refresh();
 			}
 		}
 

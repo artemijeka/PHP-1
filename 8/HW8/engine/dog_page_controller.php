@@ -39,5 +39,6 @@
 	$pathToBigImage = "./".$dogInfoArrayFromTheTable['path'];
 	$dogDescription = $dogInfoArrayFromTheTable['description'];
 	
+	require_once('../engine/your_leash.php');	
 	require_once('../templates/dog_page_view.tpl');
 ?>

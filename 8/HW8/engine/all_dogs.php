@@ -21,7 +21,7 @@
 		// var_dump($dirPageDog);		
 
 		// Представление карточки собаки в цикле.
-		require_once('../templates/all_dogs.tpl');
+		require('../templates/all_dogs.tpl');
 
 	}
 
