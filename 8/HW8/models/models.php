@@ -64,6 +64,31 @@ function db_user_registration($login, $pass, $name, $email, $phone) {
 
 }
 
+// Проверка содержит ли база уже такой-же резерв щенка.
+function db_has_this_reserve($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage)
+{
+	$connect = db_connect();
+	$query = "SELECT `id`, `user_name`, `user_phone`, `user_email`, `dog_mother_id`, `male_or_female`, `user_message` FROM ".MYSQL_RESERVE;
+	// !!!!!!!!!
+	$res = mysqli_query($connect, $query);
+	$arrayAllReserve = array();
+	while ($row = mysqli_fetch_assoc($res))
+	{
+		array_push($arrayAllReserve, $row);
+	}
+	db_close($connect);
+	echo "<pre>";
+	var_dump($arrayAllReserve);
+	echo "</pre>";
+	foreach ($arrayAllReserve as $key => $value)
+	{
+		if ($value['user_name']==$userName && $value['user_phone']==$userPhone && $value['dog_mother_id']==$dogId && $value['male_or_female']==$maleOrFemale && $value['user_message']==$userMessage)
+		{
+			return true;
+		}
+	}
+}
+
 // Внесение данных о покупателе желающем зарезервировать щенка.
 function db_reserve_puppy($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage) {
 
@@ -76,7 +101,7 @@ function db_reserve_puppy($userName, $userPhone, $userEmail, $dogId, $maleOrFema
 	{
 		$res = mysqli_query($connect, $queryIdOfReserve);
 		$idOfReserve = mysqli_fetch_array($res);
-		$idOfReserve = (int)$idOfReserve[0];
+		$idOfReserve = $idOfReserve[0];
 		return $idOfReserve;
 	}
 	db_close($connect);
@@ -269,21 +294,54 @@ function resize($newWidth, $targetFile, $originalFile) {
 function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReserve)
 {
 
-	$unserializeCookie = unserialize($_COOKIE['puppy_is_reserved']);
-	foreach ($unserializeCookie as $key => $value) 
+	if (!isset($_COOKIE['puppy_is_reserved']))
 	{
-		if ($key==$dogId)
-		{
-			$serializeArrayInfoAboutReserve = serialize( array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale)) );	
-
-			setcookie($nameCookie, $serializeArrayInfoAboutReserve);
-		}
-		elseif ($key!=$dogId) 
-		{
-			$arrayInfoAboutReserve = array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale));
-			array_push($unserializeCookie, $arrayInfoAboutReserve);
-			break;
-		}
+		$serializeArrayInfoAboutReserve = serialize( array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale)) );
+		setcookie($nameCookie, $serializeArrayInfoAboutReserve);
 	}
+	elseif (isset($_COOKIE['puppy_is_reserved']))
+	{
+		$unserializeCookie = unserialize($_COOKIE['puppy_is_reserved']);
+
+		// if (!isset($unserializeCookie[$dogId])) {
+			$newReserveArray = array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale);
+			$unserializeCookie[$dogId] = $newReserveArray;
+					$serializeArrayInfoAboutReserve = serialize($unserializeCookie);
+			setcookie($nameCookie, $serializeArrayInfoAboutReserve);
+		// }	elseif (isset($unserializeCookie[$dogId])) {
+
+		// }	
+	}
+
+
+
+	// if (!isset($_COOKIE['puppy_is_reserved']))
+	// {
+	// 	$serializeArrayInfoAboutReserve = serialize( array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale)) );
+	// 	setcookie($nameCookie, $serializeArrayInfoAboutReserve);
+	// }
+	// elseif (isset($_COOKIE['puppy_is_reserved']))
+	// {
+	// 	$unserializeCookie = unserialize($_COOKIE['puppy_is_reserved']);
+
+	// 	foreach ($unserializeCookie as $key => $value) 
+	// 	{
+	// 		if ($key==$dogId)
+	// 		{
+	// 			$serializeArrayInfoAboutReserve = serialize( array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale)) );
+	// 			setcookie($nameCookie, $serializeArrayInfoAboutReserve);
+	// 			// var_dump( unserialize($_COOKIE['puppy_is_reserved']) );
+	// 		}
+	// 		if ($key!=$dogId)
+	// 		{
+	// 			$newReserveArray = array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale));
+	// 			array_push($unserializeCookie, $newReserveArray);
+	// 			$serializeArrayInfoAboutReserve = serialize($unserializeCookie);
+	// 			setcookie($nameCookie, $serializeArrayInfoAboutReserve);
+	// 			break;
+	// 		}
+		
+	//   }
+	// }
 
 }
