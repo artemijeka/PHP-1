@@ -8,6 +8,7 @@
 		foreach($puppyIsReserved as $idDog => $arrayOfInfoAboutReserve)
 		{
 			$maleOrFemale = male_or_female($arrayOfInfoAboutReserve['sex']);
+			// var_dump($maleOrFemale);
 			$dogName = (db_get_info_about_dog_by_id($idDog))['title'];
 	?>
 

@@ -6,8 +6,8 @@
 			<input type="submit" name="logOut" value="Выйти">
 		</form>
 	</p>
-	<p>
-		<strong><?=$isThereAPuppy; ?></strong>
+	<!-- <p> -->
+		<!-- <strong><?=$isThereAPuppy; ?></strong> -->
 		
 	<!-- 	<script>
 			$(function(){
@@ -24,9 +24,9 @@
 			});
 		</script> -->
 
-		<form <?=@$hiddenOrNot;?> id="form" method="post">
+<!-- 		<form <?=@$hiddenOrNot;?> id="form" method="post">
 			<input type="submit" name="doNotReservePuppy" value="Отписаться от резерва">
-		</form>
-  </p>
+		</form> -->
+  <!-- </p> -->
 </div>
 

@@ -109,10 +109,12 @@ function db_reserve_puppy($userName, $userPhone, $userEmail, $dogId, $maleOrFema
 }
 
 // Удаление резерва щенка.
-function db_delete_reserve_by_id($idOfReserve) 
+function db_delete_reserve_by_id($idOfReserve, $userName, $userPhone, $userEmail, $dogId) 
 {
 	$connect = db_connect();
-	$query = "DELETE FROM ".MYSQL_RESERVE." WHERE `id`=".$idOfReserve;
+	// $query = "DELETE FROM ".MYSQL_RESERVE." WHERE `id`=".$idOfReserve;
+	$query = "DELETE FROM ".MYSQL_RESERVE." WHERE `user_name`='$userName' AND `user_phone`='$userPhone' AND `user_email`='$userEmail' AND `dog_mother_id`='$dogId'";
+	print($query);
 	mysqli_query($connect, $query);
 	db_close($connect);
 }
@@ -328,9 +330,9 @@ function male_or_female($maleOrFemale)
 	switch($maleOrFemale) 
 	{
 		case 'male':
-		 return 'суку';
+		 return 'кобеля';
 		case 'female':
-			return 'кобеля';
+			return 'суку';
 		case 'male+female';
 			return 'кобеля и суку';
 	}
