@@ -1,17 +1,4 @@
-<!-- <script>
-	$(function(){
-	    $("#form").onsubmit(function(){
-	        // Преобразуем форму в массив
-	        var form_data = $("#form").serializeArray;
-	        
-	        $.ajax({
-	            url: '../engine/reserve_a_puppy.php',
-	            type: 'POST', // Делаем POST запрос
-	            data: form_data
-	        });
-	    });
-	});
-</script> -->
+
 <form class="card-dog__form" method="post" id="form">
     <div class="<?=$h3ReserveRed;?>">
         <h3><?=$h3ReservePuppy;?></h3>

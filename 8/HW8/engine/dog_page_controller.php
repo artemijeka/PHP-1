@@ -1,7 +1,7 @@
 <?php // Контроллер.
 
 	// Отключение вывод предупреждений и ошибок.
-	// error_reporting(E_ERROR);
+	error_reporting(E_ERROR);
 	session_start();
 	// Вызов файлов конфига и моделей.
 	require_once('../config/conf.php');
@@ -39,9 +39,9 @@
 	$pathToBigImage = "./".$dogInfoArrayFromTheTable['path'];
 	$dogDescription = $dogInfoArrayFromTheTable['description'];
 	
-	echo "<pre>";
-	var_dump($_COOKIE);
-	echo "</pre>";
+	// echo "<pre>";
+	// var_dump($_COOKIE);
+	// echo "</pre>";
 
 	require_once('../engine/your_leash.php');	
 	require_once('../templates/dog_page_view.tpl');

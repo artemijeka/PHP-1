@@ -216,12 +216,6 @@ function db_add_dogs_info($pathToFile, $pathToMiniFile, $title, $description, $d
 
 // Создание страницы собаки по заданному имени собаки при загрузке изображения.
 function create_dog_page($dogName, $dogPageDir) {
-// НЕ РАБОТАЕТ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// chmod('../public/', 0755);
-	// $dogName = $_POST['titleDog'];
-	// var_dump($dogName);
-	// var_dump($dogPageDir);
-	// $dogPageStructure = file_get_contents('../engine/dog_page_controller.php');
 	$dogPageStructure = "<? require_once('../engine/dog_page_controller.php'); ?>";
 	$openPageDog = fopen($dogPageDir, "a+");
 	// var_dump($openPageDog);

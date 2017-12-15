@@ -20,7 +20,7 @@
 					if ( isset($_POST['deleteThisCard']) ) {
 						// Берется id этой карты.
 						$idThisCard = $_POST['idThisCard'];
-						// Удаляется запись из базы данных и страницу собаки!!!!!!!!!!!!!!!!!!
+						// Удаляем запись из базы данных и страницу собаки!
 						// Берем дирректорию файла шаблона собаки.
 						$dirPageDog = $_REQUEST['dirPageDog'];
 						var_dump($dirPageDog);

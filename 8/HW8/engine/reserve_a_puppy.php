@@ -72,7 +72,6 @@
 				$h3ReservePuppy = "Вы ввели неверный формат телефона!!!";
 				$h3ReserveRed = "h3-reserve__red";
 			} 
-			// !!!!!!!!!
 			elseif(!db_has_this_reserve($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage)) 
 			{
 				// echo "Резерв свободен!!!!!!!!!!!!!!";
