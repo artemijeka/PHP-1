@@ -152,7 +152,7 @@ function db_get_info_about_dog_by_id($dogId) {
 function db_delete_card_of_dog($id_dog, $dirPageDog) {
 
 	$connect = db_connect();
-	$query = "DELETE FROM `uploads_dogs` WHERE id='$id_dog'";
+	$query = "DELETE FROM ".MYSQL_DOGS." WHERE id='$id_dog'";
 	$res = mysqli_query($connect, $query);
 	db_close($connect);
 	unlink($dirPageDog);
