@@ -5,7 +5,7 @@
 	$puppyIsReserved = unserialize($_COOKIE['puppy_is_reserved']);
 	foreach($puppyIsReserved as $idDog => $arrayOfInfoAboutReserve)
 	{
-		
+		$maleOrFemale = male_or_female($arrayOfInfoAboutReserve['sex']);
 	?>
 
 	<p>

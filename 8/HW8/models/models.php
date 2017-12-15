@@ -304,44 +304,26 @@ function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReser
 		$unserializeCookie = unserialize($_COOKIE['puppy_is_reserved']);
 
 		// if (!isset($unserializeCookie[$dogId])) {
-			$newReserveArray = array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale);
-			$unserializeCookie[$dogId] = $newReserveArray;
-					$serializeArrayInfoAboutReserve = serialize($unserializeCookie);
-			setcookie($nameCookie, $serializeArrayInfoAboutReserve);
-		// }	elseif (isset($unserializeCookie[$dogId])) {
-
-		// }	
+		$newReserveArray = array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale);
+		$unserializeCookie[$dogId] = $newReserveArray;
+		$serializeArrayInfoAboutReserve = serialize($unserializeCookie);
+		setcookie($nameCookie, $serializeArrayInfoAboutReserve);
 	}
 
+}
 
+// Возвращает нормальные слова пола щенка вместо английских.
+function male_or_female($maleOrFemale)
+{
 
-	// if (!isset($_COOKIE['puppy_is_reserved']))
-	// {
-	// 	$serializeArrayInfoAboutReserve = serialize( array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale)) );
-	// 	setcookie($nameCookie, $serializeArrayInfoAboutReserve);
-	// }
-	// elseif (isset($_COOKIE['puppy_is_reserved']))
-	// {
-	// 	$unserializeCookie = unserialize($_COOKIE['puppy_is_reserved']);
-
-	// 	foreach ($unserializeCookie as $key => $value) 
-	// 	{
-	// 		if ($key==$dogId)
-	// 		{
-	// 			$serializeArrayInfoAboutReserve = serialize( array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale)) );
-	// 			setcookie($nameCookie, $serializeArrayInfoAboutReserve);
-	// 			// var_dump( unserialize($_COOKIE['puppy_is_reserved']) );
-	// 		}
-	// 		if ($key!=$dogId)
-	// 		{
-	// 			$newReserveArray = array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale));
-	// 			array_push($unserializeCookie, $newReserveArray);
-	// 			$serializeArrayInfoAboutReserve = serialize($unserializeCookie);
-	// 			setcookie($nameCookie, $serializeArrayInfoAboutReserve);
-	// 			break;
-	// 		}
-		
-	//   }
-	// }
+	switch($maleOrFemale) 
+	{
+		case 'male':
+		 return 'суку';
+		case 'female':
+			return 'кобеля';
+		case 'male+female';
+			return 'кобеля и суку';
+	}
 
 }

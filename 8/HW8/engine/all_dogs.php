@@ -19,7 +19,7 @@
 		$currentIdDog = $row['id'];
 		// var_dump($currentIdDog);
 		// var_dump($dirPageDog);		
-		setcookie($currentIdDog, $currentTitle, time()+2592000);
+		// setcookie($currentIdDog, $currentTitle, time()+2592000);
 		// Представление карточки собаки в цикле.
 		require('../templates/all_dogs.tpl');
 
