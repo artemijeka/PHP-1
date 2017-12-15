@@ -24,3 +24,7 @@
 	}
 	?>
 </div>
+<pre>
+  <?=var_dump($_COOKIE);?>
+  <?=var_dump( unserialize($_COOKIE['puppy_is_reserved']) );?>
+</pre>  

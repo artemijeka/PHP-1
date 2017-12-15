@@ -19,6 +19,7 @@ if ($_POST['logOut']==="Выйти") {
   setcookie('name', $name, time()-1);
   setcookie('phone', $phone, time()-1);
   setcookie('email', $email, time()-1);
+  setcookie('userId', '', time()-1);
 
   refresh_index();
 }
@@ -26,12 +27,6 @@ if ($_POST['logOut']==="Выйти") {
 // var_dump($userIdAndDogId);
 // $res = $userId.$dogId;
 // var_dump($res);
-
-if ( isset($_POST['doNotReservePuppy']) ) {
-	// ПРИ УДАЛЕНИИ У ОДНОГО УДАЛЯЕТСЯ РЕЗЕРВ И У ДРУГОГО!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	setcookie('puppy_reserved', 0, time()-1);
-	refresh();
-}
 
 // var_dump($_SERVER);
 

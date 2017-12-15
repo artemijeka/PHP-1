@@ -42,6 +42,8 @@ if ($_POST['enter']) {
         setcookie('name', $name, time()+2592000);
         setcookie('phone', $phone, time()+2592000);
 				setcookie('email', $email, time()+2592000);
+        // Обнуление резерва чужого.
+        setcookie('puppy_is_reserved', '', time()-1);
         // Если столбец admin равен true, в текущей строчке. 
         if ($row["admin"]==='true') {
           // Создать сессию для админа.

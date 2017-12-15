@@ -3,6 +3,7 @@
 	// Пароль админа admin
 	error_reporting(E_ERROR);
 	
+	
 	session_start();
 	require_once('../config/conf.php');
 	require_once('../models/models.php');
