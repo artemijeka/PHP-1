@@ -322,6 +322,7 @@ function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReser
 // Если пользователь залогинился то установить куки о резерве.
 function cookie_set_reserve_puppy_from_db($name, $phone, $email)
 {
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	$connect = db_connect();
 	$query = "SELECT * FROM ".MYSQL_RESERVE." WHERE `user_name`='$name' AND `user_phone`='$phone' AND `user_email`='$email'";
 	$res = mysqli_query($connect, $query);
@@ -335,7 +336,6 @@ function cookie_set_reserve_puppy_from_db($name, $phone, $email)
 		echo "</pre>";
 		cookie_set_reserve_puppy('puppy_is_reserved', $row['dog_mother_id'], $row['male_or_female'], $row['id'], $row['user_name'], $row['user_phone'], $row['user_email']);
 	}
-
 	// echo "<pre>";
 	// echo "arrayReservesThisUser";
 	// var_dump($arrayReservesThisUser);
