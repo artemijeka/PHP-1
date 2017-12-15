@@ -1,12 +1,14 @@
 <br>
 <div class="your_leash">
-	<h4>Ваш поводок:</h4>
+	<h4><?=$yourLeashTitle;?></h4>
 	<?php
-	$puppyIsReserved = unserialize($_COOKIE['puppy_is_reserved']);
-	foreach($puppyIsReserved as $idDog => $arrayOfInfoAboutReserve)
-	{
-		$maleOrFemale = male_or_female($arrayOfInfoAboutReserve['sex']);
-		$dogName = (db_get_info_about_dog_by_id($idDog))['title'];
+	if (isset($_COOKIE['puppy_is_reserved']))
+	{		
+		$puppyIsReserved = unserialize($_COOKIE['puppy_is_reserved']);
+		foreach($puppyIsReserved as $idDog => $arrayOfInfoAboutReserve)
+		{
+			$maleOrFemale = male_or_female($arrayOfInfoAboutReserve['sex']);
+			$dogName = (db_get_info_about_dog_by_id($idDog))['title'];
 	?>
 
 	<p>
@@ -17,6 +19,7 @@
 		<input type="number" hidden name="dog_id" value='<?=$idDog;?>'>
 	</form>
 	<?php
+		}
 	}
 	?>
 </div>

@@ -1,29 +1,36 @@
 <?php
-
-if (isset($_COOKIE['puppy_is_reserved'])) 
+if ( isset($_COOKIE['puppy_is_reserved']) ) 
 {
+	$yourLeashTitle = 'Ваш поводок:';
 	if (isset($_POST['to_refuse_a_puppy']))
 	{	 
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Функция нужна удаления резерва из базы и из куки.
+
 		$unserializeReserveCookie = unserialize($_COOKIE['puppy_is_reserved']);
 		// var_dump($unserializeReserveCookie);
 		foreach($unserializeReserveCookie as $id=>$array)
 		{
 			if ($_POST['dog_id']==$id)
 			{
-				if ( db_delete_reserve_by_id($array['id_of_reserve']) )
-				{
-					echo "Удаление из базы состоялось!";
-				}
+				db_delete_reserve_by_id($array['id_of_reserve']);
 				unset($unserializeReserveCookie[$id]);	
-				$serializeArrayInfoAboutReserve = serialize($unserializeReserveCookie);
-				if ( setcookie('puppy_is_reserved', $serializeArrayInfoAboutReserve, time()+2592000) )
+				if ($unserializeReserveCookie==array())
 				{
-					echo "Удаление ".$id." из куки состоялось!";		
+					setcookie('puppy_is_reserved', '', time()-1);
+					refresh();
 				}
+				else
+				{
+					$serializeArrayInfoAboutReserve = serialize($unserializeReserveCookie);
+					setcookie('puppy_is_reserved', $serializeArrayInfoAboutReserve, time()+2592000);
+					refresh();					
+				}	
 			}
 		}	
 	}
+}
+else
+{
+	$yourLeashTitle = 'На вашем поводке не зарезервировано ни одного щенка!';
 }
 
 
