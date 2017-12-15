@@ -77,9 +77,9 @@ function db_has_this_reserve($userName, $userPhone, $userEmail, $dogId, $maleOrF
 		array_push($arrayAllReserve, $row);
 	}
 	db_close($connect);
-	echo "<pre>";
-	var_dump($arrayAllReserve);
-	echo "</pre>";
+	// echo "<pre>";
+	// var_dump($arrayAllReserve);
+	// echo "</pre>";
 	foreach ($arrayAllReserve as $key => $value)
 	{
 		if ($value['user_name']==$userName && $value['user_phone']==$userPhone && $value['dog_mother_id']==$dogId && $value['male_or_female']==$maleOrFemale && $value['user_message']==$userMessage)
@@ -303,9 +303,9 @@ function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReser
 	{
 		$unserializeCookie = unserialize($_COOKIE['puppy_is_reserved']);
 
-		// if (!isset($unserializeCookie[$dogId])) {
 		$newReserveArray = array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale);
 		$unserializeCookie[$dogId] = $newReserveArray;
+		var_dump($unserializeCookie);
 		$serializeArrayInfoAboutReserve = serialize($unserializeCookie);
 		setcookie($nameCookie, $serializeArrayInfoAboutReserve);
 	}

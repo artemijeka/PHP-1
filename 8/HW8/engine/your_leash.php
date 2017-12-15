@@ -2,7 +2,11 @@
 
 if (isset($_COOKIE['puppy_is_reserved'])) 
 {
-
+	if (isset($_POST['to_refuse_a_puppy']))
+	{	 
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Функция нужна удаления резерва из базы и из куки.
+		if ($_POST['dog_id']==)
+	}
 }
 
 require_once('../templates/your_leash.tpl');

@@ -6,12 +6,16 @@
 	foreach($puppyIsReserved as $idDog => $arrayOfInfoAboutReserve)
 	{
 		$maleOrFemale = male_or_female($arrayOfInfoAboutReserve['sex']);
+		$dogName = (db_get_info_about_dog_by_id($idDog))['title'];
 	?>
 
 	<p>
 		Вы зарезервировали <?=$maleOrFemale;?> от собаки <?=$dogName;?>.
 	</p>
-	
+	<form method="post">
+		<input type="submit" name="to_refuse_a_puppy" value="Отписаться от резерва">
+		<input type="number" hidden name="dog_id" value='<?=$idDog;?>'>
+	</form>
 	<?php
 	}
 	?>
