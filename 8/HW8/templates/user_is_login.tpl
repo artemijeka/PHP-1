@@ -1,5 +1,5 @@
-<h3>Здравстуйте <?=$name; ?></h3>
 <div class="welcome-user">
+<h3>Здравстуйте <?=$name; ?>!</h3>
 	<h4><?=$name; ?>, вы зашли в свой аккаунт!</h4>
 	<p>
 		<form action="" method="post">

@@ -25,6 +25,8 @@
 	?>
 </div>
 <pre>
+	COOKIE
   <?=var_dump($_COOKIE);?>
+	COOKIE['puppy_is_reserved']
   <?=var_dump( unserialize($_COOKIE['puppy_is_reserved']) );?>
 </pre>  

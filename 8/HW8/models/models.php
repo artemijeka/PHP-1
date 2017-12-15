@@ -69,7 +69,6 @@ function db_has_this_reserve($userName, $userPhone, $userEmail, $dogId, $maleOrF
 {
 	$connect = db_connect();
 	$query = "SELECT `id`, `user_name`, `user_phone`, `user_email`, `dog_mother_id`, `male_or_female`, `user_message` FROM ".MYSQL_RESERVE;
-	// !!!!!!!!!
 	$res = mysqli_query($connect, $query);
 	$arrayAllReserve = array();
 	while ($row = mysqli_fetch_assoc($res))
@@ -299,25 +298,55 @@ function resize($newWidth, $targetFile, $originalFile) {
 function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReserve, $userName, $userPhone, $userEmail)
 {
 
-	if (!isset($_COOKIE['puppy_is_reserved']))
+	if (!isset($_COOKIE["$nameCookie"]))
 	{
-		var_dump($userName);
-		var_dump($userPhone);
-		var_dump($userEmail);
+		// var_dump($userName);
+		// var_dump($userPhone);
+		// var_dump($userEmail);
 		$serializeArrayInfoAboutReserve = serialize( array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale, 'name'=>$userName, 'phone'=>$userPhone, 'email'=>$userEmail)) );
 		setcookie($nameCookie, $serializeArrayInfoAboutReserve);
 	}
-	elseif (isset($_COOKIE['puppy_is_reserved']))
+	elseif (isset($_COOKIE["$nameCookie"]))
 	{
-		$unserializeCookie = unserialize($_COOKIE['puppy_is_reserved']);
+		$unserializeCookie = unserialize($_COOKIE["$nameCookie"]);
 
 		$newReserveArray = array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale, 'name'=>$userName, 'phone'=>$userPhone, 'email'=>$userEmail);
 		$unserializeCookie[$dogId] = $newReserveArray;
-		var_dump($unserializeCookie);
+		// var_dump($unserializeCookie);
 		$serializeArrayInfoAboutReserve = serialize($unserializeCookie);
 		setcookie($nameCookie, $serializeArrayInfoAboutReserve);
 	}
 
+}
+
+// Если пользователь залогинился то установить куки о резерве.
+function cookie_set_reserve_puppy_from_db($name, $phone, $email)
+{
+	$connect = db_connect();
+	$query = "SELECT * FROM ".MYSQL_RESERVE." WHERE `user_name`='$name' AND `user_phone`='$phone' AND `user_email`='$email'";
+	$res = mysqli_query($connect, $query);
+	$arrayReservesThisUser = array();
+	while ($row = mysqli_fetch_assoc($res))
+	{
+		array_push($arrayReservesThisUser, $row);
+		echo "<pre>";
+		echo "row:<br>";
+		var_dump($row);
+		echo "</pre>";
+		cookie_set_reserve_puppy('puppy_is_reserved', $row['dog_mother_id'], $row['male_or_female'], $row['id'], $row['user_name'], $row['user_phone'], $row['user_email']);
+	}
+
+	// echo "<pre>";
+	// echo "arrayReservesThisUser";
+	// var_dump($arrayReservesThisUser);
+	// echo "</pre>";
+
+	// $arrayOfInfoAboutReserve = array();
+	// foreach ($arrayReservesThisUser as $index => $array) {
+	// 	cookie_set_reserve_puppy('puppy_is_reserved', $array['dog_mother_id'], $array['male_or_female'], $array['id'], $array['user_name'], $array['user_phone'], $array['user_email']);
+	// 	// var_dump($_COOKIE['puppy_is_reserved']);
+	// }
+	db_close($connect);
 }
 
 // Возвращает нормальные слова пола щенка вместо английских.
