@@ -108,6 +108,15 @@ function db_reserve_puppy($userName, $userPhone, $userEmail, $dogId, $maleOrFema
 
 }
 
+// Удаление резерва щенка.
+function db_delete_reserve_by_id($idOfReserve) 
+{
+	$connect = db_connect();
+	$query = "DELETE FROM ".MYSQL_RESERVE." WHERE `id`=".$idOfReserve;
+	mysqli_query($connect, $query);
+	db_close($connect);
+}
+
 // Достать из базы все логины, пароли и имена.
 function db_get_all_info_about_users() {
 	$connect = db_connect();
