@@ -296,19 +296,22 @@ function resize($newWidth, $targetFile, $originalFile) {
 }
 
 // Установка куки об резерве
-function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReserve)
+function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReserve, $userName, $userPhone, $userEmail)
 {
 
 	if (!isset($_COOKIE['puppy_is_reserved']))
 	{
-		$serializeArrayInfoAboutReserve = serialize( array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale)) );
+		var_dump($userName);
+		var_dump($userPhone);
+		var_dump($userEmail);
+		$serializeArrayInfoAboutReserve = serialize( array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale, 'name'=>$userName, 'phone'=>$userPhone, 'email'=>$userEmail)) );
 		setcookie($nameCookie, $serializeArrayInfoAboutReserve);
 	}
 	elseif (isset($_COOKIE['puppy_is_reserved']))
 	{
 		$unserializeCookie = unserialize($_COOKIE['puppy_is_reserved']);
 
-		$newReserveArray = array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale);
+		$newReserveArray = array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale, 'name'=>$userName, 'phone'=>$userPhone, 'email'=>$userEmail);
 		$unserializeCookie[$dogId] = $newReserveArray;
 		var_dump($unserializeCookie);
 		$serializeArrayInfoAboutReserve = serialize($unserializeCookie);

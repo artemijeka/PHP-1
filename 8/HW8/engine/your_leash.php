@@ -10,14 +10,14 @@ if ( isset($_COOKIE['puppy_is_reserved']) )
 		{
 			if ($_POST['dog_id']==$id)
 			{
-				// if (isset(  ))
-				// {
+				if (isset( $_COOKIE['"userId"']))
+				{
 					db_delete_reserve_by_id($array['id_of_reserve'], $_COOKIE["name"], $_COOKIE["phone"], $_COOKIE["email"], $_POST['dog_id']);
-				// }
-				// else
-				// {
-					// db_delete_reserve_by_id();
-				// }
+				}
+				else
+				{
+					db_delete_reserve_by_id($array['id_of_reserve'], $array['name'], $array['phone'], $array['email'], $_POST['dog_id']);
+				}
 					
 				unset($unserializeReserveCookie[$id]);
 				// Если в куки резерва щенка нечего нет, то удалить этот куки.
