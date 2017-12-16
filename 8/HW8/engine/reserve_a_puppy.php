@@ -33,7 +33,7 @@
 			} 
 			elseif(!db_has_this_reserve($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage)) 
 			{
-				// echo "Резерв свободен!!!!!!!!!!!!!!";
+				// echo "Резерв свободен!";
 				$idOfReserve = db_reserve_puppy($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage);
 				// var_dump($idOfReserve);
 				cookie_set_reserve_puppy('puppy_is_reserved', $dogId, $maleOrFemale, $idOfReserve, $userName, $userPhone, $userEmail);
@@ -73,7 +73,7 @@
 			} 
 			elseif(!db_has_this_reserve($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage)) 
 			{
-				// echo "Резерв свободен!!!!!!!!!!!!!!";
+				// echo "Резерв свободен!";
 				$idOfReserve = db_reserve_puppy($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage);
 				// var_dump($idOfReserve);
 				cookie_set_reserve_puppy('puppy_is_reserved', $dogId, $maleOrFemale, $idOfReserve, $userName, $userPhone, $userEmail);

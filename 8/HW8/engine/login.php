@@ -1,5 +1,7 @@
 <?php // КОНТРОЛЛЕР.
 
+  // require_once('../models/models.php');
+
   $date = date('j.n.o G:i:s');
 
   $login = (string)htmlspecialchars(strip_tags($_POST['login']));
@@ -16,25 +18,30 @@
 
 
 
-$result = db_get_all_info_about_users($login, $pass);
 
 // echo "Была нажата кнопка Войти";
-if ($_POST['enter']) {
+if ($_POST['enter']) 
+{
+  $result = db_get_all_info_about_users($login, $pass);
   // Если $result вернул какие-то данные.
-	if ($result) {
+	if ($result) 
+  {
     // Извлечение ассоциативного массива циклом:
-    while ($row = mysqli_fetch_assoc($result)) {
+    while ($row = mysqli_fetch_assoc($result)) 
+    {
     	// echo "<pre>";			
 	      // echo $row["login"]." ";
 	      // echo $row["password"]." ";
 				// echo $row["name"]." ";	      
 			// echo "</pre>";
-      if ($row["login"]===$login && $row["password"]===$pass) {
+      if ($row["login"]===$login && $row["password"]===$pass) 
+      {
         // echo "ВЫ ВВЕЛИ ВЕРНЫЕ ДАННЫЕ ";
         $name = $row["name"];
 	      $userId = $row["id"];
         $phone = $row['phone'];
         $email = $row['email'];
+
         // Устанавляваю куки.
         setcookie('userId', $userId, time()+2592000);
       	setcookie('login', $login, time()+2592000);
@@ -42,17 +49,21 @@ if ($_POST['enter']) {
         setcookie('name', $name, time()+2592000);
         setcookie('phone', $phone, time()+2592000);
 				setcookie('email', $email, time()+2592000);
+
         // Обнуление резерва чужого.
         setcookie('puppy_is_reserved', '', time()-1);
+        
         // Если столбец admin равен true, в текущей строчке. 
-        if ($row["admin"]==='true') {
+        if ($row["admin"]==='true') 
+        {
           // Создать сессию для админа.
           session_start();
           $_SESSION['admin'] = $row["admin"];
           // var_dump( $isAdmin );
           // refresh_page('../admin/admin.php');
         }
-				refresh();
+
+				// refresh();
       } 
     }
     /* удаление выборки */

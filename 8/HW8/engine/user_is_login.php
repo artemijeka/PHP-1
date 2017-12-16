@@ -1,5 +1,8 @@
 <?php // КОНТРОЛЛЕР.
 
+// И установка куки из базы.
+cookie_set_reserve_puppy_from_db('puppy_is_reserved', $_COOKIE["name"], $_COOKIE["phone"], $_COOKIE["email"]);
+
 // Переменная для вывода в шаблон.
 $name = $_COOKIE['name'];
 $userId = $_COOKIE['userId'];
@@ -33,5 +36,6 @@ if ($_POST['logOut']==="Выйти") {
 
 // ПРЕДСТАВЛЕНИЕ.
 require_once('../templates/user_is_login.tpl');
+require_once('../engine/your_leash.php');
 
 ?>
