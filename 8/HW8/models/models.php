@@ -65,10 +65,10 @@ function db_user_registration($login, $pass, $name, $email, $phone) {
 }
 
 // Проверка содержит ли база уже такой-же резерв щенка.
-function db_has_this_reserve($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage)
+function db_has_this_reserve($userId, $userName, $userPhone, $userEmail, $dogId, $maleOrFemale)
 {
 	$connect = db_connect();
-	$query = "SELECT `id`, `user_name`, `user_phone`, `user_email`, `dog_mother_id`, `male_or_female`, `user_message` FROM ".MYSQL_RESERVE;
+	$query = "SELECT `user_id`, `user_name`, `user_phone`, `user_email`, `dog_mother_id`, `male_or_female` FROM ".MYSQL_RESERVE;
 	$res = mysqli_query($connect, $query);
 	$arrayAllReserve = array();
 	while ($row = mysqli_fetch_assoc($res))
@@ -81,7 +81,7 @@ function db_has_this_reserve($userName, $userPhone, $userEmail, $dogId, $maleOrF
 	// echo "</pre>";
 	foreach ($arrayAllReserve as $key => $value)
 	{
-		if ($value['user_name']==$userName && $value['user_phone']==$userPhone && $value['dog_mother_id']==$dogId && $value['male_or_female']==$maleOrFemale && $value['user_message']==$userMessage)
+		if ($value['user_id']==$userId && $value['user_name']==$userName && $value['user_phone']==$userPhone && $value['dog_mother_id']==$dogId && $value['male_or_female']==$maleOrFemale)
 		{
 			return true;
 		}
@@ -89,11 +89,11 @@ function db_has_this_reserve($userName, $userPhone, $userEmail, $dogId, $maleOrF
 }
 
 // Внесение данных о покупателе желающем зарезервировать щенка.
-function db_reserve_puppy($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage) {
+function db_reserve_puppy($userId, $userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage) {
 
 	$reserveDate = date('j.n.o G:i:s');
 	$connect = db_connect();
-	$query = "INSERT INTO ".MYSQL_RESERVE."(`user_name`, `user_phone`, `user_email`, `date`, `dog_mother_id`, `male_or_female`, `user_message`) VALUES ('$userName', '$userPhone', '$userEmail', '$reserveDate', '$dogId', '$maleOrFemale', '$userMessage')";
+	$query = "INSERT INTO ".MYSQL_RESERVE."(`user_id`, `user_name`, `user_phone`, `user_email`, `date`, `dog_mother_id`, `male_or_female`, `user_message`) VALUES ('$userId', '$userName', '$userPhone', '$userEmail', '$reserveDate', '$dogId', '$maleOrFemale', '$userMessage')";
 	$queryIdOfReserve = "SELECT MAX(id) FROM ".MYSQL_RESERVE;
 	// echo "$dogId";
 	if ( mysqli_query($connect, $query) )
@@ -295,7 +295,7 @@ function resize($newWidth, $targetFile, $originalFile) {
 }
 
 // Установка куки об резерве
-function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReserve, $userName, $userPhone, $userEmail)
+function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReserve, $userId, $userName, $userPhone, $userEmail)
 {
 
 	if (!isset($_COOKIE["$nameCookie"]))
@@ -303,7 +303,8 @@ function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReser
 		// var_dump($userName);
 		// var_dump($userPhone);
 		// var_dump($userEmail);
-		$serializeArrayInfoAboutReserve = serialize( array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale, 'name'=>$userName, 'phone'=>$userPhone, 'email'=>$userEmail)) );
+		// $serializeArrayInfoAboutReserve = serialize( array($userId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale, 'dog_id'=>$dogId, 'name'=>$userName, 'phone'=>$userPhone, 'email'=>$userEmail)) );
+		$serializeArrayInfoAboutReserve = serialize( array($userId=>array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale, 'name'=>$userName, 'phone'=>$userPhone, 'email'=>$userEmail))) );
 		setcookie($nameCookie, $serializeArrayInfoAboutReserve);
 	}
 	elseif (isset($_COOKIE["$nameCookie"]))
@@ -311,7 +312,7 @@ function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReser
 		$unserializeCookie = unserialize($_COOKIE["$nameCookie"]);
 
 		$newReserveArray = array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale, 'name'=>$userName, 'phone'=>$userPhone, 'email'=>$userEmail);
-		$unserializeCookie[$dogId] = $newReserveArray;
+		$unserializeCookie[$userId][$dogId] = $newReserveArray;
 		// var_dump($unserializeCookie);
 		$serializeArrayInfoAboutReserve = serialize($unserializeCookie);
 		setcookie($nameCookie, $serializeArrayInfoAboutReserve);
@@ -320,31 +321,31 @@ function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReser
 }
 
 // Если пользователь залогинился то установить куки о резерве.
-function cookie_set_reserve_puppy_from_db($nameCookie, $name, $phone, $email)
-{
+// function cookie_set_reserve_puppy_from_db($nameCookie, $name, $phone, $email)
+// {
 
-	$connect = db_connect();
-	$query = "SELECT * FROM ".MYSQL_RESERVE." WHERE `user_name`='$name' AND `user_phone`='$phone' AND `user_email`='$email'";
-	var_dump($query);
-	$res = mysqli_query($connect, $query);	
-	while ($row = mysqli_fetch_assoc($res))
-	{		
-		echo "<pre>";
-		echo "row:<br>";
-		var_dump($row);
-		echo "</pre>";
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// 	$connect = db_connect();
+// 	$query = "SELECT * FROM ".MYSQL_RESERVE." WHERE `user_name`='$name' AND `user_phone`='$phone' AND `user_email`='$email'";
+// 	var_dump($query);
+// 	$res = mysqli_query($connect, $query);	
+// 	while ($row = mysqli_fetch_assoc($res))
+// 	{		
+// 		echo "<pre>";
+// 		echo "row:<br>";
+// 		var_dump($row);
+// 		echo "</pre>";
+// 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		
-	}
+// 	}
 
 
-	db_close($connect);
-}
+// 	db_close($connect);
+// }
 
 // Возвращает нормальные слова пола щенка вместо английских.
 function male_or_female($maleOrFemale)
 {
-
+	// var_dump($maleOrFemale);
 	switch($maleOrFemale) 
 	{
 		case 'male':

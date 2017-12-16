@@ -5,11 +5,20 @@
 	if (isset($_COOKIE['puppy_is_reserved']))
 	{		
 		$puppyIsReserved = unserialize($_COOKIE['puppy_is_reserved']);
-		foreach($puppyIsReserved as $idDog => $arrayOfInfoAboutReserve)
+		foreach($puppyIsReserved as $userId => $dogId)
 		{
-			$maleOrFemale = male_or_female($arrayOfInfoAboutReserve['sex']);
-			// var_dump($maleOrFemale);
-			$dogName = (db_get_info_about_dog_by_id($idDog))['title'];
+			foreach ($dogId as $key => $value) 
+			{
+				if ($value=="sex") 
+				{
+					// Здесь какие-то неполадки.
+					echo "$key";
+					$maleOrFemale = male_or_female($value);
+				  // var_dump($maleOrFemale);
+					
+				}
+				$dogName = (db_get_info_about_dog_by_id($dogId))['title'];
+			}
 	?>
 
 	<p>
@@ -17,7 +26,7 @@
 	</p>
 	<form method="post">
 		<input type="submit" name="to_refuse_a_puppy" value="Отписаться от резерва">
-		<input type="number" hidden name="dog_id" value='<?=$idDog;?>'>
+		<input type="number" hidden name="dog_id" value='<?=$dogId;?>'>
 	</form>
 	<?php
 		}

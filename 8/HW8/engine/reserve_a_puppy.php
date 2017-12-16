@@ -5,7 +5,7 @@
 	$userId = @$_COOKIE['userId'];
 	$maleOrFemale = implode('+', $_REQUEST['maleOrFemale']);
 	// var_dump($dogId);
-
+	//!!! ИСПРАВИТЬ !!! ТУТ ДОЛЖНА БЫТЬ ПРОВЕРКА ЧТО ИМЕННО ЭТОТ ПОЛЬЗОВАТЕЛЬ ДЕЛАЛ РЕЗЕРВ
 	if (isset($_COOKIE['puppy_is_reserved']))
 	{
 			$h3ReservePuppy = "Спасибо за интерес мы вам перезвоним!";
@@ -19,6 +19,7 @@
 	// Если человек не аутентифицировался.
 	if ( !isset($_COOKIE['login']) ) {
 
+		$userId = 0;
 		$userName = (string)htmlspecialchars(strip_tags( $_POST['userName'] ));
 		$userPhone = (string)htmlspecialchars(strip_tags( $_POST['userPhone'] ));
 		$userEmail = (string)htmlspecialchars(strip_tags( $_POST['userEmail'] ));
@@ -31,12 +32,12 @@
 				$h3ReservePuppy = "Вы ввели неверный формат телефона!!!";
 				$h3ReserveRed = "h3-reserve__red";
 			} 
-			elseif(!db_has_this_reserve($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage)) 
+			elseif(!db_has_this_reserve($userId, $userName, $userPhone, $userEmail, $dogId, $maleOrFemale)) 
 			{
 				// echo "Резерв свободен!";
-				$idOfReserve = db_reserve_puppy($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage);
+				$idOfReserve = db_reserve_puppy($userId, $userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage);
 				// var_dump($idOfReserve);
-				cookie_set_reserve_puppy('puppy_is_reserved', $dogId, $maleOrFemale, $idOfReserve, $userName, $userPhone, $userEmail);
+				cookie_set_reserve_puppy('puppy_is_reserved', $dogId, $maleOrFemale, $idOfReserve, $userId, $userName, $userPhone, $userEmail);
 				refresh();
 			}
 		}
@@ -71,12 +72,12 @@
 				$h3ReservePuppy = "Вы ввели неверный формат телефона!!!";
 				$h3ReserveRed = "h3-reserve__red";
 			} 
-			elseif(!db_has_this_reserve($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage)) 
+			elseif(!db_has_this_reserve($userId, $userName, $userPhone, $userEmail, $dogId, $maleOrFemale)) 
 			{
 				// echo "Резерв свободен!";
-				$idOfReserve = db_reserve_puppy($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage);
+				$idOfReserve = db_reserve_puppy($userId, $userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage);
 				// var_dump($idOfReserve);
-				cookie_set_reserve_puppy('puppy_is_reserved', $dogId, $maleOrFemale, $idOfReserve, $userName, $userPhone, $userEmail);
+				cookie_set_reserve_puppy('puppy_is_reserved', $dogId, $maleOrFemale, $idOfReserve, $userId, $userName, $userPhone, $userEmail);
 				refresh();
 			}
 		}

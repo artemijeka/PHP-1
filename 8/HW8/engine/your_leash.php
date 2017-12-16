@@ -1,4 +1,5 @@
 <?php
+$userId = $_COOKIE['user_id'];
 
 if ( isset($_COOKIE['puppy_is_reserved']) ) 
 {
@@ -11,7 +12,7 @@ if ( isset($_COOKIE['puppy_is_reserved']) )
 		{
 			if ($_POST['dog_id']==$id)
 			{
-				if (isset( $_COOKIE['"userId"']))
+				if (isset( $_COOKIE["user_id"]))
 				{
 					db_delete_reserve_by_id($array['id_of_reserve'], $_COOKIE["name"], $_COOKIE["phone"], $_COOKIE["email"], $_POST['dog_id']);
 				}
@@ -25,13 +26,13 @@ if ( isset($_COOKIE['puppy_is_reserved']) )
 				if ($unserializeReserveCookie==array())
 				{
 					setcookie('puppy_is_reserved', '', time()-1);
-					refresh();
+					// refresh();
 				}
 				else
 				{
 					$serializeArrayInfoAboutReserve = serialize($unserializeReserveCookie);
 					setcookie('puppy_is_reserved', $serializeArrayInfoAboutReserve, time()+2592000);
-					refresh();					
+					// refresh();					
 				}	
 			}
 		}	
@@ -59,7 +60,5 @@ require_once('../templates/your_leash.tpl');
 // $unserializeCookie = unserialize($_COOKIE['puppy_is_reserved']);
 // var_dump($unserializeCookie);
 // echo "</pre>";
-
-
 
 ?>

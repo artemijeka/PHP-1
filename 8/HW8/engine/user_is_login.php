@@ -1,7 +1,7 @@
 <?php // КОНТРОЛЛЕР.
 
 // И установка куки из базы.
-cookie_set_reserve_puppy_from_db('puppy_is_reserved', $_COOKIE["name"], $_COOKIE["phone"], $_COOKIE["email"]);
+// cookie_set_reserve_puppy_from_db('puppy_is_reserved', $_COOKIE["name"], $_COOKIE["phone"], $_COOKIE["email"]);
 
 // Переменная для вывода в шаблон.
 $name = $_COOKIE['name'];

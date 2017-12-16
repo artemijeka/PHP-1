@@ -10,6 +10,7 @@
 	// Если куки не установлено:
 	if ( !isset($_COOKIE['login']) ) {
 		// То:
+		setcookie('user_id', 0, time()+2592000);
 		// КОНТРОЛЛЕР.
 		require_once('../engine/buttons_login_and_registration.php');
 	} 
