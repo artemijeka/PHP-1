@@ -2,7 +2,7 @@
 <div class="your_leash">
 	<h4><?=$yourLeashTitle;?></h4>
 	<?php
-	if (isset($_COOKIE['puppy_is_reserved'][$userId]))
+	if (isset(unserialize($_COOKIE['puppy_is_reserved'])[$userId]))
 	{		
 		$puppyIsReserved = unserialize($_COOKIE['puppy_is_reserved']);
 		foreach($puppyIsReserved[$userId] as $dogId => $arrayReservePuppy)

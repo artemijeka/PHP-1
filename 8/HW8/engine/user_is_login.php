@@ -23,7 +23,6 @@ if ($_POST['logOut']==="Выйти") {
   setcookie('phone', $phone, time()-1);
   setcookie('email', $email, time()-1);
   setcookie('userId', '', time()-1);
-  setcookie('puppy_is_reserved', '', time()-1);
 
   refresh_index();
 }

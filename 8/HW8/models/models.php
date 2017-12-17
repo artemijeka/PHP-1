@@ -295,27 +295,21 @@ function resize($newWidth, $targetFile, $originalFile) {
 }
 
 // Установка куки об резерве
+// НЕ УСТАНАВЛИВАЕТ КАК НАДО КУКИ!!!
 function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReserve, $userId, $userName, $userPhone, $userEmail)
 {
-
-	if (!isset($_COOKIE["$nameCookie"]))
+	$unserializeCookie = unserialize($_COOKIE["$nameCookie"]);
+	if (!isset($unserializeCookie[$userId][$dogId]))
 	{
-		// var_dump($userName);
-		// var_dump($userPhone);
-		// var_dump($userEmail);
-		// $serializeArrayInfoAboutReserve = serialize( array($userId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale, 'dog_id'=>$dogId, 'name'=>$userName, 'phone'=>$userPhone, 'email'=>$userEmail)) );
-		$serializeArrayInfoAboutReserve = serialize( array($userId=>array($dogId=>array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale, 'name'=>$userName, 'phone'=>$userPhone, 'email'=>$userEmail))) );
-		setcookie($nameCookie, $serializeArrayInfoAboutReserve);
+		$unserializeCookie[$userId][$dogId] = array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale, 'name'=>$userName, 'phone'=>$userPhone, 'email'=>$userEmail);
+		$serializeCookie = serialize($unserializeCookie);
+		setcookie($nameCookie, $serializeCookie);
 	}
-	elseif (isset($_COOKIE["$nameCookie"]))
+	elseif (isset($unserializeCookie[$userId][$dogId]))
 	{
-		$unserializeCookie = unserialize($_COOKIE["$nameCookie"]);
-
-		$newReserveArray = array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale, 'name'=>$userName, 'phone'=>$userPhone, 'email'=>$userEmail);
-		$unserializeCookie[$userId][$dogId] = $newReserveArray;
-		// var_dump($unserializeCookie);
-		$serializeArrayInfoAboutReserve = serialize($unserializeCookie);
-		setcookie($nameCookie, $serializeArrayInfoAboutReserve);
+		$unserializeCookie[$userId][$dogId] = array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale, 'name'=>$userName, 'phone'=>$userPhone, 'email'=>$userEmail);
+		$serializeCookie = serialize($unserializeCookie);
+		setcookie($nameCookie, $serializeCookie);
 	}
 
 }

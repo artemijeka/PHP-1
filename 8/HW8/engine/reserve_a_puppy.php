@@ -6,12 +6,12 @@
 	$maleOrFemale = implode('+', $_REQUEST['maleOrFemale']);
 	// var_dump($dogId);
 	//!!! ИСПРАВИТЬ !!! ТУТ ДОЛЖНА БЫТЬ ПРОВЕРКА ЧТО ИМЕННО ЭТОТ ПОЛЬЗОВАТЕЛЬ ДЕЛАЛ РЕЗЕРВ
-	if (isset($_COOKIE['puppy_is_reserved']))
-	{
+	if (isset(unserialize($_COOKIE['puppy_is_reserved'])[$userId]))
+	{	
 			$h3ReservePuppy = "Спасибо за интерес мы вам перезвоним!";
 			$h3ReserveRed = "h3-reserve__red";
 	} 
-	elseif (!isset($_COOKIE['puppy_is_reserved']))
+	elseif (!isset(unserialize($_COOKIE['puppy_is_reserved'])[$userId]))
 	{
 			$h3ReservePuppy = "Вы можете записаться на ближайший помет этой собаки и мы вам перезвоним.";
 	}
@@ -50,6 +50,7 @@
 		// var_dump($_COOKIE);
 		$userName = $_COOKIE['name'];
 		$userLogin = $_COOKIE['login'];
+		$userId = $_COOKIE['user_id'];
 
 		if (isset( $_COOKIE['phone'] )) {
 			$userPhone = $_COOKIE['phone'];
@@ -65,6 +66,7 @@
 
 		$userMessage = (string)htmlspecialchars(strip_tags ($_POST['userMessage'] ));
 		// var_dump($userName);
+		
 		if (isset($_REQUEST['doReserve'])) 
 		{
 			if (!preg_match("/^((8|\+7|7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/", $userPhone)) 

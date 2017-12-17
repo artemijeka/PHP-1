@@ -38,25 +38,26 @@ if ( isset($_COOKIE['puppy_is_reserved'][$userId]) )
 						if ($unserializeReserveCookie[$userId]==array())
 						{
 							setcookie('puppy_is_reserved', $userId, time()-1);
-							// refresh();
+							refresh();
 						}
 						else
 						{
 							$serializeArrayInfoAboutReserve = serialize($unserializeReserveCookie);
 							setcookie('puppy_is_reserved', $serializeArrayInfoAboutReserve, time()+2592000);
-							// refresh();					
+							refresh();					
 						}
 					}
 			
 		    }	
 	}
 }
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!
-elseif ( unserialize($_COOKIE['puppy_is_reserved'])[$userId][$dogId] )
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!НЕ РАБОТАЕТ!!!
+elseif ( unserialize($_COOKIE['puppy_is_reserved'])[$userId]==array() )
 {
 	$yourLeashTitle = 'На вашем поводке не зарезервировано ни одного щенка!';
 }
-var_dump( unserialize($_COOKIE['puppy_is_reserved'])[$userId][$dogId] );
+// var_dump( unserialize($_COOKIE['puppy_is_reserved'])[$userId] );
+
 // unset cookies
 // if (isset($_SERVER['HTTP_COOKIE'])) {
 //     $cookies = explode(';', $_SERVER['HTTP_COOKIE']);

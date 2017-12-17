@@ -70,6 +70,6 @@ if ($_POST['enter'])
 }
 
 // Представление.
-require_once('../templates/login.php');
+require_once('../templates/login.tpl');
 
 ?>
