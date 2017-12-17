@@ -5,9 +5,10 @@
 	if (isset($_COOKIE['puppy_is_reserved'][$userId]))
 	{		
 		$puppyIsReserved = unserialize($_COOKIE['puppy_is_reserved']);
-		foreach($puppyIsReserved[$userId] as $dog)
-		{
-			foreach ($dog as $key => $value) 
+		foreach($puppyIsReserved[$userId] as $dogId => $arrayReservePuppy)
+		{	
+			// var_dump($dogId);
+			foreach ($arrayReservePuppy as $key => $value) 
 			{
 				
 				if ($key=="sex") 
