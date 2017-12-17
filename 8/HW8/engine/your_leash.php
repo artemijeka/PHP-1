@@ -1,40 +1,41 @@
-<?php
+<?php // Контроллер
 $userId = $_COOKIE['user_id'];
 
-if ( isset($_COOKIE['puppy_is_reserved']) ) 
+if ( isset($_COOKIE['puppy_is_reserved'][$userId]) ) 
 {
+
 	$yourLeashTitle = 'Ваш поводок:';
+
 	if (isset($_POST['to_refuse_a_puppy']))
 	{	 
 		$unserializeReserveCookie = unserialize($_COOKIE['puppy_is_reserved']);
 		// var_dump($unserializeReserveCookie);
-		foreach($unserializeReserveCookie as $id=>$array)
+		foreach($unserializeReserveCookie[$userId] as $id => $array)
 		{
-			if ($_POST['dog_id']==$id)
-			{
-				if (isset( $_COOKIE["user_id"]))
+
+			//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			
+				if ($_POST['dog_id']==$dog)
 				{
-					db_delete_reserve_by_id($array['id_of_reserve'], $_COOKIE["name"], $_COOKIE["phone"], $_COOKIE["email"], $_POST['dog_id']);
-				}
-				else
-				{
-					db_delete_reserve_by_id($array['id_of_reserve'], $array['name'], $array['phone'], $array['email'], $_POST['dog_id']);
-				}
+					// echo $value;
+					db_delete_reserve($dog["name"], $dog["phone"], $dog["email"], $_POST['dog_id']);
+					// db_delete_reserve_by_id($array['id_of_reserve'], $array['name'], $array['phone'], $array['email'], $_POST['dog_id']);
 					
-				unset($unserializeReserveCookie[$id]);
-				// Если в куки резерва щенка нечего нет, то удалить этот куки.
-				if ($unserializeReserveCookie==array())
-				{
-					setcookie('puppy_is_reserved', '', time()-1);
-					// refresh();
+					unset($unserializeReserveCookie[$id]);
+					// Если в куки резерва щенка нечего нет, то удалить этот куки.
+					if ($unserializeReserveCookie==array())
+					{
+						setcookie('puppy_is_reserved', '', time()-1);
+						// refresh();
+					}
+					else
+					{
+						$serializeArrayInfoAboutReserve = serialize($unserializeReserveCookie);
+						setcookie('puppy_is_reserved', $serializeArrayInfoAboutReserve, time()+2592000);
+						// refresh();					
+					}
 				}
-				else
-				{
-					$serializeArrayInfoAboutReserve = serialize($unserializeReserveCookie);
-					setcookie('puppy_is_reserved', $serializeArrayInfoAboutReserve, time()+2592000);
-					// refresh();					
-				}	
-			}
+			
 		}	
 	}
 }

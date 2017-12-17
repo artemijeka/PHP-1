@@ -108,12 +108,12 @@ function db_reserve_puppy($userId, $userName, $userPhone, $userEmail, $dogId, $m
 }
 
 // Удаление резерва щенка.
-function db_delete_reserve_by_id($idOfReserve, $userName, $userPhone, $userEmail, $dogId) 
+function db_delete_reserve($userName, $userPhone, $userEmail, $dogId) 
 {
 	$connect = db_connect();
 	// $query = "DELETE FROM ".MYSQL_RESERVE." WHERE `id`=".$idOfReserve;
 	$query = "DELETE FROM ".MYSQL_RESERVE." WHERE `user_name`='$userName' AND `user_phone`='$userPhone' AND `user_email`='$userEmail' AND `dog_mother_id`='$dogId'";
-	print($query);
+	// print($query);
 	mysqli_query($connect, $query);
 	db_close($connect);
 }

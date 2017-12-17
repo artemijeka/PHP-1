@@ -2,17 +2,18 @@
 <div class="your_leash">
 	<h4><?=$yourLeashTitle;?></h4>
 	<?php
-	if (isset($_COOKIE['puppy_is_reserved']))
+	if (isset($_COOKIE['puppy_is_reserved'][$userId]))
 	{		
 		$puppyIsReserved = unserialize($_COOKIE['puppy_is_reserved']);
-		foreach($puppyIsReserved as $userId => $dogId)
+		foreach($puppyIsReserved[$userId] as $dog)
 		{
-			foreach ($dogId as $key => $value) 
+			foreach ($dog as $key => $value) 
 			{
-				if ($value=="sex") 
+				
+				if ($key=="sex") 
 				{
+				// echo "$value";
 					// Здесь какие-то неполадки.
-					echo "$key";
 					$maleOrFemale = male_or_female($value);
 				  // var_dump($maleOrFemale);
 					
