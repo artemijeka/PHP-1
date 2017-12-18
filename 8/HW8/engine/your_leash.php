@@ -41,7 +41,7 @@ if ( isset($_POST['dog_id']) )
 }	
 	
 // }
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!НЕ РАБОТАЕТ!!!
+
 elseif ( unserialize($_COOKIE['puppy_is_reserved'])[$userId]==array() )
 {
 	$yourLeashTitle = 'На вашем поводке не зарезервировано ни одного щенка!';
