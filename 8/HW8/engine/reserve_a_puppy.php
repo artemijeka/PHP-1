@@ -5,12 +5,12 @@
 	@$maleOrFemale = implode('+', $_REQUEST['maleOrFemale']);
 	// var_dump($dogId);
 	//!!! ИСПРАВИТЬ !!! ТУТ ДОЛЖНА БЫТЬ ПРОВЕРКА ЧТО ИМЕННО ЭТОТ ПОЛЬЗОВАТЕЛЬ ДЕЛАЛ РЕЗЕРВ
-	if (isset(unserialize($_COOKIE['puppy_is_reserved'])[$userId]))
+	if (unserialize($_COOKIE['puppy_is_reserved'])[$userId]!=array())
 	{	
 			$h3ReservePuppy = "Спасибо за интерес мы вам перезвоним!";
 			$h3ReserveRed = "h3-reserve__red";
 	} 
-	elseif (!isset(unserialize($_COOKIE['puppy_is_reserved'])[$userId]))
+	elseif (unserialize($_COOKIE['puppy_is_reserved'])[$userId]==array())
 	{
 			$h3ReservePuppy = "Вы можете записаться на ближайший помет этой собаки и мы вам перезвоним.";
 	}

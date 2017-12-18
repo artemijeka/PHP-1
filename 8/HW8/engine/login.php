@@ -7,7 +7,6 @@
   $login_null = '';
 
   $pass = (string)htmlspecialchars(strip_tags(md5(PAPPER.$_POST['pass'].SALT)));
-  $pass2 = (string)htmlspecialchars(strip_tags(md5(PAPPER.$_POST['pass2'].SALT)));
   $pass_null = (string)htmlspecialchars(strip_tags(md5(PAPPER.''.SALT)));
 
   $label_pass_content = 'Пароль';
