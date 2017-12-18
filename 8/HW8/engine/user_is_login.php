@@ -5,11 +5,10 @@
 
 // Переменная для вывода в шаблон.
 $name = $_COOKIE['name'];
-$userId = $_COOKIE['userId'];
-$dogId = $_COOKIE['dogId'];
+$userId = $_COOKIE['user_id'];
 $userLogin = $_COOKIE['login'];
-$rowFromTheTable = db_get_info_about_dog_by_id($dogId);
-$dogName = $rowFromTheTable['title'];
+// $rowFromTheTable = db_get_info_about_dog_by_id($dogId);
+// $dogName = $rowFromTheTable['title'];
 
 // var_dump($userIdAndDogId);
 

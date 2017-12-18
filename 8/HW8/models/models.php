@@ -303,13 +303,13 @@ function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReser
 	{
 		$unserializeCookie[$userId][$dogId] = array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale, 'name'=>$userName, 'phone'=>$userPhone, 'email'=>$userEmail);
 		$serializeCookie = serialize($unserializeCookie);
-		setcookie($nameCookie, $serializeCookie);
+		setcookie($nameCookie, $serializeCookie, time()+2592000);
 	}
 	elseif (isset($unserializeCookie[$userId][$dogId]))
 	{
 		$unserializeCookie[$userId][$dogId] = array('id_of_reserve'=>$idOfReserve, 'sex'=>$maleOrFemale, 'name'=>$userName, 'phone'=>$userPhone, 'email'=>$userEmail);
 		$serializeCookie = serialize($unserializeCookie);
-		setcookie($nameCookie, $serializeCookie);
+		setcookie($nameCookie, $serializeCookie, time()+2592000);
 	}
 
 }
