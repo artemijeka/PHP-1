@@ -10,7 +10,6 @@
 			// var_dump($dogId);
 			foreach ($arrayReservePuppy as $key => $value) 
 			{
-				
 				if ($key=="sex") 
 				{
 				// echo "$value";
@@ -30,14 +29,15 @@
 		<input type="submit" name="to_refuse_a_puppy" value="Отписаться от резерва">
 		<input type="number" hidden name="dog_id" value='<?=$dogId;?>'>
 	</form>
+	
 	<?php
 		}
 	}
 	?>
 </div>
-<pre>
+<!-- <pre>
 	COOKIE
   <?=var_dump($_COOKIE);?>
 	COOKIE['puppy_is_reserved']
   <?=var_dump( unserialize($_COOKIE['puppy_is_reserved']) );?>
-</pre>  
+</pre>   -->
