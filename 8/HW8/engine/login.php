@@ -15,12 +15,12 @@
   $class_legend = 'class_legend';
 
 // echo "Была нажата кнопка Войти";
-if ($_POST['enter']) 
+if (isset($_POST['enter'])) 
 {
   
-  // Если $result вернул какие-то данные.
-	if ($result = db_get_all_info_about_users($login, $pass)) 
-  {
+  // $result вернул данные о пользователе с таким логином и паролем.
+	$result = db_get_all_info_about_users($login, $pass); 
+  
     // Извлечение ассоциативного массива циклом:
     while ($row = mysqli_fetch_assoc($result)) 
     {
@@ -31,7 +31,7 @@ if ($_POST['enter'])
 			// echo "</pre>";
       if ($row["login"]===$login && $row["password"]===$pass) 
       {
-        // echo "ВЫ ВВЕЛИ ВЕРНЫЕ ДАННЫЕ ";
+        echo "ВЫ ВВЕЛИ ВЕРНЫЕ ДАННЫЕ ";
         $name = $row["name"];
 	      $userId = $row["id"];
         $phone = $row['phone'];
@@ -40,13 +40,10 @@ if ($_POST['enter'])
         // Устанавляваю куки.
         setcookie('user_id', $userId, time()+2592000);
       	setcookie('login', $login, time()+2592000);
-				setcookie('pass', $pass, time()+2592000);
+				// setcookie('pass', $pass, time()+2592000);
         setcookie('name', $name, time()+2592000);
         setcookie('phone', $phone, time()+2592000);
 				setcookie('email', $email, time()+2592000);
-
-        // Обнуление резерва чужого.
-        // setcookie('puppy_is_reserved', '', time()-1);
         
         // Если столбец admin равен true, в текущей строчке. 
         if ($row["admin"]==='true') 
@@ -57,18 +54,17 @@ if ($_POST['enter'])
           // var_dump( $isAdmin );
           // refresh_page('../admin/admin.php');
         }
+        /* удаление выборки */
+        mysqli_free_result($result);
+        // Очистка массива $_POST.
+        $_POST = array();
+        // Представление.
 
-				// refresh();
+        refresh();
       } 
     }
-    /* удаление выборки */
-    // mysqli_free_result($result);
-	}
-  // Очистка массива $_POST.
-  // $_POST = array();
 }
 
-// Представление.
 require_once('../templates/login.tpl');
 
 ?>
