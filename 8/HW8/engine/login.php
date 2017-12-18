@@ -17,9 +17,9 @@
 // echo "Была нажата кнопка Войти";
 if ($_POST['enter']) 
 {
-  $result = db_get_all_info_about_users($login, $pass);
+  
   // Если $result вернул какие-то данные.
-	if ($result) 
+	if ($result = db_get_all_info_about_users($login, $pass)) 
   {
     // Извлечение ассоциативного массива циклом:
     while ($row = mysqli_fetch_assoc($result)) 
