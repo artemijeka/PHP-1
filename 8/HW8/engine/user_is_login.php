@@ -21,7 +21,7 @@ if ($_POST['logOut']==="Выйти") {
   setcookie('name', $name, time()-1);
   setcookie('phone', $phone, time()-1);
   setcookie('email', $email, time()-1);
-  setcookie('userId', '', time()-1);
+  setcookie('user_id', 0, time()+2592000);
 
   refresh_index();
 }

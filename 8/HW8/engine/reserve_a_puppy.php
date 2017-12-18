@@ -2,8 +2,7 @@
 	// var_dump($_COOKIE['puppy_reserved']);
 
 	$dogId = $_GET['dogId'];
-	$userId = @$_COOKIE['userId'];
-	$maleOrFemale = implode('+', $_REQUEST['maleOrFemale']);
+	@$maleOrFemale = implode('+', $_REQUEST['maleOrFemale']);
 	// var_dump($dogId);
 	//!!! ИСПРАВИТЬ !!! ТУТ ДОЛЖНА БЫТЬ ПРОВЕРКА ЧТО ИМЕННО ЭТОТ ПОЛЬЗОВАТЕЛЬ ДЕЛАЛ РЕЗЕРВ
 	if (isset(unserialize($_COOKIE['puppy_is_reserved'])[$userId]))
@@ -15,42 +14,16 @@
 	{
 			$h3ReservePuppy = "Вы можете записаться на ближайший помет этой собаки и мы вам перезвоним.";
 	}
-	// var_dump($_COOKIE['login']);
-	// Если человек не аутентифицировался.
-	// if ( !isset($_COOKIE['login']) ) {
-
-	// 	$userId = 0;
-	// 	$userName = (string)htmlspecialchars(strip_tags( $_POST['userName'] ));
-	// 	$userPhone = (string)htmlspecialchars(strip_tags( $_POST['userPhone'] ));
-	// 	$userEmail = (string)htmlspecialchars(strip_tags( $_POST['userEmail'] ));
-	// 	$userMessage = (string)htmlspecialchars(strip_tags( $_POST['userMessage'] ));
-	// 	// var_dump($dogId);
-	// 	if (isset($_REQUEST['doReserve'])) 
-	// 	{
-	// 		if (!preg_match("/^((8|\+7|7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/", $userPhone)) 
-	// 		{
-	// 			$h3ReservePuppy = "Вы ввели неверный формат телефона!!!";
-	// 			$h3ReserveRed = "h3-reserve__red";
-	// 		} 
-	// 		elseif(!db_has_this_reserve($userId, $userName, $userPhone, $userEmail, $dogId, $maleOrFemale)) 
-	// 		{
-	// 			// echo "Резерв свободен!";
-	// 			$idOfReserve = db_reserve_puppy($userId, $userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage);
-	// 			// var_dump($idOfReserve);
-	// 			cookie_set_reserve_puppy('puppy_is_reserved', $dogId, $maleOrFemale, $idOfReserve, $userId, $userName, $userPhone, $userEmail);
-	// 			refresh();
-	// 		}
-	// 	}
-
-	// 	require_once('../templates/reserve_a_puppy.tpl');
-	// }
-	// else if ( isset($_COOKIE['login']) ) {
-
-		// echo "Логин установлен";
+	
 		// var_dump($_COOKIE);
-		$userName = $_COOKIE['name'];
-		$userLogin = $_COOKIE['login'];
 		$userId = $_COOKIE['user_id'];
+//////
+		if (isset($_COOKIE['name'])) 
+		{
+			$userName = $_COOKIE['name'];
+		}	else 	{
+			$userName = $_POST['userName'];
+		}
 
 		if (isset( $_COOKIE['phone'] )) {
 			$userPhone = $_COOKIE['phone'];
@@ -63,7 +36,7 @@
 		} else {
 			$userEmail = (string)htmlspecialchars(strip_tags ($_POST['userEmail'] )); 
 		}
-
+//////
 		$userMessage = (string)htmlspecialchars(strip_tags ($_POST['userMessage'] ));
 		// var_dump($userName);
 		
@@ -85,7 +58,6 @@
 		}
 		// echo($userId.$dogId);
 
-		require_once('../templates/reserve_a_puppy.tpl');
-	// }
+	require_once('../templates/reserve_a_puppy.tpl');
 
 ?> 

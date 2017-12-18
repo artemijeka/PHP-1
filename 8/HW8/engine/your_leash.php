@@ -1,22 +1,12 @@
 <?php // Контроллер
+
 $userId = $_COOKIE['user_id'];
+$yourLeashTitle = 'Ваш поводок:';
 
-if ( isset($_COOKIE['puppy_is_reserved'][$userId]) ) 
+
+if ( isset($_POST['dog_id']) )
 {
-
-	$yourLeashTitle = 'Ваш поводок:';
-
-	if (isset($_POST['to_refuse_a_puppy']))
-	{	 
-		$unserializeReserveCookie = unserialize($_COOKIE['puppy_is_reserved']);
-		// var_dump($unserializeReserveCookie);
-		
-			// echo "<pre>";
-			// var_dump($unserializeReserveCookie[$userId][$dogId]);
-			// echo "</pre>";
-			
-				if ( isset($_POST['dog_id']) )
-				{
+	$unserializeReserveCookie = unserialize($_COOKIE['puppy_is_reserved']);
 					$dogId = $_POST['dog_id'];
 					foreach($unserializeReserveCookie[$userId][$dogId] as $key => $value)
 					{	
@@ -33,24 +23,24 @@ if ( isset($_COOKIE['puppy_is_reserved'][$userId]) )
 						unset($unserializeReserveCookie[$userId][$dogId]);
 						$serializeArrayInfoAboutReserve = serialize($unserializeReserveCookie);
 						setcookie('puppy_is_reserved', $serializeArrayInfoAboutReserve, time()+2592000);
-
+						refresh();
 						// Если в куки резерва щенка нечего нет, то удалить этот куки.
-						if ($unserializeReserveCookie[$userId]==array())
-						{
-							setcookie('puppy_is_reserved', $userId, time()-1);
-							refresh();
-						}
-						else
-						{
-							$serializeArrayInfoAboutReserve = serialize($unserializeReserveCookie);
-							setcookie('puppy_is_reserved', $serializeArrayInfoAboutReserve, time()+2592000);
-							refresh();					
-						}
+						// if ($unserializeReserveCookie[$userId]==array())
+						// {
+						// 	setcookie('puppy_is_reserved', $userId, time()-1);
+						// 	refresh();
+						// }
+						// else
+						// {
+						// 	$serializeArrayInfoAboutReserve = serialize($unserializeReserveCookie);
+						// 	setcookie('puppy_is_reserved', $serializeArrayInfoAboutReserve, time()+2592000);
+						// 	refresh();					
+						// }
 					}
 			
-		    }	
-	}
-}
+}	
+	
+// }
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!НЕ РАБОТАЕТ!!!
 elseif ( unserialize($_COOKIE['puppy_is_reserved'])[$userId]==array() )
 {
