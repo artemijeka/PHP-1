@@ -25,7 +25,8 @@
 .card-dog,
 .dog_news,
 .card-dog__form,
-.your_leash
+.your_leash,
+.control-of-reserves
 {
 	display: inline-block;
 	padding: 16px;
@@ -36,6 +37,20 @@
 	max-width: 460px;
 }
 
+.control-of-reserves {
+	max-width: initial;
+}
+
+table {
+	border-spacing: 0;
+	border: 1px solid black;
+
+}
+th,
+td {
+	padding: 5px;
+	border: 1px solid black;
+}
 
 .h3-reserve__red {
 	transition-duration: .5s;

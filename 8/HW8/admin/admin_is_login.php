@@ -22,6 +22,7 @@
 	if (basename($_SERVER['REQUEST_URI'])==="index.php") 
 	{
 		// КОНТРОЛЛЕР.
+		require_once('../admin/control_of_reserves.php');
 		require_once('../admin/add_dog.php');
 	}
 	// var_dump( basename($_SERVER['REQUEST_URI']) );

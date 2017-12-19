@@ -151,7 +151,6 @@ function db_get_info_about_dog_by_id($dogId) {
 
 // Функция удаления карточки товара.
 function db_delete_card_of_dog($id_dog, $dirPageDog) {
-
 	$connect = db_connect();
 	$query = "DELETE FROM ".MYSQL_DOGS." WHERE id='$id_dog'";
 	$res = mysqli_query($connect, $query);
@@ -159,14 +158,12 @@ function db_delete_card_of_dog($id_dog, $dirPageDog) {
 	unlink($dirPageDog);
 	// var_dump($res);
 	// return $res;
-
 }
 
 // Загрузка изображения на сервер.
 function upload_image_to_server($uploadedImage, $pathToDir) {
 
 	if ($uploadedImage['size']<5000000) {
-
 		if (move_uploaded_file($uploadedImage['tmp_name'], $pathToDir)) {
 			// echo "Файл корректен и был успешно загружен.\n";
 			return true;
@@ -174,7 +171,6 @@ function upload_image_to_server($uploadedImage, $pathToDir) {
 			// echo "Файл небыл загружен, потому что больше 5Мб!\n";
 			return false;
 		} 
-
 	} 
 	 
 }
@@ -187,7 +183,6 @@ function db_add_dogs_info($pathToFile, $pathToMiniFile, $title, $description, $d
 	$query = "INSERT INTO ".MYSQL_DOGS."(`path`, `path_mini`, `title`, `description`, `dog_page_dir`) VALUES ('$pathToFile', '$pathToMiniFile', '$title', '$description', '$dogPageDir')";
 	
 	if ( $resQuery = mysqli_query($connect, $queryForPath) ) {
-
 		$arrayOfPathsToImages = array();
 		while ( $row = mysqli_fetch_row($resQuery) ) {
 			$arrayOfPathsToImages[] = $row[0];
@@ -211,6 +206,33 @@ function db_add_dogs_info($pathToFile, $pathToMiniFile, $title, $description, $d
 		}
 	}  
 		
+}
+
+// Получить все данные о всех резервах из базы данных.
+function db_get_all_info_about_reserves()
+{
+	$connect = db_connect();
+	$query = "SELECT * FROM ".MYSQL_RESERVE." WHERE id>0";
+	$res = mysqli_query($connect, $query);
+	$arrayInfoReserves = array();
+	for ($i=1; $i<count($row = mysqli_fetch_assoc($res)); $i++)
+	{
+		// if (db_has_this_reserve($row['user_id'], $row['user_name'], $row['user_phone'], $row['user_email'], $row['dog_mother_id'], $row['male_or_female']))
+		// {
+		// 	echo "ЕСТЬ ОДИНАКОВЫЕ ЗАПИСИ!";
+		// }
+		$arrayInfoReserves[$row['id']] = $row;
+	}
+	// foreach ($arrayInfoReserves as $id => $array) {
+	// 	foreach ($array as $key => $value) {
+	// 		// var_dump($id);
+	// 		if ()
+	// 	}
+	// }
+	// echo "<pre>";
+	// var_dump($arrayInfoReserves);
+	// echo "</pre>";
+	return $arrayInfoReserves;
 }
 
 // Создание страницы собаки по заданному имени собаки при загрузке изображения.
@@ -313,28 +335,6 @@ function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReser
 	}
 
 }
-
-// Если пользователь залогинился то установить куки о резерве.
-// function cookie_set_reserve_puppy_from_db($nameCookie, $name, $phone, $email)
-// {
-
-// 	$connect = db_connect();
-// 	$query = "SELECT * FROM ".MYSQL_RESERVE." WHERE `user_name`='$name' AND `user_phone`='$phone' AND `user_email`='$email'";
-// 	var_dump($query);
-// 	$res = mysqli_query($connect, $query);	
-// 	while ($row = mysqli_fetch_assoc($res))
-// 	{		
-// 		echo "<pre>";
-// 		echo "row:<br>";
-// 		var_dump($row);
-// 		echo "</pre>";
-// 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		
-// 	}
-
-
-// 	db_close($connect);
-// }
 
 // Возвращает нормальные слова пола щенка вместо английских.
 function male_or_female($maleOrFemale)
