@@ -25,7 +25,7 @@
 				<td><?=$array['dog_mother_id'];?></td>
 				<td><?=$array['male_or_female'];?></td>
 				<td><?=$array['user_message'];?></td>
-				<td><button method="post" name="<?=$array['id'];?>">Удалить</button></td>
+				<td><form method="post"><button type="submit" onClick="return checker();" name="del_reserve" value="<?=$array['id'];?>">Удалить</button></form></td>
 			</tr>	
 	<?
 		}
