@@ -18,7 +18,7 @@ if ($_SESSION['admin']!=='true')
 	
 		// var_dump($_COOKIE);
 		$userId = $_COOKIE['user_id'];
-//////
+
 		if (isset($_COOKIE['name'])) 
 		{
 			$userName = $_COOKIE['name'];
@@ -37,7 +37,7 @@ if ($_SESSION['admin']!=='true')
 		} else {
 			$userEmail = (string)htmlspecialchars(strip_tags ($_POST['userEmail'] )); 
 		}
-//////
+
 		$userMessage = (string)htmlspecialchars(strip_tags ($_POST['userMessage'] ));
 		// var_dump($userName);
 		

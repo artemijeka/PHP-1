@@ -16,7 +16,6 @@
 	} 
 	// Иначе если установлено:
 	else if ( isset($_COOKIE['login']) ) {
-
 		// var_dump($_SESSION["admin"]);
 		// То если это админ.
 		if ($_SESSION["admin"]==='true') {
@@ -39,7 +38,6 @@
 	$pathToSmallImage = "./".$dogInfoArrayFromTheTable['path_mini'];
 	$pathToBigImage = "./".$dogInfoArrayFromTheTable['path'];
 	$dogDescription = $dogInfoArrayFromTheTable['description'];
-	
 	// echo "<pre>";
 	// var_dump($_COOKIE);
 	// echo "</pre>";

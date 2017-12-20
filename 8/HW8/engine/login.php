@@ -17,7 +17,6 @@
 // echo "Была нажата кнопка Войти";
 if (isset($_POST['enter'])) 
 {
-  
   // $result вернул данные о пользователе с таким логином и паролем.
 	$result = db_get_all_info_about_users($login, $pass); 
   
@@ -40,11 +39,9 @@ if (isset($_POST['enter']))
         // Устанавляваю куки.
         setcookie('user_id', $userId, time()+2592000);
       	setcookie('login', $login, time()+2592000);
-				// setcookie('pass', $pass, time()+2592000);
         setcookie('name', $name, time()+2592000);
         setcookie('phone', $phone, time()+2592000);
 				setcookie('email', $email, time()+2592000);
-        
         // Если столбец admin равен true, в текущей строчке. 
         if ($row["admin"]==='true') 
         {

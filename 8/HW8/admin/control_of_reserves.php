@@ -12,7 +12,6 @@
 	// echo "<pre>";
 	// var_dump($arrayAllInfoAboutReserves);
 	// echo "</pre>";
-	
 
 	if (isset($_POST['del_reserve']))
 	{
@@ -20,7 +19,6 @@
 		// var_dump( $idOfReserve );
 		db_delete_reserve_by_id($idOfReserve);
 		$unserializeReserveCookie = unserialize($_COOKIE['puppy_is_reserved']);
-		///////////////////УДАЛЕНИЕ КУКИ НЕ РАБОТАЕТ//////////////////
 		foreach ($unserializeReserveCookie as $userId => $dogIdReserveArray) {
 			// var_dump($userId);
 			// var_dump($dogIdReserveInfo);
@@ -28,9 +26,7 @@
 				// var_dump($infoArray);
 				if ($infoArray['id_of_reserve']===$idOfReserve)
 				{
-					echo "Можно устанавливать куки!";
 					// var_dump( $unserializeReserveCookie[$userId][$dogId] );
-
 					unset($unserializeReserveCookie[$userId][$dogId]);
 					$serializeReserveCookie = serialize($unserializeReserveCookie);
 					// Установка обратно куки.
@@ -39,7 +35,6 @@
 				}
 			}
 		}
-
 		refresh();
 	}
 	require_once('../admin/control_of_reserves.tpl');

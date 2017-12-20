@@ -14,10 +14,8 @@ if ($_SESSION['admin']!=='true')
 			$name=$unserializeReserveCookie[$userId][$dogId]['name'];
 			$phone=$unserializeReserveCookie[$userId][$dogId]['phone'];
 			$email=$unserializeReserveCookie[$userId][$dogId]['email'];
-
 			// echo $value;
-			db_delete_reserve($name, $phone, $email, $dogId);
-													
+			db_delete_reserve($name, $phone, $email, $dogId);									
 			// Удаление из массива резервов по id собаки.
 			unset($unserializeReserveCookie[$userId][$dogId]);
 			$serializeArrayInfoAboutReserve = serialize($unserializeReserveCookie);
@@ -30,7 +28,6 @@ if ($_SESSION['admin']!=='true')
 	{
 		$yourLeashTitle = 'На вашем поводке не зарезервировано ни одного щенка!';
 	}
-
 
 	require_once('../templates/your_leash.tpl');
 	// echo "<pre>";

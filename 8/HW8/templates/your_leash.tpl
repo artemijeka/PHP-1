@@ -12,11 +12,10 @@
 			{
 				if ($key=="sex") 
 				{
-				// echo "$value";
+					// echo "$value";
 					// Здесь какие-то неполадки.
 					$maleOrFemale = male_or_female($value);
-				  // var_dump($maleOrFemale);
-					
+				  // var_dump($maleOrFemale);		
 				}
 				$dogName = (db_get_info_about_dog_by_id($dogId))['title'];
 			}
