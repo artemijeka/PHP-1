@@ -1,6 +1,6 @@
 <?php // КОНТРОЛЛЕР.
 
-// session_start();
+session_start();
 // Если куки не установлено:
 if ( !isset($_COOKIE['login']) ) {
 	// То:
