@@ -20,7 +20,8 @@
         <br>
     		<figcaption><?=$dogDescription; ?></figcaption>
     	</figure>
-    	<? require_once('../engine/reserve_a_puppy.php'); ?>
+      <? require_once('../engine/your_leash.php'); ?>
+      <? require_once('../engine/reserve_a_puppy.php'); ?>
     </p>
 
     <h2>Новости собаки:"<?=$dogName;?>"</h2>

@@ -1,3 +1,4 @@
+<br>
 <div class="your_leash">
 	<h4><?=$yourLeashTitle;?></h4>
 	<?php

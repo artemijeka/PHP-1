@@ -43,7 +43,10 @@
 	// echo "<pre>";
 	// var_dump($_COOKIE);
 	// echo "</pre>";
-
-	require_once('../engine/your_leash.php');	
+	
+	// if ($_SESSION['admin']!=='true')
+	// {
+	// 	$yourLeash = require_once('../engine/your_leash.php');
+	// }
 	require_once('../templates/dog_page_view.tpl');
 ?>

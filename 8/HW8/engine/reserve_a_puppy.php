@@ -1,6 +1,7 @@
 <?php 
 	// var_dump($_COOKIE['puppy_reserved']);
-
+if ($_SESSION['admin']!=='true')
+{
 	$dogId = $_GET['dogId'];
 	@$maleOrFemale = implode('+', $_REQUEST['maleOrFemale']);
 	// var_dump($dogId);
@@ -57,7 +58,7 @@
 			}
 		}
 		// echo($userId.$dogId);
-
 	require_once('../templates/reserve_a_puppy.tpl');
+}
 
 ?> 

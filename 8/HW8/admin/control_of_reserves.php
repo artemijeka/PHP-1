@@ -19,6 +19,20 @@
 		$idOfReserve = $_REQUEST['del_reserve'];
 		// var_dump( $idOfReserve );
 		db_delete_reserve_by_id($idOfReserve);
+		$unserializeReserveCookie = unserialize($_COOKIE['puppy_is_reserved']);
+		////////////////////////////////////////////////////////////////
+		foreach ($unserializeReserveCookie as $userId => $dogId) {
+			if ($dogId['id_of_reserve']===$idOfReserve)
+			{
+				echo "ЕСТЬ ТАКОЕ КУКИ!";
+				unset($unserializeReserveCookie[$userId][$dogId]);
+				$serializeReserveCookie = serialize($unserializeReserveCookie);
+				// Установка обратно куки.
+				setcookie('puppy_is_reserved', $serializeReserveCookie, time()+2592000);
+				refresh();
+			}
+		}
+
 		refresh();
 	}
 	require_once('../admin/control_of_reserves.tpl');
