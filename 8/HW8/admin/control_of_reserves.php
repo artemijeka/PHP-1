@@ -20,16 +20,23 @@
 		// var_dump( $idOfReserve );
 		db_delete_reserve_by_id($idOfReserve);
 		$unserializeReserveCookie = unserialize($_COOKIE['puppy_is_reserved']);
-		////////////////////////////////////////////////////////////////
-		foreach ($unserializeReserveCookie as $userId => $dogId) {
-			if ($dogId['id_of_reserve']===$idOfReserve)
-			{
-				echo "ЕСТЬ ТАКОЕ КУКИ!";
-				unset($unserializeReserveCookie[$userId][$dogId]);
-				$serializeReserveCookie = serialize($unserializeReserveCookie);
-				// Установка обратно куки.
-				setcookie('puppy_is_reserved', $serializeReserveCookie, time()+2592000);
-				refresh();
+		///////////////////УДАЛЕНИЕ КУКИ НЕ РАБОТАЕТ//////////////////
+		foreach ($unserializeReserveCookie as $userId => $dogIdReserveArray) {
+			// var_dump($userId);
+			// var_dump($dogIdReserveInfo);
+			foreach ($dogIdReserveArray as $dogId => $infoArray) {
+				// var_dump($infoArray);
+				if ($infoArray['id_of_reserve']===$idOfReserve)
+				{
+					echo "Можно устанавливать куки!";
+					// var_dump( $unserializeReserveCookie[$userId][$dogId] );
+
+					unset($unserializeReserveCookie[$userId][$dogId]);
+					$serializeReserveCookie = serialize($unserializeReserveCookie);
+					// Установка обратно куки.
+					setcookie('puppy_is_reserved', $serializeReserveCookie, time()+2592000);
+					break(2);
+				}
 			}
 		}
 

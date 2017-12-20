@@ -35,6 +35,7 @@
 	}
 	?>
 </div>
+<br>
 <!-- <pre>
 	COOKIE
   <?=var_dump($_COOKIE);?>
