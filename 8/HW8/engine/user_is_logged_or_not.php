@@ -22,5 +22,9 @@ else if ( isset($_COOKIE['login']) ) {
 		require_once('../engine/user_is_login.php');
 	}
 }
+if ($_SESSION['admin']!=='true')
+{
+	require_once('../engine/your_leash.php');
+}
 
 ?>

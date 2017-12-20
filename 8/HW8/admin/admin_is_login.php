@@ -19,9 +19,12 @@
 	$name = $_COOKIE['name'];
 	// ПРЕДСТАВЛЕНИЕ.
 	require_once('../admin/admin_is_login.tpl');
-	if (basename($_SERVER['REQUEST_URI'])==="index.php") 
+	// var_dump(basename($_SERVER['REQUEST_URI']));
+	if (basename($_SERVER['REQUEST_URI'])==="index.php" ||
+			basename($_SERVER['REQUEST_URI'])==="public") 
 	{
 		// КОНТРОЛЛЕР.
+		require_once('../admin/control_of_reserves.php');
 		require_once('../admin/add_dog.php');
 	}
 	// var_dump( basename($_SERVER['REQUEST_URI']) );

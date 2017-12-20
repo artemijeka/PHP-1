@@ -8,10 +8,16 @@
 <body>
      
     <h1>Добро пожаловать в питомник шнауцеров "Монинг Стар"!</h1>
+<!-- <pre>
+$_COOKIE
+  <?=var_dump($_COOKIE);?>
+unserialize $_COOKIE['puppy_is_reserved']
+  <?=var_dump( unserialize($_COOKIE['puppy_is_reserved']) );?>
+</pre>   -->
     <h2>Наш телефон в Самаре 89277220225.</h2>
     <h3>У нас вы найдете щенков чемпионов миттельшнауцеров и цвергшнауцеров разного окраса.</h3>
     <header>
-        <?php require_once('../engine/user_is_logged_or_not.php'); ?>
+        <?php require_once('../engine/user_is_logged_or_not.php');?>
     </header>
     <main>
         <?php require_once('../engine/all_dogs.php'); ?>
