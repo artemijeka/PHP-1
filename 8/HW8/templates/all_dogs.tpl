@@ -22,7 +22,7 @@
 						$idThisCard = $_POST['idThisCard'];
 						// Удаляем запись из базы данных и страницу собаки!
 						// Берем дирректорию файла шаблона собаки.
-						$dirPageDog = $_REQUEST['dirPageDog'];
+						$dirPageDog = $_POST['dirPageDog'];
 						var_dump($dirPageDog);
 						db_delete_card_of_dog($idThisCard, $dirPageDog);
 						// var_dump($idThisCard);

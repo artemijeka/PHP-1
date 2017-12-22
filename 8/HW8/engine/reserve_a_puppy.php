@@ -3,7 +3,7 @@
 if ($_SESSION['admin']!=='true')
 {
 	$dogId = $_GET['dogId'];
-	@$maleOrFemale = implode('+', $_REQUEST['maleOrFemale']);
+	@$maleOrFemale = implode('+', $_POST['maleOrFemale']);
 	// var_dump($dogId);
 	//!!! ИСПРАВИТЬ !!! ТУТ ДОЛЖНА БЫТЬ ПРОВЕРКА ЧТО ИМЕННО ЭТОТ ПОЛЬЗОВАТЕЛЬ ДЕЛАЛ РЕЗЕРВ
 	if (unserialize($_COOKIE['puppy_is_reserved'])[$userId]!=array())
@@ -41,7 +41,7 @@ if ($_SESSION['admin']!=='true')
 		$userMessage = (string)htmlspecialchars(strip_tags ($_POST['userMessage'] ));
 		// var_dump($userName);
 		
-		if (isset($_REQUEST['doReserve'])) 
+		if (isset($_POST['doReserve'])) 
 		{
 			if (!preg_match("/^((8|\+7|7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/", $userPhone)) 
 			{

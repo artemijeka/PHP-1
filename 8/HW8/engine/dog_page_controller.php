@@ -31,7 +31,7 @@
 		}
 	}
 
-	$dogId = $_REQUEST['dogId'];
+	$dogId = $_GET['dogId'];
 	$dogInfoArrayFromTheTable = db_get_info_about_dog_by_id($dogId);
 	// var_dump($dogInfoArrayFromTheTable);
 	$dogName = $dogInfoArrayFromTheTable['title'];

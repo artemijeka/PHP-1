@@ -1,3 +1,4 @@
+<br>
 <form action="" method="post" enctype="multipart/form-data" class="panel-admin">
 	<h3 class="<?=$h3Error; ?>"><?=$h3;?></h3>
 	<label for="imageDog">Добавить изображение</label>

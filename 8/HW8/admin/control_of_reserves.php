@@ -15,7 +15,7 @@
 
 	if (isset($_POST['del_reserve']))
 	{
-		$idOfReserve = $_REQUEST['del_reserve'];
+		$idOfReserve = $_POST['del_reserve'];
 		// var_dump( $idOfReserve );
 		db_delete_reserve_by_id($idOfReserve);
 		$unserializeReserveCookie = unserialize($_COOKIE['puppy_is_reserved']);
