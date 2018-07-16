@@ -19,7 +19,7 @@ if (isset($_POST['enter']))
 {
   // $result вернул данные о пользователе с таким логином и паролем.
 	$result = db_get_all_info_about_users($login, $pass); 
-  
+  // var_dump($result);
     // Извлечение ассоциативного массива циклом:
     while ($row = mysqli_fetch_assoc($result)) 
     {

@@ -14,8 +14,6 @@
 	$email = (string)htmlspecialchars(strip_tags( $_POST['email'] ));
 	$phone = (string)htmlspecialchars(strip_tags( $_POST['phone'] ));
 
-
-
 	$label_pass_content = 'Пароль';
 	$label_pass2_content = 'Повторите пароль';
 	$label_login_content = 'Логин';
@@ -23,7 +21,6 @@
 	$registration_legend_content = 'Регистрация:';
 	$login_legend_content = 'Вход';
 	$class_legend = 'class_legend';
-
 
 
 	if ( isset($_POST['registration']) ) {

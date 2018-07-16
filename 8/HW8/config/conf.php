@@ -1,8 +1,10 @@
 <?php
-	define('HOST', '127.0.0.1');
-	define('MYSQL_LOGIN', 'root');
-	define('MYSQL_PASS', '');
-	define('MYSQL_DB', 'MORNING_STAR');
+	define('HOST', 'localhost');
+	// define('MYSQL_LOGIN', 'root');
+	// define('MYSQL_PASS', '');
+	define('MYSQL_LOGIN', 'artemkm9_php1');
+	define('MYSQL_PASS', 'asdh3895chdHDw732m');
+	define('MYSQL_DB', 'artemkm9_php1');
 	define('MYSQL_USER', 'user');
 	define('MYSQL_DOGS', 'dogs');
 	define('MYSQL_RESERVE', 'reserve_puppy');

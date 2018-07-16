@@ -1,4 +1,4 @@
-<?
+<?php
 // Соединение с базой данных.
 function db_connect() {
 
@@ -6,6 +6,7 @@ function db_connect() {
 	mysqli_set_charset($connect, 'utf8');
 	if (!$connect) {
 		return "Ошибка соединения с базой данных!\n\n";
+		// echo "Соединение с базой данных НЕ установлено!!!\n\n";
 	} else if ($connect) {
 		// echo "Соединение с базой данных установлено.\n\n";
 		return $connect;
@@ -25,7 +26,7 @@ function login_is_busy_or_not($login) {
 	$query = "SELECT `login` FROM ".MYSQL_USER." WHERE `login`='$login'";
 	$res = mysqli_query($connect, $query);
 	$arrayOfLogins = array();
-	$row = mysqli_fetch_assoc($res); 
+	$row = mysqli_fetch_assoc($res);
 	$loginInDbIsTheSame = $row['login'];
 	if ($loginInDbIsTheSame===$login) {
 		// echo "В базе данных есть логин: ".$login."!!!\n\n";
@@ -37,7 +38,7 @@ function login_is_busy_or_not($login) {
 		db_close($connect);
 		return false;
 	}
-	
+
 }
 
 // Регистрация пользователя.
@@ -46,7 +47,7 @@ function db_user_registration($login, $pass, $name, $email, $phone) {
 	$date = date('j.n.o G:i:s');
 	$connect = db_connect();
 	$query = "INSERT INTO ".MYSQL_USER."(`ig`, `login`, `password`, `date`, `name`, `email`, `phone`) VALUES ('$login', '$pass', '$date', '$name', '$email', '$phone')";
-	
+
 	if ($res = mysqli_query($connect, $query)) {
 		// echo "Данные отправлены.\n\n";
 		// Установка cookies на месяц.
@@ -56,7 +57,7 @@ function db_user_registration($login, $pass, $name, $email, $phone) {
 		setcookie('name', $name, time()+2592000);
 		setcookie('email', $email, time()+2592000);
 		setcookie('phone', $phone, time()+2592000);
-	} 
+	}
 	else {
 		// echo "Данные не отправлены!\n\n";
 	}
@@ -108,7 +109,7 @@ function db_reserve_puppy($userId, $userName, $userPhone, $userEmail, $dogId, $m
 }
 
 // Удаление резерва щенка.
-function db_delete_reserve($userName, $userPhone, $userEmail, $dogId) 
+function db_delete_reserve($userName, $userPhone, $userEmail, $dogId)
 {
 	$connect = db_connect();
 	// $query = "DELETE FROM ".MYSQL_RESERVE." WHERE `id`=".$idOfReserve;
@@ -119,7 +120,7 @@ function db_delete_reserve($userName, $userPhone, $userEmail, $dogId)
 }
 
 // Удаление резерва щенка.
-function db_delete_reserve_by_id($idOfReserve) 
+function db_delete_reserve_by_id($idOfReserve)
 {
 	$connect = db_connect();
 	// $query = "DELETE FROM ".MYSQL_RESERVE." WHERE `id`=".$idOfReserve;
@@ -149,7 +150,7 @@ function db_get_all_paths_titles_descriptions() {
 	return $res;
 }
 
-// Достать из базы всю информацию о собаке по id. 
+// Достать из базы всю информацию о собаке по id.
 function db_get_info_about_dog_by_id($dogId) {
 	$connect = db_connect();
 	$query = "SELECT `id`, `path`, `path_mini`, `title`, `description`, `dog_page_dir` FROM ".MYSQL_DOGS." WHERE id='$dogId'";
@@ -181,18 +182,18 @@ function upload_image_to_server($uploadedImage, $pathToDir) {
 		} else if ($uploadedImage['size']>5000000) {
 			// echo "Файл небыл загружен, потому что больше 5Мб!\n";
 			return false;
-		} 
-	} 
-	 
+		}
+	}
+
 }
 
 // Функция добавления информации о собаке в базу данных.
 function db_add_dogs_info($pathToFile, $pathToMiniFile, $title, $description, $dogPageDir) {
-	
+
 	$connect = db_connect();
 	$queryForPath = "SELECT `path` FROM ".MYSQL_DOGS." WHERE id>0";
 	$query = "INSERT INTO ".MYSQL_DOGS."(`path`, `path_mini`, `title`, `description`, `dog_page_dir`) VALUES ('$pathToFile', '$pathToMiniFile', '$title', '$description', '$dogPageDir')";
-	
+
 	if ( $resQuery = mysqli_query($connect, $queryForPath) ) {
 		$arrayOfPathsToImages = array();
 		while ( $row = mysqli_fetch_row($resQuery) ) {
@@ -208,15 +209,15 @@ function db_add_dogs_info($pathToFile, $pathToMiniFile, $title, $description, $d
 			db_close($connect);
 			// echo "БАЗА ЗАКРЫТА!";
 			return true;
-		} 
+		}
 		else {
 			// echo "Данные не были переданы!";
 			db_close($connect);
 			// echo "БАЗА ЗАКРЫТА!";
 			return false;
 		}
-	}  
-		
+	}
+
 }
 
 // Получить все данные о всех резервах из базы данных.
@@ -308,7 +309,7 @@ function resize($newWidth, $targetFile, $originalFile) {
                     // $new_image_ext = 'gif';
                     break;
 
-            default: 
+            default:
                     throw new Exception('Unknown image type.');
     }
 
@@ -351,7 +352,7 @@ function cookie_set_reserve_puppy($nameCookie, $dogId, $maleOrFemale, $idOfReser
 function male_or_female($maleOrFemale)
 {
 	// var_dump($maleOrFemale);
-	switch($maleOrFemale) 
+	switch($maleOrFemale)
 	{
 		case 'male':
 		 return 'кобеля';
