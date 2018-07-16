@@ -17,7 +17,7 @@
 					$maleOrFemale = male_or_female($value);
 				  // var_dump($maleOrFemale);		
 				}
-				$dogName = (db_get_info_about_dog_by_id($dogId))['title'];
+				//$dogName = (db_get_info_about_dog_by_id($dogId))['title'];
 			}
 	?>
 
@@ -41,3 +41,5 @@
 	COOKIE['puppy_is_reserved']
   <?=var_dump( unserialize($_COOKIE['puppy_is_reserved']) );?>
 </pre>   -->
+	<h4>Ваш поводок:</h4>
+</div>

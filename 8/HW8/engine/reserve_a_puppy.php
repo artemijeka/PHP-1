@@ -24,6 +24,19 @@ if ($_SESSION['admin']!=='true')
 			$userName = $_COOKIE['name'];
 		}	else 	{
 			$userName = $_POST['userName'];
+			if (!preg_match("/^((8|\+7|7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/", $userPhone)) 
+			{
+				$h3ReservePuppy = "Вы ввели неверный формат телефона!!!";
+				$h3ReserveRed = "h3-reserve__red";
+			} 
+			// !!!!!!!!!
+			elseif(!db_has_this_reserve($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage)) 
+			{
+				$idOfReserve = db_reserve_puppy($userName, $userPhone, $userEmail, $dogId, $maleOrFemale, $userMessage);
+				// var_dump($idOfReserve);
+				cookie_set_reserve_puppy('puppy_is_reserved', $dogId, $maleOrFemale, $idOfReserve);
+				// refresh();
+			}
 		}
 
 		if (isset( $_COOKIE['phone'] )) {

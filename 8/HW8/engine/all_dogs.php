@@ -29,4 +29,8 @@
 	// var_dump($arrayImagesAndTitleAndDescription);
 	// echo "</pre>";
 
+/**
+ * ДОБАВИТЬ РЕДАКТИРОВАНИЕ КАРТОЧКИ НА МЕСТЕ !!!
+ */
+
 ?>
