@@ -1,5 +1,6 @@
-<?php
-header("Content-Type: text/html; charset=utf-8");
+﻿<?php
+/* Установка внутренней кодировки в UTF-8 */
+// mb_internal_encoding("UTF-8");
 ////////////////////////////////////////////////////////////////////////////////
 echo "<pre><hr>
     4. Объявить массив, индексами которого являются буквы русского языка, а значениями – соответствующие латинские буквосочетания
@@ -37,22 +38,26 @@ $array_rus_letters = array(
 	'Ь' => '\'', 'Ы' => 'Y', 'Ъ' => '\'',
 	'Э' => 'E', 'Ю' => 'Yu', 'Я' => 'Ya',
 );
-function mbStringToArray($string, $encoding = 'UTF-8')
-{
-    $strlen = mb_strlen($string);
-    while ($strlen) {
-        $array[] = mb_substr($string, 0, 1, $encoding);
-        $string = mb_substr($string, 1, $strlen, $encoding);
-        $strlen = mb_strlen($string, $encoding);
-    }
-    return ($array);
-}
-var_dump( str_split(mbStringToArray("СтРоКа")) );
 
-function transliterator($string) { // "СтРоКа"
-	
+$string = "ЧелоБрейк";
+function string_split_unicode($string, $length = 1) {
+    $tmp = preg_split('~~u', $string, -1, PREG_SPLIT_NO_EMPTY);
+    if ($length > 1) {
+        $chunks = array_chunk($tmp, $length);
+        foreach ($chunks as $i => $chunk) {
+            $chunks[$i] = join('', (array) $chunk);
+        }
+        $tmp = $chunks;
+    }
+    return $tmp;
 }
-transliterator("строКА");
+print_r(string_split_unicode($string, 1));
+
+function transliterator($string) {
+	
+	return $trans_string;
+}
+echo transliterator($string);
 ////////////////////////////////////////////////////////////////////////////////
 echo "</pre><hr>";
 ////////////////////////////////////////////////////////////////////////////////
