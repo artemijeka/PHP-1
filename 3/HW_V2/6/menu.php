@@ -58,38 +58,39 @@ $array_menu = [
 $menu; // сгенерированное меню
 echo "<pre>";
 
-
+// СДЕЛАЛ НО ТОЛЬКО ЗАМАРОЧЕННО И НЕ УНИВЕРСАЛЬНО
 function construct_menu($array_menu) {
     foreach($array_menu as $key => $value) {
-        if (is_numeric($key)) {
-            echo "numeric\n";
-            $menu .= "<li><a href='#'>{$value}</a></li>";
-        }
         if (is_string($key)) {
             echo "string\n";
-            $menu .= "<li><a href='#'>{$key}</a><ul>"; // <ul1>
-            foreach($value as $key2 => $value2) {
-                if (is_string($key2)) {
-                    echo "sub_string\n";
-                    $menu .= "<li><a href='#'>{$key2}</a><ul>"; // <ul2>
-                    foreach($value2 as $key3 => $value3) {
-                        if (is_numeric($key3)) {
-                            $menu .= "<li><a href='#'>{$value3}</a></li>";
+            $menu .= "<li><a href='#'>{$key}</a><ul>"; // <ul1>   
+
+                    foreach($value as $key2 => $value2) {
+                        if (is_string($key2)) {
+                            echo "sub_string\n";
+                            $menu .= "<li><a href='#'>{$key2}</a><ul>"; // <ul2>
+                            foreach($value2 as $key3 => $value3) {
+                                if (is_numeric($key3)) {
+                                    $menu .= "<li><a href='#'>{$value3}</a></li>";
+                                }
+                            }
+                            $menu .= "</li></ul>"; // </ul2>
+                        }
+                        elseif (is_numeric($key2)) {
+                            $menu .= "<li><a href='#'>{$value2}</a></li>";
                         }
                     }
-                    $menu .= "</li></ul>"; // </ul2>
-                }
-                elseif (is_numeric($key2)) {
-                    $menu .= "<li><a href='#'>{$value2}</a></li>";
-                }
-            }
+
             $menu .= "</li></ul>"; // </ul1>
+        }
+        elseif (is_numeric($key)) {
+            echo "numeric\n";
+            $menu .= "<li><a href='#'>{$value}</a></li>";
         }
     }
     return $menu;
 }
 $menu = construct_menu($array_menu);
-// var_dump($menu);
 echo "</pre>";
 
 $template = file_get_contents('index.html'); // считываем файл куда вставим шаблончик {{MENU}}
