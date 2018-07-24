@@ -16,7 +16,14 @@ echo "<pre><hr>
 $string = "ЧелоБрейк";
 print_r( transliterator($string) );
 
-function transliterator($string, $length = 1) {
+/**
+ * Транслитерация строки из рус в анг символы.
+ *
+ * @param [type] $string - входная строка
+ * @param integer $length - длина обрабатываемой строки (по умолчанию вся строка (-1))
+ * @return string - транслитерированная строка
+ */
+function transliterator_srting_rus_to_eng($string, $length = 1) {
     $array_rus_letters = preg_split('~~u', $string, -1, PREG_SPLIT_NO_EMPTY);
     if ($length > 1) {
         $chunks = array_chunk($array_rus_letters, $length);
