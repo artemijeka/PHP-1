@@ -1,0 +1,3 @@
+AddType application/x-httpd-php .php .htm .html .phtml .tpl
+# или
+# AddHandler application/x-httpd-php .php .htm .html .phtml .tpl
