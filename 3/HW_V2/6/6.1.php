@@ -1,5 +1,4 @@
 <?php
-require_once("functions.php");
 ////////////////////////////////////////////////////////////////////////////////
 // 6. В имеющемся шаблоне сайта заменить статичное меню (ul - li) 
 // на генерируемое через PHP. Необходимо представить пункты меню как элементы 
@@ -7,31 +6,33 @@ require_once("functions.php");
 // вложенными подменю? Попробовать его реализовать.
 ////////////////////////////////////////////////////////////////////////////////
 /*
-<li class="active"><a href="index.html">Home</a></li>
-<li><a class="drop" href="#">Pages</a>
-    <ul>
-        <li><a href="pages/gallery.html">Gallery</a></li>
-        <li><a href="pages/full-width.html">Full Width</a></li>
-        <li><a href="pages/sidebar-left.html">Sidebar Left</a></li>
-        <li><a href="pages/sidebar-right.html">Sidebar Right</a></li>
-        <li><a href="pages/basic-grid.html">Basic Grid</a></li>
-    </ul>
-</li>
-<li><a class="drop" href="#">Dropdown</a>
-    <ul>
-        <li><a href="#">Level 2</a></li>
-        <li><a class="drop" href="#">Level 2 + Drop</a>
-			<ul>
-				<li><a href="#">Level 3</a></li>
-				<li><a href="#">Level 3</a></li>
-				<li><a href="#">Level 3</a></li>
-			</ul>
-        </li>
-        <li><a href="#">Level 2</a></li>
-    </ul>
-</li>
-<li><a href="#">Link Text</a></li>
-<li><a href="#">Link Text 2</a></li>
+<ul class="clear">
+    <li class="active"><a href="index.html">Home</a></li>
+    <li><a class="drop" href="#">Pages</a>
+        <ul>
+            <li><a href="pages/gallery.html">Gallery</a></li>
+            <li><a href="pages/full-width.html">Full Width</a></li>
+            <li><a href="pages/sidebar-left.html">Sidebar Left</a></li>
+            <li><a href="pages/sidebar-right.html">Sidebar Right</a></li>
+            <li><a href="pages/basic-grid.html">Basic Grid</a></li>
+        </ul>
+    </li>
+    <li><a class="drop" href="#">Dropdown</a>
+        <ul>
+            <li><a href="#">Level 2</a></li>
+            <li><a class="drop" href="#">Level 2 + Drop</a>
+                <ul>
+                    <li><a href="#">Level 3</a></li>
+                    <li><a href="#">Level 3</a></li>
+                    <li><a href="#">Level 3</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Level 2</a></li>
+        </ul>
+    </li>
+    <li><a href="#">Link Text</a></li>
+    <li><a href="#">Link Text 2</a></li>
+</ul>
 */
 ////////////////////////////////////////////////////////////////////////////////
 $array_menu = [
@@ -60,6 +61,7 @@ echo "<pre>";
 
 // СДЕЛАЛ НО ТОЛЬКО ЗАМАРОЧЕННО И НЕ УНИВЕРСАЛЬНО
 function construct_menu($array_menu) {
+    $menu .= "<ul>";
     foreach($array_menu as $key => $value) {
         if (is_string($key)) {
             echo "string\n";
@@ -88,6 +90,7 @@ function construct_menu($array_menu) {
             $menu .= "<li><a href='#'>{$value}</a></li>";
         }
     }
+    $menu .= "</ul>";
     return $menu;
 }
 $menu = construct_menu($array_menu);

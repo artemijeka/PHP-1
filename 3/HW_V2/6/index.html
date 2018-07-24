@@ -1,6 +1,4 @@
-<?php 
-require_once("./menu.php");
-?>
+<?php require_once("./6.2.php"); ?>
 <!DOCTYPE html>
 <!--
 Template Name: Preevent
@@ -31,12 +29,14 @@ Licence URI: http://www.os-templates.com/template-terms
       </div>
       <!-- ################################################################################################ -->
       <nav id="mainav" class="fl_right">
-        
       
-      
-        <ul class="clear">
-          {{MENU}}
-        </ul>
+
+
+
+        <ul class="clear">
+          <?php menuConstruct($array_menu); ?>
+        </ul>            
+
 
 
 
