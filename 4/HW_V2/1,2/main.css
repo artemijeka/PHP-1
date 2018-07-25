@@ -14,6 +14,12 @@
     margin: 1vw;
 }
 
+.big_img {
+    width: auto;
+    height: 30vw;
+    margin: 1vw;
+}
+
 .mini_img:hover {
     height: 14.6vw;
     margin: .2vw;
