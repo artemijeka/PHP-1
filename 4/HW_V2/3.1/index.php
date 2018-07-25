@@ -43,11 +43,11 @@ echo "</pre>";
 
 <body>
 <div id="main">
-<div class="post_title"><h2>Моя галерея</h2></div>
+	<div class="post_title"><h2>Моя галерея</h2></div>
 	<div class="gallery">
 		<!-- <a rel="gallery" class="photo" href="gallery_img/big/01.jpg"><img src="gallery_img/small/01.jpg" width="150" height="100" /></a> -->
 		<?php foreach($array_images_name as $key => $value): ?>
-			<a class="photo" href="images/<?=$value?>" title="Изображение <?=$value?>"><img class="mini_img" src="images/<?=$value?>" alt="Изображение <?=$value?>" width="150" height="100" /></a>
+			<a class="photo" href="images/<?=$value?>" title="Изображение <?=$value?>"><img class="mini_img" src="images/<?=$value?>" alt="Изображение <?=$value?>" height="115" /></a>
 		<?php endforeach; ?>
 	</div>
 </div>
