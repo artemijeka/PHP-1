@@ -1,0 +1,24 @@
+.container > h3 {
+    text-align: center;
+}
+
+.gallery {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.mini_img {
+    width: auto;
+    height: 13.6vw;
+    margin: 1vw;
+}
+
+.mini_img:hover {
+    height: 14.6vw;
+    margin: .2vw;
+    opacity: .8;
+    box-shadow: 0 10px 12px black;
+    transition: ease-out 400ms;
+    cursor: pointer;
+}
