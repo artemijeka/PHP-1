@@ -11,7 +11,7 @@
 */
 function getAssocResult($sql)
 {
-    $db = mysqli_connect(HOST, USER, PASS, DB);
+    $db = @mysqli_connect(HOST, USER, PASS, DB);
     $result = mysqli_query($db, $sql);
     $array_result = array();
     while ($row = mysqli_fetch_assoc($result)) {
@@ -25,7 +25,7 @@ function getAssocResult($sql)
 
 function executeQuery($sql)
 {
-    $db = mysqli_connect(HOST, USER, PASS, DB);
+    $db = @mysqli_connect(HOST, USER, PASS, DB);
     $result = mysqli_query($db, $sql);
     mysqli_close($db);
 

@@ -5,7 +5,7 @@ define('WWW_ROOT', SITE_ROOT.'/public');
 
 /* DB config */
 define('HOST', 'localhost');
-define('USER', 'root');
+define('USER', 'admin');
 define('PASS', '');
 define('DB', 'lesson5');
 

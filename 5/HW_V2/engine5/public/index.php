@@ -1,4 +1,5 @@
 <?php
+
 // подключаем все библиотеки
 require_once '../config/config.php';
 
@@ -7,7 +8,6 @@ $url_array = explode('/', $_SERVER['REQUEST_URI']);
 // анализируем первое слово после запроса, например в site/news/?id_news=1
 // $url_array[1]="news"
 // Полученное значение идет в page_name, если зашли в корень сайта то page_name="index"
-// var_dump($url_array[1]);
 if ($url_array[1] == '') {
     $page_name = 'index';
 } else {
@@ -17,9 +17,11 @@ if ($url_array[1] == '') {
 // подготовку переменных вынесли в отдельную функцию
 // в нее передаем имя страницы, переменные для которой нужно подготовить
 $variables = prepareVariables($page_name);
-// var_dump($page_name);
 
 // строим страницу и выводим ее на экран
 // входные данные имя страницы и ассоциотивный массив переменных
 // Например "title"=>"Шапка сайта"
+echo "<pre>";
+var_dump($variables);
+echo "</pre>";
 echo renderPage($page_name, $variables);

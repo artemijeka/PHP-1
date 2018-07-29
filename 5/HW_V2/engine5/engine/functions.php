@@ -12,18 +12,18 @@ define('ERROR_TEMPLATE_EMPTY', 2);
 function renderPage($page_name, $variables = [])
 {
     //дополним до полного имени файл шаблона из имени страницы page_name
-    $file = TPL_DIR.'/'.$page_name.'.tpl';
+    $file = TPL_DIR . '/' . $page_name . '.tpl';
     // var_dump($page_name);
 
     //Если шаблон отсутствует выведем ошибку
     if (!is_file($file)) {
-        echo 'Template file "'.$file.'" not found';
+        echo 'Template file "' . $file . '" not found';
         exit(ERROR_NOT_FOUND);
     }
 
     //Если шаблон есть но пустой тоже выведем ошибку
     if (filesize($file) === 0) {
-        echo 'Template file "'.$file.'" is empty';
+        echo 'Template file "' . $file . '" is empty';
         exit(ERROR_TEMPLATE_EMPTY);
     }
 
@@ -62,18 +62,18 @@ function pasteValues($variables, $page_name, $templateContent)
         //то выполним подстановку через дополнительный шаблон
         if ($value != null) {
             // собираем ключи
-            $p_key = '{{'.strtoupper($key).'}}';
+            $p_key = '{{' . strtoupper($key) . '}}';
 
             if (is_array($value)) {
                 // замена массивом
                 $result = '';
                 foreach ($value as $value_key => $item) {
                     //сформируем имя дополнительного шаблона
-                    $itemTemplateContent = file_get_contents(TPL_DIR.'/'.$page_name.'_'.$key.'_item.tpl');
+                    $itemTemplateContent = file_get_contents(TPL_DIR . '/' . $page_name . '_' . $key . '_item.tpl');
 
                     //выполним замену по дополнительному шаблону
                     foreach ($item as $item_key => $item_value) {
-                        $i_key = '{{'.strtoupper($item_key).'}}';
+                        $i_key = '{{' . strtoupper($item_key) . '}}';
 
                         $itemTemplateContent = str_replace($i_key, $item_value, $itemTemplateContent);
                     }
@@ -103,79 +103,65 @@ function pasteValues($variables, $page_name, $templateContent)
 function prepareVariables($page_name)
 {
     $vars = [];
-    //в зависимости от того, какую страницу вызываем
-    //такой блок кода для нее и выполняем
+    // в зависимости от того, какую страницу вызываем
+    // такой блок кода для нее и выполняем
     switch ($page_name) {
+        case 'index':
+            $vars['title'] = 'Задание 5.1!';
+            // заполним массив путей к изображениям
+            $vars['gallery'] = getImageNamesOfDB();
+            foreach($vars['gallery'] as $key => $value) {
+                $res[] = $value['name'];
+            }
+            $vars['gallery'] = $res;
+            break;
         case 'news':
-            //если вызвана страница новостей заполним для нее поля
-            //лента новостей будет не просто строка текста,
-            //а массивом новостей, БЕЗ ТЕГОВ, просто текст
-            //pasteValues сам заменит этот текст на шаблон
+            // если вызвана страница новостей заполним для нее поля
+            // лента новостей будет не просто строка текста,
+            // а массивом новостей, БЕЗ ТЕГОВ, просто текст
+            // pasteValues сам заменит этот текст на шаблон
             $vars['newsfeed'] = getNews();
             $vars['test'] = 'Привет!';
             break;
         case 'newspage':
-            //если вызвана страница для полной новости
-            //то получим текст полной новости content
-            //через выполнение запроса к базе по номеру новости
-            //который получаем через GET
+            // если вызвана страница для полной новости
+            // то получим текст полной новости content
+            // через выполнение запроса к базе по номеру новости
+            // который получаем через GET
             $content = getNewsContent($_GET['id_news']);
             $vars['news_title'] = $content['news_title'];
             $vars['news_content'] = $content['news_content'];
             break;
 
         case 'delete':
-            //дополнительная функция удаления новости
-            //запрос вида site/delete/id_news=2 т.е. удалите ка вторую новость
-            //Получаем номер новости через GET
+            // дополнительная функция удаления новости
+            // запрос вида site/delete/id_news=2 т.е. удалите ка вторую новость
+            // Получаем номер новости через GET
             $idx = $_GET['id_news'];
-            //вызываем функцию удаления новости
+            // вызываем функцию удаления новости
             delNews($idx);
-            //возвращаемся на страницу с новостями, никаких значений возвращать уже не нужно
-            header('location: /news/');
-            break;
-
-        case 'delete':
-            //дополнительная функция удаления новости
-            //запрос вида site/delete/id_news=2 т.е. удалите ка вторую новость
-            //Получаем номер новости через GET
-            $idx = $_GET['id_news'];
-            //вызываем функцию удаления новости
-            delNews($idx);
-            //возвращаемся на страницу с новостями, никаких значений возвращать уже не нужно
+            // возвращаемся на страницу с новостями, никаких значений возвращать уже не нужно
             header('location: /news/');
             break;
     }
-    //возвращаем готовый массив значения vars для шаблона
+    // возвращаем готовый массив значения vars для шаблона
     return $vars;
 }
 
-/**
- * Получение имен файлов и каталогов в заданной дирректории.
- *
- * @param [string] $dir - дирректория
- *
- * @return array
- */
-function getNamesOfDir($dir)
-{
-    return array_slice(scandir($dir), 2);
-}
-
-//функция логирования
+// функция логирования
 function _log($s, $suffix = '')
 {
     if (is_array($s) || is_object($s)) {
         $s = print_r($s, 1);
     }
 
-    $s = '### '.date('d.m.Y H:i:s')."\r\n".$s."\r\n\r\n\r\n";
+    $s = '### ' . date('d.m.Y H:i:s') . "\r\n" . $s . "\r\n\r\n\r\n";
 
     if (mb_strlen($suffix)) {
-        $suffix = '_'.$suffix;
+        $suffix = '_' . $suffix;
     }
 
-    _writeToFile($_SERVER['DOCUMENT_ROOT'].'/_log/logs'.$suffix.'.log', $s, 'a+');
+    _writeToFile($_SERVER['DOCUMENT_ROOT'] . '/_log/logs' . $suffix . '.log', $s, 'a+');
 
     return $s;
 }
@@ -223,7 +209,7 @@ function _makeDir($dir, $is_root = true, $root = '')
 
     foreach ($dir_parts as $step => $value) {
         if ($value != '') {
-            $root = $root.'/'.$value;
+            $root = $root . '/' . $value;
             if (!is_dir($root)) {
                 mkdir($root, 0755);
                 chmod($root, 0755);
@@ -255,7 +241,7 @@ function getNewsContent($id_news)
 {
     $id_news = (int) $id_news;
 
-    $sql = 'SELECT * FROM news WHERE id_news = '.$id_news;
+    $sql = 'SELECT * FROM news WHERE id_news = ' . $id_news;
     $news = getAssocResult($sql);
 
     //В случае если новости нет, вернем пустое значение
@@ -265,4 +251,24 @@ function getNewsContent($id_news)
     }
 
     return $result;
+}
+
+/**
+ * Получение имен файлов и каталогов в заданной дирректории.
+ *
+ * @param [string] $dir - дирректория
+ *
+ * @return array - отдает массив имен путей к файлам и подпапкам в каталоге
+ */
+function getNamesOfDir($dir)
+{
+    $res = array_slice(scandir($dir), 2);
+    return $res;
+}
+
+function getImageNamesOfDB()
+{
+    $sql = 'SELECT * FROM gallery';
+    $gallery = getAssocResult($sql);
+    return $gallery;
 }
