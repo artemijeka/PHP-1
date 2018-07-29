@@ -1,0 +1,13 @@
+#Защищаем .htaccess файл
+<files .htaccess>
+    order allow,deny
+    deny from all
+</files>
+
+#Устанавливаем альтернативную страницу по-умолчанию
+DirectoryIndex public/index.php public/index.html
+
+#Добавить возможность исполнения кода php в других расширениях
+AddType application/x-httpd-php .php .htm .html .phtml .tpl
+# или
+# AddHandler application/x-httpd-php .php .htm .html .phtml .tpl
