@@ -21,14 +21,11 @@ function prepareVariables($page_name)
             $vars["image"] = $image['filename'];
             $vars["likes"] = $image['likes'];
             break;
-
     }
-
     return $vars;
 }
 
 //МОДЕЛЬ
-
 //увеличим число лайков на 1 одним запросом к базе
 function add_likes($idx)
 {
@@ -39,7 +36,7 @@ function add_likes($idx)
 //функция возвращает имя файла по его idx
 function getOneImage($idx)
 {
-    $sql = "SELECT filename,likes FROM `images` WHERE idx={$idx}";
+    $sql = "SELECT `filename`, `likes` FROM `images` WHERE idx={$idx}";
     $row = getAssocResult($sql);
     return $row[0];
 }
@@ -47,8 +44,8 @@ function getOneImage($idx)
 //функция возвращает ассоциативный массив со списком файлов из базы
 function getImages()
 {
-    $sql = "SELECT * FROM `images` ORDER BY likes DESC";
+    $sql = "SELECT * FROM `images` ORDER BY `likes` DESC";
     $images = getAssocResult($sql);
-    print_r($images);
+    // print_r($images);
     return $images;
 }

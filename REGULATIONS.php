@@ -176,8 +176,7 @@ $soup->ingredients = array('chicken', 'water'); // для доступа к ме
 // СОЗДАНИЕ СТАТИЧЕСКОГО МЕТОДА КЛАССА
 class Entree
 {
-    public static function getSizes()
-    { // создается внутри класса
+    public static function getSizes() { // статический метод создается внутри класса
         return array('small', 'medium', 'large');
     }
 }
@@ -203,3 +202,63 @@ class Entree
 
 // СОЗДАНИЕ ОБЪЕКТА ПО СРЕДСТВУ __construct
 $soup = new Entree('Chicken Soup', array('chicken', 'water')); // слово Entree рассматривается тут как обращение к методу __construct и в скобки помещются переменные которые надо внедрить в новый объект
+
+// СОЗДАНИЕ РАСШИРЕННОГО КЛАССА ОТ ДРУГОГО КЛАССА
+class ComboMeal extends Entree { // класс ComboMeal расширен от класса Entree
+    public function hasIngredient($ingredient) {
+        foreach ($this->ingredients as $entree) {
+            if ($entree->hasIngredient($ingredient)) {
+                return true; 
+            }
+        }
+        return false; 
+    }
+}
+
+// ВВОД КОНСТРУКТОРА В ПОДКЛАСС
+class ComboMeal extends Entree {
+    public function __construct($name, $entrees) {
+        parent::__construct($name, $entrees); // parent означает ссылку на класс Entree от которого расширяется ComboMeal
+        foreach ($entrees as $entree) {
+            if (! $entree instanceof Entree) {
+                throw new Exception('Elements of $entrees must be Entree objects');
+            }
+        }
+    }
+}
+
+// ИЗМЕНЕНИЕ ДОСТУПНОСТИ СВОЙСТВ
+class Entree { 
+    private $name; // закрытое свойство
+    protected $ingredients = array(); // свойство открыто только для данного класса и для подклассов расширенных от данного класса
+        public function getName() { // метод для чтения значения свойства $name
+            return $this->name;
+    }
+    public function __construct($name, $ingredients) {
+        if (!is_array($ingredients)) {
+            throw new Exception('$ingredients must be an array'); 
+        }
+        $this->name = $name;
+        $this->ingredients = $ingredients;
+    }
+    public function hasIngredient($ingredient) {
+        return in_array($ingredient, $this->ingredients);
+    }
+    /* На методы действуют те же самые ключевые слова доступности protected и private */
+}
+
+// ЗАДАНИЕ ПРОСТРАНСТВА ИМЁН
+namespace Tiny; // пространство имен, теперь все имена идущие после этого пространства будут относиться только к этому пространству (это полезно при внедрении постороннего кода в свою программу, чтобы имена не конфликтовали)
+class Fruit {
+    public static function munch($bite) {
+        print "Here is a tiny munch of $bite.";
+    }
+}
+
+// ВОСПОЛЬЗОВАТЬСЯ КЛАССОВ В ПРОСТРАНСТВЕ ИМЕН
+\Tiny\Fruit::munch("banana"); // сначала указывается корень пространства имен \ потом имя пространства Tiny, затем снова разделитель \ и далее имя класса Fruit, после имя статичного метода через :: munch();
+
+// ПРИМЕНЕНИЕ КЛЮЧЕВОГО СЛОВА use ДЛЯ СОКРАЩЕНИЯ ОБРАЩЕНИЯ К ПРОСТРАНСТВУ ИМЕН
+use Tiny\Eating\Fruit as Snack;
+Snack::munch("strawberry"); // вместо \Tiny\Eating\Fruit::munch();
+Fruit::munch("orange"); // вместо \Tiny\Fruit::munch();

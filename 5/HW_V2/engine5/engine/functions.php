@@ -7,7 +7,7 @@ define('ERROR_TEMPLATE_EMPTY', 2);
 /*
 Обрабатывает указанный шаблон, подставляя нужные переменные
 Если во входных параметрах массив не указан, назначим
-пустой массив variables
+пустой массив variables.
  */
 function renderPage($page_name, $variables = [])
 {
@@ -40,24 +40,25 @@ function renderPage($page_name, $variables = [])
     //возвращаем текст шаблона
     return $templateContent;
 }
+
+/******************************************* CONTROLLER *******************************************/
 /*
 Функция замены значений в шаблоне по массиву замен variables
 Если массив variables двумерный то замена происходит по дополнительному шаблону
 Например variables:
-[
 "newsfeed"=>[
 "news1"=>"Текст новости 1",
 "news1"=>"Текст новости 1",
 "news1"=>"Текст новости 1"
 ]
-]
 тогда поле {{newsfeed}} будет заменено не просто текстом, а по шаблону из файла
-news_newsfeed_item.tpl имя которого система постоит сама
+news_newsfeed_item.tpl имя которого система построит сама
  */
 function pasteValues($variables, $page_name, $templateContent)
 {
-    //перебираем массив замен
+    // перебираем массив замен
     foreach ($variables as $key => $value) {
+        var_dump($variables);
         //Если массив двумерный, т.е. не одно значение для подстановки
         //то выполним подстановку через дополнительный шаблон
         if ($value != null) {
@@ -68,28 +69,27 @@ function pasteValues($variables, $page_name, $templateContent)
                 // замена массивом
                 $result = '';
                 foreach ($value as $value_key => $item) {
-                    //сформируем имя дополнительного шаблона
+                    // сформируем имя дополнительного шаблона
                     $itemTemplateContent = file_get_contents(TPL_DIR . '/' . $page_name . '_' . $key . '_item.tpl');
 
-                    //выполним замену по дополнительному шаблону
+                    // выполним замену по дополнительному шаблону
                     foreach ($item as $item_key => $item_value) {
                         $i_key = '{{' . strtoupper($item_key) . '}}';
-
                         $itemTemplateContent = str_replace($i_key, $item_value, $itemTemplateContent);
                     }
-                    //формируем общую строку с шаблоном уже с подставленными значениями
+                    // формируем общую строку с шаблоном уже с подставленными значениями
                     $result .= $itemTemplateContent;
                 }
             } else {
-                //если подставляется просто значение, его и вернем
+                // если подставляется просто значение, его и вернем
                 $result = $value;
             }
 
-            //произведем основную замену элементов в шаблоне
+            // произведем основную замену элементов в шаблоне
             $templateContent = str_replace($p_key, $result, $templateContent);
         }
     }
-    //вернем строку с готовым шаблоном со вставленными элементами
+    // вернем строку с готовым шаблоном со вставленными элементами
     return $templateContent;
 }
 /*
@@ -110,10 +110,6 @@ function prepareVariables($page_name)
             $vars['title'] = 'Задание 5.1!';
             // заполним массив путей к изображениям
             $vars['gallery'] = getImageNamesOfDB();
-            foreach($vars['gallery'] as $key => $value) {
-                $res[] = $value['name'];
-            }
-            $vars['gallery'] = $res;
             break;
         case 'news':
             // если вызвана страница новостей заполним для нее поля
@@ -148,78 +144,7 @@ function prepareVariables($page_name)
     return $vars;
 }
 
-// функция логирования
-function _log($s, $suffix = '')
-{
-    if (is_array($s) || is_object($s)) {
-        $s = print_r($s, 1);
-    }
-
-    $s = '### ' . date('d.m.Y H:i:s') . "\r\n" . $s . "\r\n\r\n\r\n";
-
-    if (mb_strlen($suffix)) {
-        $suffix = '_' . $suffix;
-    }
-
-    _writeToFile($_SERVER['DOCUMENT_ROOT'] . '/_log/logs' . $suffix . '.log', $s, 'a+');
-
-    return $s;
-}
-
-function _writeToFile($fileName, $content, $mode = 'w')
-{
-    $dir = mb_substr($fileName, 0, strrpos($fileName, '/'));
-    if (!is_dir($dir)) {
-        _makeDir($dir);
-    }
-
-    if ($mode != 'r') {
-        $fh = fopen($fileName, $mode);
-        if (fwrite($fh, $content)) {
-            fclose($fh);
-            @chmod($fileName, 0644);
-
-            return true;
-        }
-    }
-
-    return false;
-}
-
-function _makeDir($dir, $is_root = true, $root = '')
-{
-    $dir = rtrim($dir, '/');
-    if (is_dir($dir)) {
-        return true;
-    }
-
-    if (mb_strlen($dir) <= mb_strlen($_SERVER['DOCUMENT_ROOT'])) {
-        return true;
-    }
-
-    if (str_replace($_SERVER['DOCUMENT_ROOT'], '', $dir) == $dir) {
-        return true;
-    }
-
-    if ($is_root) {
-        $dir = str_replace($_SERVER['DOCUMENT_ROOT'], '', $dir);
-        $root = $_SERVER['DOCUMENT_ROOT'];
-    }
-    $dir_parts = explode('/', $dir);
-
-    foreach ($dir_parts as $step => $value) {
-        if ($value != '') {
-            $root = $root . '/' . $value;
-            if (!is_dir($root)) {
-                mkdir($root, 0755);
-                chmod($root, 0755);
-            }
-        }
-    }
-
-    return $root;
-}
-
+/***************************************** MODEL *****************************************/
 // функция возвращает массив всех новостей
 function getNews()
 {
@@ -236,6 +161,7 @@ function delNews($idx)
     $sql = "DELETE FROM `news` WHERE `news`.`id_news` = {$idx}";
     executeQuery($sql);
 }
+
 //функция вовзращает текст полной новости по ее номеру
 function getNewsContent($id_news)
 {
@@ -268,7 +194,8 @@ function getNamesOfDir($dir)
 
 function getImageNamesOfDB()
 {
-    $sql = 'SELECT * FROM gallery';
+    $sql = "SELECT * FROM `images` ORDER BY `views` DESC";
     $gallery = getAssocResult($sql);
+    // print_r($images);
     return $gallery;
 }
